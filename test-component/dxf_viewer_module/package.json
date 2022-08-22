@@ -1,0 +1,38 @@
+{
+  "name": "dxf_viewer_module_doan",
+  "version": "1.0.14",
+  "description": "",
+  "main": "dist/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass assets/scss/style.scss dist/css/style.css",
+    "build": "webpack && sass assets/scss/style.scss dist/css/style.css",
+    "watch": "webpack --watch --progress",
+    "serve": "webpack serve --port 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^8.0.4",
+    "css-loader": "^6.6.0",
+    "sass": "^1.54.4",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "vue-loader": "^15.4.2",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.10.0",
+    "worker-loader": "^3.0.8"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "dxf-viewer": "^1.0.14",
+    "lodash": "^4.17.21",
+    "sl-vue-tree": "^1.8.5",
+    "socket.io-client": "^4.4.1",
+    "vue": "^2.5.7",
+    "vue-custom-element": "^3.3.0",
+    "vue-template-compiler": "^2.5.21"
+  }
+}
