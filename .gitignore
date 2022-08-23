@@ -9,7 +9,7 @@
 
 # dependencies
 node_modules/
-/dxf_viewer_module/node_modules/
+test-component/dxf_viewer_module/node_modules/
 
 # profiling files
 chrome-profiler-events*.json
