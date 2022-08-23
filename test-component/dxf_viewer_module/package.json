@@ -38,8 +38,8 @@
     "three": "^0.143.0",
     "sl-vue-tree": "^1.8.5",
     "socket.io-client": "^4.4.1",
-    "vue": "^2.5.7",
-    "vue-custom-element": "^3.3.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue": "2.6.11",
+    "vue-custom-element": "3.2.12",
+    "vue-template-compiler": "2.6.11"
   }
 }

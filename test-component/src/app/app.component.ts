@@ -12,6 +12,8 @@ export class AppComponent {
     group: "group id"
   };
 
+  public msg = "Xin chao ban";
+
   public saveDevice(data: any){
     console.log(data?.detail[0])
   }

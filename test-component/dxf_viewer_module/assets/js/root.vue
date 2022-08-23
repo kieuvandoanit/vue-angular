@@ -21,6 +21,7 @@ import { floors } from "./dummy/dummy_floors";
 import { groups } from "./dummy/dummy_groups";
 
 export default {
+  props: ['msg'],
   data() {
     return {
       myBuilding: buildings,
