@@ -1,5 +1,5 @@
 const path = require("path");
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   entry: "./assets/js/index.js",
@@ -11,16 +11,16 @@ module.exports = {
     minimize: false,
   },
   watchOptions: {
-    ignored: ['**/dist/**', '**/node_modules'],
+    ignored: ["**/dist/**", "**/node_modules"],
   },
   devServer: {
     hot: true,
     port: 8080,
     open: {
-      target: ['first.html', 'http://localhost:8080/'],
+      target: ["first.html", "http://localhost:8080/"],
       app: {
-        name: 'google-chrome',
-        arguments: ['--incognito', '--new-window'],
+        name: "google-chrome",
+        arguments: ["--incognito", "--new-window"],
       },
     },
   },
@@ -28,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: "vue-loader",
       },
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
@@ -40,22 +40,22 @@ module.exports = {
         test: /\.css$/,
         use: [
           // [style-loader](/loaders/style-loader)
-          { loader: 'style-loader' },
+          { loader: "style-loader" },
           // [css-loader](/loaders/css-loader)
           {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
+            loader: "css-loader",
+            // options: {
+            //   modules: false,
+            // },
           },
           // [sass-loader](/loaders/sass-loader)
-          { loader: 'sass-loader' }
-        ]
-      }
-    ]
+          { loader: "sass-loader" },
+        ],
+      },
+    ],
   },
   plugins: [
     // make sure to include the plugin for the magic
-    new VueLoaderPlugin()
-  ]
+    new VueLoaderPlugin(),
+  ],
 };

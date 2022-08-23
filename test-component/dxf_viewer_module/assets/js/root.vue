@@ -1,40 +1,36 @@
 <template>
-  <div>
-    <p>Chao {{this.name}}</p>
-    <a href="https://youtube.com">Youtube</a>  
+  <div id="content">
+    <LayoutStructure
+      :buildings="myBuilding"
+      :floors="myFloors"
+      :groups="myGroups"
+      :devices="myDevices"
+    />
   </div>
-  
 </template>
 
-<script>
-// import 
-export default {
-  props: {
-    name: {}
-  },
-  
-  mounted() {
-    const device = {
-      name: "Device 1",
-      serial: "12324412"
-    }
-    console.log(this.name)
-    this.$emit("saveDevice", device);
-  },
+<style>
+@import "../scss/style.css";
+</style>
 
+<script>
+import LayoutStructure from "./components/structure/layout-structure.vue";
+import { buildings } from "./dummy/dummy_building";
+import { devices } from "./dummy/dummy_devices";
+import { floors } from "./dummy/dummy_floors";
+import { groups } from "./dummy/dummy_groups";
+
+export default {
   data() {
     return {
-      
+      myBuilding: buildings,
+      myDevices: devices,
+      myFloors: floors,
+      myGroups: groups,
     };
   },
-  watch: {},
-  
-  created() {
-
-  },
-
-  methods: {
-    
+  components: {
+    LayoutStructure,
   },
 };
 </script>
