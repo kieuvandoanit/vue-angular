@@ -218,7 +218,7 @@ export default {
       );
 
       this.viewer.onClick = (e, selectedDevices, selectedGroups) => {
-        // console.log('e, selectedDevices :>> ', e, selectedDevices);
+        console.log("e, selectedDevices :>> ", e, selectedDevices, selectedGroups);
         this.$emit(
           "handleSingleClick",
           e,
