@@ -580,8 +580,6 @@ export default {
 
         this.dialog = true;
         this.dxfViewer.Render();
-        console.log(scene);
-        console.log(api.objects);
       }
     },
 

@@ -1959,7 +1959,6 @@ export class Viewer {
   }
 
   updateGroupsData(groupData, needRefresh = true) {
-    console.log("🚀 ~ file: Viewer.js ~ line 1962 ~ Viewer ~ updateGroupsData ~ groupData", groupData)
     this.groups = groupData;
     // this.groups = [
     //   {
@@ -2083,7 +2082,6 @@ export class Viewer {
   }
 
   updateDevicesData(devicesData, needRefresh) {
-    console.log("🚀 ~ file: Viewer.js ~ line 2085 ~ Viewer ~ updateDevicesData ~ devicesData", devicesData)
     
     this.devices = devicesData;
     // this.devices = [
@@ -4592,7 +4590,6 @@ export class Viewer {
           }
         }
       });
-      console.log(api.objects);
     }
 
     api.selectedObjects = [];

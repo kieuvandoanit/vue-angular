@@ -25,7 +25,8 @@
         <tbody>
           <tr v-for="layer in groupData" :key="layer.id">
             <td>
-              <img src="/static/icons/menu.png" alt="" /> &nbsp;{{ layer.name }}
+              <img src="/assets/icons/menu.png" alt="" /> &nbsp;{{ layer.name }}
+              Day ne
             </td>
             <td @click="groupClick(layer)">
               <a class="total-layer" href="#"

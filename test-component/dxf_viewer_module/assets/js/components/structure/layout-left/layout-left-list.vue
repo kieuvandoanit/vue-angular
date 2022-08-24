@@ -5,7 +5,7 @@
         <div class="expanded-view" v-show="expanded" @click="compactClick()">
           <i class="fa-solid fa-arrow-left"></i> &nbsp;Compact View
         </div>
-        <div class="title">Floorplans</div>
+        <div class="title">Floorplans Ne</div>
         <!-- <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
           Expanded View&nbsp;<i class="fa-solid fa-arrow-right"></i>
         </div> -->
@@ -218,8 +218,6 @@ export default {
       return this.groups.filter((g) => g.building_id === id);
     },
     getGroupsByFile(id) {
-      console.log("this.groups",this.groups)
-      console.log("this.groups",id)
       return this.groups.filter((f) => f.file_id === id);
     },
     parseGroup(id) {
@@ -276,13 +274,13 @@ export default {
     getNodes() {
       this.nodes = [];
       let floorplans = this.floors;
-      console.log(floorplans);
+      
       floorplans.forEach((floorplan) => {
         let newFloorplan = floorplan;
         newFloorplan["type"] = "Floorplan";
         newFloorplan["navigator"] = "files";
         let groupNodes = this.groupDataByFile(floorplan.id);
-        console.log(floorplan.id)
+        
         let data = {
           title: newFloorplan.full_name,
           isDraggable: false,
@@ -294,7 +292,6 @@ export default {
         };
         this.nodes.push(data);
       });
-      console.log(this.nodes)
       return this.nodes;
     },
     expandedClick() {
@@ -362,6 +359,7 @@ export default {
       this.loading = false;
     },
     onItemClick(obj) {
+      console.log("Click ne click", obj);
       if (obj.type == "Group") {
         let selectedFloor = this.floors.filter(
           (f) => f.id == obj.file_id

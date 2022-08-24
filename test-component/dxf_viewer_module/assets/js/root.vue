@@ -25,17 +25,17 @@ export default {
   props: ['msg', "vueImage"],
   data() {
     return {
-      myBuilding: buildings,
-      myDevices: devices,
-      myFloors: floors,
-      myGroups: groups,
+      myBuilding: JSON.parse(buildings),
+      myDevices: JSON.parse(devices),
+      myFloors: JSON.parse(floors),
+      myGroups: JSON.parse(groups),
     };
   },
   components: {
     LayoutStructure,
   },
   mounted() {
-    console.log('this.vueImage :>> ', this.vueImage);
+    
   },
 };
 </script>

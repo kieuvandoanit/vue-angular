@@ -44,7 +44,7 @@ export default {
   created() {},
 
   mounted() {
-    this.floorplans = JSON.parse(this.floors);
+    this.floorplans = this.floors;
   },
 
   computed: {},

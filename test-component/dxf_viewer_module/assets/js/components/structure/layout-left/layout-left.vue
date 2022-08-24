@@ -217,10 +217,10 @@ export default {
 
   mounted() {
     // this.buildings = JSON.parse(this.buildings_json);
-    this.floors = JSON.parse(this.floors_json);
+    this.floors = this.floors_json;
     // this.selectNav = JSON.parse(this.buildings_json);
-    this.groups = JSON.parse(this.groups_json);
-    this.devices = JSON.parse(this.devices_json);
+    this.groups = this.groups_json;
+    this.devices = this.devices_json;
     // this.selectBuilding(this.buildings[0]);
     // this.titleSelect = this.buildings[0].name;
     // this.projectData = JSON.parse(this.project);

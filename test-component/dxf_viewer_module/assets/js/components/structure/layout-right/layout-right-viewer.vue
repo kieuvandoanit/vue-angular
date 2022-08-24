@@ -187,6 +187,7 @@ export default {
       this.areaData = val;
     },
     selectedGroups(val) {
+      // console.log("Vao day ne: ", this.groups)
       let selectedIds = [];
 
       val.forEach((item) => {
