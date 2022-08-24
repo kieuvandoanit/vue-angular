@@ -73,50 +73,50 @@ const deviceTypeName = {
 };
 
 const icoUnscanLight = new THREE.TextureLoader().load(
-  "/static/icons/unscanlight.png"
+  "/assets/icons/unscanlight.png"
 );
 const icoScanLight = new THREE.TextureLoader().load(
-  "/static/icons/scanlight.png"
+  "/assets/icons/scanlight.png"
 );
 const icoScanLightOn = new THREE.TextureLoader().load(
-  "/static/icons/scanlighton.png"
+  "/assets/icons/scanlighton.png"
 );
 const icoSelectScanLightOn = new THREE.TextureLoader().load(
-  "/static/icons/selectscanlighton.png"
+  "/assets/icons/selectscanlighton.png"
 );
 const icoSelectLight = new THREE.TextureLoader().load(
-  "/static/icons/selectlight.png"
+  "/assets/icons/selectlight.png"
 );
 const icoUnscanSelectedLight = new THREE.TextureLoader().load(
-  "/static/icons/unscanselected.png"
+  "/assets/icons/unscanselected.png"
 );
 const iconSelectSensor = new THREE.TextureLoader().load(
-  "/static/icons/selectsensor.png"
+  "/assets/icons/selectsensor.png"
 );
 const iconSelectUnscanSensor = new THREE.TextureLoader().load(
-  "/static/icons/selectunscansensor.png"
+  "/assets/icons/selectunscansensor.png"
 );
-const icoGroup = new THREE.TextureLoader().load("/static/icons/group.png");
+const icoGroup = new THREE.TextureLoader().load("/assets/icons/group.png");
 const icoGroupActive = new THREE.TextureLoader().load(
-  "/static/icons/activegroup.png"
+  "/assets/icons/activegroup.png"
 );
 const icoTrackPeople = new THREE.TextureLoader().load(
-  "/static/icons/people.png"
+  "/assets/icons/people.png"
 );
 const iconSelectGroup = new THREE.TextureLoader().load(
-  "/static/icons/selectgroup.png"
+  "/assets/icons/selectgroup.png"
 );
 const iconSelectGroupActive = new THREE.TextureLoader().load(
-  "/static/icons/selectgroupactive.png"
+  "/assets/icons/selectgroupactive.png"
 );
 
-const icoSensor = new THREE.TextureLoader().load("/static/icons/sensor.png");
+const icoSensor = new THREE.TextureLoader().load("/assets/icons/sensor.png");
 const icoUnscanSensor = new THREE.TextureLoader().load(
-  "/static/icons/unscan-sensor.svg"
+  "/assets/icons/unscan-sensor.svg"
 );
 
 const iconHeatMapTile = new THREE.TextureLoader().load(
-  "/static/icons/HeatmapTile.png"
+  "/assets/icons/HeatmapTile.png"
 );
 // const font = new THREE.FontLoader().load("/static/icons/sensor.png");
 
@@ -1636,7 +1636,7 @@ export class StructureViewer {
           }else {
             visibleGroups.push(group.id);
           }
-         
+
         }
       });
 

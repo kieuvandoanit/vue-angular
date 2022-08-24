@@ -1,5 +1,5 @@
 import { DxfViewer } from "./DxfViewer/DxfViewer";
-import DxfViewerWorker from "worker-loader!./DxfViewerWorker";
+// import DxfViewerWorker from "worker-loader!./DxfViewerWorker";
 import * as THREE from "three";
 import _ from "lodash";
 import {
@@ -93,86 +93,86 @@ const deviceTypeName = {
 };
 
 const icoUnscanLight = new THREE.TextureLoader().load(
-  "/static/icons/unscanlight.png"
+  "/assets/icons/unscanlight.png"
 );
 const icoScanLight = new THREE.TextureLoader().load(
-  "/static/icons/scanlight.png"
+  "/assets/icons/scanlight.png"
 );
 const icoScanLightOn = new THREE.TextureLoader().load(
-  "/static/icons/scanlighton.png"
+  "/assets/icons/scanlighton.png"
 );
 const icoSelectScanLightOn = new THREE.TextureLoader().load(
-  "/static/icons/selectscanlighton.png"
+  "/assets/icons/selectscanlighton.png"
 );
 const icoSelectLight = new THREE.TextureLoader().load(
-  "/static/icons/selectlight.png"
+  "/assets/icons/selectlight.png"
 );
 const icoUnscanSelectedLight = new THREE.TextureLoader().load(
-  "/static/icons/unscanselected.png"
+  "/assets/icons/unscanselected.png"
 );
 const iconSelectSensor = new THREE.TextureLoader().load(
-  "/static/icons/selectsensor.png"
+  "/assets/icons/selectsensor.png"
 );
 const iconSelectUnscanSensor = new THREE.TextureLoader().load(
-  "/static/icons/selectunscansensor.png"
+  "/assets/icons/selectunscansensor.png"
 );
-const icoGroup = new THREE.TextureLoader().load("/static/icons/group.png");
+const icoGroup = new THREE.TextureLoader().load("/assets/icons/group.png");
 const icoGroupActive = new THREE.TextureLoader().load(
-  "/static/icons/activegroup.png"
+  "/assets/icons/activegroup.png"
 );
 const icoTrackPeople = new THREE.TextureLoader().load(
-  "/static/icons/people.png"
+  "/assets/icons/people.png"
 );
 const iconSelectGroup = new THREE.TextureLoader().load(
-  "/static/icons/selectgroup.png"
+  "/assets/icons/selectgroup.png"
 );
 const iconSelectGroupActive = new THREE.TextureLoader().load(
-  "/static/icons/selectgroupactive.png"
+  "/assets/icons/selectgroupactive.png"
 );
 
-const icoSensor = new THREE.TextureLoader().load("/static/icons/sensor.png");
+const icoSensor = new THREE.TextureLoader().load("/assets/icons/sensor.png");
 const icoUnscanSensor = new THREE.TextureLoader().load(
-  "/static/icons/unscan-sensor.svg"
+  "/assets/icons/unscan-sensor.svg"
 );
 
 const iconHeatMapTile = new THREE.TextureLoader().load(
-  "/static/icons/HeatmapTile.png"
+  "/assets/icons/HeatmapTile.png"
 );
 
 const icoMoveGroup = new THREE.TextureLoader().load(
-  "/static/icons/move-group-off.png"
+  "/assets/icons/move-group-off.png"
 );
 
 const icoMoveGroupOn = new THREE.TextureLoader().load(
-  "/static/icons/move-group-on.png"
+  "/assets/icons/move-group-on.png"
 );
 
 const icoMoveSensor = new THREE.TextureLoader().load(
-  "/static/icons/move-sensor.png"
+  "/assets/icons/move-sensor.png"
 );
 
 const icoMoveSensorOn = new THREE.TextureLoader().load(
-  "/static/icons/move-sensor-on.png"
+  "/assets/icons/move-sensor-on.png"
 );
 
 const icoMoveLightScan = new THREE.TextureLoader().load(
-  "/static/icons/move-scanned-light.png"
+  "/assets/icons/move-scanned-light.png"
 );
 
 const icoMoveLightUnscan = new THREE.TextureLoader().load(
-  "/static/icons/move-unscan-light.png"
+  "/assets/icons/move-unscan-light.png"
 );
 
 const icoMoveLightScanOn = new THREE.TextureLoader().load(
-  "/static/icons/move-light-on-scanned.png"
+  "/assets/icons/move-light-on-scanned.png"
 );
 
 const icoMoveLightUnscanOn = new THREE.TextureLoader().load(
-  "/static/icons/move-unscan-light-on.png"
+  "/assets/icons/move-unscan-light-on.png"
 );
 
 const icoMoveSensorUnscan = new THREE.TextureLoader().load(
-  "/static/icons/move-unscan-sensor.png"
+  "/assets/icons/move-unscan-sensor.png"
 );
 // const font = new THREE.FontLoader().load("/static/icons/sensor.png");
 
@@ -903,6 +903,7 @@ export class Viewer {
   }
 
   async Load(url) {
+    console.log("viewer,", url);
     try {
       await this.dxfViewer.Load({
         url,
@@ -910,7 +911,7 @@ export class Viewer {
         progressCbk: (phase, size, totalSize) => {
           this.onProgress(phase, size, totalSize);
         },
-        workerFactory: DxfViewerWorker,
+        // workerFactory: DxfViewerWorker,
       });
     } catch (error) {
       console.warn(error);

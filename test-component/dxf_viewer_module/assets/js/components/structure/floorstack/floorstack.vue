@@ -65,6 +65,7 @@ export default {
     handleFloorItemClick(file) {
       this.selectedFile = file;
       this.selectedFileId = file.id;
+      console.log("aaaaxx", file);
       this.$emit("handleSelectedFloor", file);
     },
   },

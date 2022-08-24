@@ -89,14 +89,16 @@ export default {
 
   watch: {
     file(val, oldVal) {
+      console.log("zo ne");
       if (!val || !val.download_url || (oldVal && val.id === oldVal.id)) {
+        console.log("return ne");
         return;
       }
-
+      console.log("ve len ne");
       this.destroyViewer();
       this.createViewer([], []);
       this.viewer.Load(val.download_url);
-      //   this.viewer.setStructureMode(true);
+      // this.viewer.setStructureMode(true);
       this.goBack();
     },
 
@@ -199,6 +201,7 @@ export default {
   methods: {
     createViewer(groups, devices) {
       if (this.viewer) {
+        console.log("return 2");
         return;
       }
 

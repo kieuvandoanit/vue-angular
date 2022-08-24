@@ -77,7 +77,7 @@
             <!-- End area mode function -->
 
             <!-- Button mode -->
-            <button
+            <!-- <button
               id="add-area"
               type="button"
               v-show="showAreaModeButton"
@@ -85,7 +85,7 @@
               class="btn btn-primary"
             >
               Area Mode
-            </button>
+            </button> -->
             <!-- End button mode -->
           </div>
         </div>
@@ -224,51 +224,51 @@ export default {
       axios.defaults.headers.common["Authorization"] = token;
       axios.defaults.headers.post["Content-Type"] =
         "application/x-www-form-urlencoded";
-      axios
-        .get(
-          `${API_DOMAIN_MANIFERA}/api/v1/groups?file_id=${this.selectedFileId}`
-        )
-        .then((response) => {
-          let responseGroups = response.data;
-          responseGroups.forEach((data1) => {
-            responseGroups.forEach((data2) => {
-              if (data2.group_ids.includes(data1.id)) {
-                data1.parent_id = data2.id;
-              }
-            });
-          });
+      // axios
+      //   .get(
+      //     `${API_DOMAIN_MANIFERA}/api/v1/groups?file_id=${this.selectedFileId}`
+      //   )
+      //   .then((response) => {
+      //     let responseGroups = response.data;
+      //     responseGroups.forEach((data1) => {
+      //       responseGroups.forEach((data2) => {
+      //         if (data2.group_ids.includes(data1.id)) {
+      //           data1.parent_id = data2.id;
+      //         }
+      //       });
+      //     });
 
-          responseGroups.forEach((data) => {
-            data.childrens = this.findChildrens(data, responseGroups);
-            let device_childrens = [
-              ...data.device_ids,
-              ...this.findDeviceChildrens(data, responseGroups),
-            ];
+      //     responseGroups.forEach((data) => {
+      //       data.childrens = this.findChildrens(data, responseGroups);
+      //       let device_childrens = [
+      //         ...data.device_ids,
+      //         ...this.findDeviceChildrens(data, responseGroups),
+      //       ];
 
-            data.controllable = false;
+      //       data.controllable = false;
 
-            let unscanDevices = this.devices.filter((device) => {
-              return (
-                device_childrens.includes(device.id) &&
-                (!device.serial_number || device.serial_number.length < 3)
-              );
-            });
+      //       let unscanDevices = this.devices.filter((device) => {
+      //         return (
+      //           device_childrens.includes(device.id) &&
+      //           (!device.serial_number || device.serial_number.length < 3)
+      //         );
+      //       });
 
-            data.controllable = unscanDevices.length == 0;
-          });
+      //       data.controllable = unscanDevices.length == 0;
+      //     });
 
-          this.groups = responseGroups;
-          // this.$root.$children[0].$children[0].$children[1].updateGroups(
-          //   responseGroups
-          // );
-          // this.$root.$children[0].$children[0].$children[1].updateTreeNode(
-          //   responseGroups
-          // );
-          EventBus.$emit("updateGroups", responseGroups);
-          // EventBus.$emit("updateTreeNode", responseGroups);s
-        })
-        .catch((error) => {})
-        .then((a) => {});
+      //     this.groups = responseGroups;
+      //     // this.$root.$children[0].$children[0].$children[1].updateGroups(
+      //     //   responseGroups
+      //     // );
+      //     // this.$root.$children[0].$children[0].$children[1].updateTreeNode(
+      //     //   responseGroups
+      //     // );
+      //     EventBus.$emit("updateGroups", responseGroups);
+      //     // EventBus.$emit("updateTreeNode", responseGroups);s
+      //   })
+      //   .catch((error) => {})
+      //   .then((a) => {});
     },
 
     // recursion to append all children ids of a group
@@ -303,6 +303,7 @@ export default {
     },
 
     async handleSelectedFloorStack(v) {
+      console.log("aassssss");
       EventBus.$emit("checkLayersForFloorplan", v);
       storeFunctions.setShowFloorStackSelector(false);
       storeFunctions.setCurrentNav("Floorplans");
@@ -322,39 +323,39 @@ export default {
       axios.defaults.headers.common["Authorization"] = this.token;
       axios.defaults.headers.post["Content-Type"] =
         "application/x-www-form-urlencoded";
-      axios
-        .get(
-          `${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFileId}/devices`
-        )
-        .then((response) => {
-          let responseData = response.data;
-          // responseData.forEach((data1) => {
-          //   this.groups.forEach((data2) => {
-          //     if (data2.device_ids.includes(data1.id)) {
-          //       data1.parent_id = data2.id;
-          //     }
-          //   });
-          // });
+      // axios
+      //   .get(
+      //     `${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFileId}/devices`
+      //   )
+      //   .then((response) => {
+      //     let responseData = response.data;
+      //     // responseData.forEach((data1) => {
+      //     //   this.groups.forEach((data2) => {
+      //     //     if (data2.device_ids.includes(data1.id)) {
+      //     //       data1.parent_id = data2.id;
+      //     //     }
+      //     //   });
+      //     // });
 
-          this.devices = responseData;
-          this.needRefresh = refresh;
-        })
-        .catch((error) => {})
-        .then((a) => {});
+      //     this.devices = responseData;
+      //     this.needRefresh = refresh;
+      //   })
+      //   .catch((error) => {})
+      //   .then((a) => {});
     },
 
     getAreas(refresh = true) {
       axios.defaults.headers.common["Authorization"] = this.token;
       axios.defaults.headers.post["Content-Type"] =
         "application/x-www-form-urlencoded";
-      axios
-        .get(`${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFileId}/areas`)
-        .then((response) => {
-          let responseData = response.data;
-          this.areas = responseData;
-        })
-        .catch((error) => {})
-        .then((a) => {});
+      // axios
+      //   .get(`${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFileId}/areas`)
+      //   .then((response) => {
+      //     let responseData = response.data;
+      //     this.areas = responseData;
+      //   })
+      //   .catch((error) => {})
+      //   .then((a) => {});
     },
 
     handleBackButton() {

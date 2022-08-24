@@ -89,7 +89,7 @@
             </template>
             <td @click="groupClick(floor)">
               <a class="total-layer" href="#"
-                >layers(8) 
+                >layers(8)
                 <!-- <i class="fa-solid fa-chevron-right"></i> -->
                 </a>
             </td>
@@ -519,7 +519,7 @@ export default {
       this.$parent.back();
       this.getFloors();
     },
-    
+
     updateSelectedGroup(groups, floorplan) {
       let groupIds = [];
 
