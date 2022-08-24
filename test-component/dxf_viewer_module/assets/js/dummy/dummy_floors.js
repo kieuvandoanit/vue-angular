@@ -27,7 +27,7 @@ export const floors = JSON.stringify([
     percentage: null,
     building_id: 1,
     download_url:
-      "https://portal-api.54-246-45-69.nip.io/api/v1/files/72/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTQ5MDg0NjMsInN1YiI6Ijg0In0.IilS4UUZczxY_nSFHdpT26j3KexawsfQoGjoGitIy40",
+      "https://portal-api.54-246-45-69.nip.io/api/v1/files/112/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTQ5Mjg4OTMsInN1YiI6Ijg0In0.LwX58SAJucOtYUEKPdsm50UjhTywZydJ2DNjUKJZaLg",
     people_tracking: null,
   },
   {
@@ -58,7 +58,7 @@ export const floors = JSON.stringify([
     percentage: null,
     building_id: 1,
     download_url:
-      "https://portal-api.54-246-45-69.nip.io/api/v1/files/72/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTQ5MDg0NjMsInN1YiI6Ijg0In0.IilS4UUZczxY_nSFHdpT26j3KexawsfQoGjoGitIy40",
+      "https://portal-api.54-246-45-69.nip.io/api/v1/files/112/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTQ5Mjg4OTMsInN1YiI6Ijg0In0.LwX58SAJucOtYUEKPdsm50UjhTywZydJ2DNjUKJZaLg",
     people_tracking: null,
   },
 ]);
