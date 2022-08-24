@@ -6,19 +6,12 @@
           <i class="fa-solid fa-arrow-left"></i> &nbsp;Compact View
         </div>
         <div class="title">Floorplans</div>
-        <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
+        <!-- <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
           Expanded View&nbsp;<i class="fa-solid fa-arrow-right"></i>
-        </div>
+        </div> -->
       </div>
       <div>
-        <button
-          type="button"
-          v-show="expanded"
-          class="btn btn-primary"
-          @click="addFloor"
-        >
-          <i class="fa-solid fa-plus"></i> &nbsp;Create floorplan
-        </button>
+
       </div>
     </div>
     <div
@@ -27,75 +20,6 @@
         'table-floors-full': expanded,
       }"
     >
-      <table
-        v-show="
-          floorData && floorData.length > 0 && expanded
-        "
-        class="table"
-      >
-        <thead>
-          <tr>
-            <th @click="sort('full_name')">
-              Name &nbsp;<img
-                v-if="currentSort == 'full_name'"
-                :src="
-                  currentSortDir == 'asc'
-                    ? '/static/icons/sort_asc.svg'
-                    : '/static/icons/sort_desc.svg'
-                "
-                class="dark-mode-icon"
-              />
-            </th>
-            <th @click="sort('file_name')">File</th>
-            <th @click="sort('short_name')">Number</th>
-            <th @click="sort('position')">Position</th>
-            <th @click="sort('fixture_layer_name')">Fixture Layer</th>
-            <th @click="sort('floor_layer_name')">Floor Layer</th>
-            <th>Actions</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="floor in sortedFloors" :key="floor.id">
-            <td style="cursor: pointer" @click="onClickFloor(floor)">
-              <img src="/static/icons/layer.svg" alt="" class="dark-mode-icon"/> &nbsp;{{
-                floor.full_name
-              }}
-            </td>
-            <template v-if="expanded">
-              <td>{{ floor.file_name }}</td>
-              <td>{{ floor.short_name }}</td>
-              <td>{{ floor.position }}</td>
-              <td>{{ floor.fixture_layer_name }}</td>
-              <td>{{ floor.floor_layer_name }}</td>
-              <td>
-                <a class="btn" :href="floor.download_url"
-                  ><img src="/static/icons/download.svg" alt="" class="dark-mode-icon"
-                /></a>
-                <a class="btn"
-                  ><i class="fa-solid fa-pen-to-square"  v-show="expanded" @click="editFloor(floor)"></i
-                ></a>
-                <a class="btn"
-                  ><i class="fa-solid fa-trash-can" @click="showFloorplanModal = true; selectedFloor = floor"></i></a>
-                <!-- <a class="btn" @click="addGroup(floor)"
-                  ><i class="fa-solid fa-plus"></i
-                ></a> -->
-              </td>
-              <!-- <td @click="groupClick(floor)">
-                <a class="total-layer" href="#"
-                  >layers({{floor.layer_names.length}}) <i class="fa-solid fa-chevron-right"></i
-                ></a>
-              </td> -->
-            </template>
-            <td @click="groupClick(floor)">
-              <a class="total-layer" href="#"
-                >layers(8)
-                <!-- <i class="fa-solid fa-chevron-right"></i> -->
-                </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <SlVueTree ref="tree_nodes" v-show="!expanded" v-model="computedNodes">
         <template slot="toggle" slot-scope="{ node }">
           <span v-if="!node.isLeaf">
@@ -106,12 +30,12 @@
         <!-- <div class="d-flex"> -->
           <template slot="title" slot-scope="{ node }">
             <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
-            <img
+            <!-- <img
               v-if="
                 node.data.type == 'Group' &&
                 (node.isLeaf == false || node.level == 2)
               "
-              src="/static/icons/menu.svg"
+              src="../assets/icons/menu.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -119,7 +43,7 @@
 
             <img
               v-if="node.data.type == 'Group' && node.isLeaf && node.level != 2"
-              src="/static/imgs/group.svg"
+              src="../assets/imgs/group.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -127,11 +51,11 @@
 
             <img
               v-else-if="node.data.type == 'Floorplan'"
-              src="/static/icons/layer.svg"
+              src="../assets/icons/layer.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
-            />
+            /> -->
             <button
               flat
               small
@@ -254,7 +178,7 @@ export default {
       return store.selectedFloorplan;
     },
     sortedFloors: function () {
-      let floorplans = this.floorData;
+      let floorplans = this.floors;
       if (floorplans) {
         return floorplans.sort((a, b) => {
           let modifier = 1;
@@ -268,7 +192,7 @@ export default {
       }
     },
     computedNodes() {
-      return this.getNodes(this.building, this.groupData, this.floors);
+      return this.getNodes();
     },
   },
 
@@ -284,17 +208,19 @@ export default {
       this.$emit("handleClickFloorName", v);
     },
     getGroup(id) {
-      let group = this.groupData.filter((g) => g.id === id);
+      let group = this.groups.filter((g) => g.id === id);
       return group.length > 0 ? group[0] : null;
     },
     getFloorplansByBuilding(id) {
-      return this.floorData.filter((f) => f.building_id === id);
+      return this.floors.filter((f) => f.building_id === id);
     },
     getGroupsByBuilding(id) {
-      return this.groupData.filter((g) => g.building_id === id);
+      return this.groups.filter((g) => g.building_id === id);
     },
     getGroupsByFile(id) {
-      return this.groupData.filter((f) => f.file_id === id);
+      console.log("this.groups",this.groups)
+      console.log("this.groups",id)
+      return this.groups.filter((f) => f.file_id === id);
     },
     parseGroup(id) {
       const group = this.getGroup(id);
@@ -347,14 +273,16 @@ export default {
       }
       return groupNodes;
     },
-    getNodes(building, groups, floors) {
+    getNodes() {
       this.nodes = [];
-      let floorplans = this.getFloorplansByBuilding(building.id);
+      let floorplans = this.floors;
+      console.log(floorplans);
       floorplans.forEach((floorplan) => {
         let newFloorplan = floorplan;
         newFloorplan["type"] = "Floorplan";
         newFloorplan["navigator"] = "files";
         let groupNodes = this.groupDataByFile(floorplan.id);
+        console.log(floorplan.id)
         let data = {
           title: newFloorplan.full_name,
           isDraggable: false,
@@ -366,6 +294,7 @@ export default {
         };
         this.nodes.push(data);
       });
+      console.log(this.nodes)
       return this.nodes;
     },
     expandedClick() {
@@ -425,7 +354,7 @@ export default {
         )
         .then((response) => {
           this.$parent.back();
-          this.floorData = response.data;
+          this.floors = response.data;
           this.$emit("onFloorsChange", response.data);
           this.loading = false;
         })
@@ -434,7 +363,7 @@ export default {
     },
     onItemClick(obj) {
       if (obj.type == "Group") {
-        let selectedFloor = this.floorData.filter(
+        let selectedFloor = this.floors.filter(
           (f) => f.id == obj.file_id
         );
         if (selectedFloor.length > 0) {
@@ -445,7 +374,7 @@ export default {
           EventBus.$emit("handleItemClick", obj, null);
         }
       } else {
-        let selectedFloor = this.floorData.filter(
+        let selectedFloor = this.floors.filter(
           (f) => f.id == obj.id
         );
         if (selectedFloor.length > 0) {
@@ -465,7 +394,7 @@ export default {
         fileId = newGroups[0].file_id;
       }
 
-      this.groupData.forEach((group) => {
+      this.groups.forEach((group) => {
         if (!addedGroups.includes(group.id)) {
           addedGroups.push(group.id);
         }
@@ -482,7 +411,7 @@ export default {
         }
       });
 
-      this.groupData.forEach((group) => {
+      this.groups.forEach((group) => {
         let newGroup = newGroups.find((g) => g.id == group.id);
         if (newGroup) {
           oldGroups.push({ ...group, ...newGroup });
@@ -512,7 +441,7 @@ export default {
         });
       }
 
-      this.groupData = oldGroups;
+      this.groups = oldGroups;
     },
 
     updateFloorData() {

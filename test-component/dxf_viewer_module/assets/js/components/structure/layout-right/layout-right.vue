@@ -126,8 +126,9 @@ export default {
   props: {
     token: "",
     title: "",
-    groupData: null,
-    floorData: null,
+    groups: null,
+    floors: null,
+    devices: null,
     currentFloors: null,
     viewMode: "",
   },
@@ -145,7 +146,7 @@ export default {
   },
 
   watch: {
-    async floorData(val) {
+    async floors(val) {
       this.handleBackButton();
       if (val) {
         storeFunctions.setShowFloorStackSelector(false);
@@ -303,7 +304,6 @@ export default {
     },
 
     async handleSelectedFloorStack(v) {
-      console.log("aassssss");
       EventBus.$emit("checkLayersForFloorplan", v);
       storeFunctions.setShowFloorStackSelector(false);
       storeFunctions.setCurrentNav("Floorplans");

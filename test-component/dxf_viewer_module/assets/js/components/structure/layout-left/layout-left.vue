@@ -87,8 +87,8 @@
     <FloorplanList
       v-show="visibleFloor"
       :building="selectedBuilding"
-      :groups="filteredGroups"
-      :floors="filteredFloors"
+      :groups="groups"
+      :floors="floors"
       :expanded="expanded"
       :token="token"
       @compactClick="handleCompactClick"
@@ -217,10 +217,10 @@ export default {
 
   mounted() {
     // this.buildings = JSON.parse(this.buildings_json);
-    // this.floors = JSON.parse(this.floors_json);
+    this.floors = JSON.parse(this.floors_json);
     // this.selectNav = JSON.parse(this.buildings_json);
-    // this.groups = JSON.parse(this.groups_json);
-    // this.devices = JSON.parse(this.devices_json);
+    this.groups = JSON.parse(this.groups_json);
+    this.devices = JSON.parse(this.devices_json);
     // this.selectBuilding(this.buildings[0]);
     // this.titleSelect = this.buildings[0].name;
     // this.projectData = JSON.parse(this.project);

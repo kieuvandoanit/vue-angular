@@ -97,7 +97,10 @@ export default {
       console.log("ve len ne");
       this.destroyViewer();
       this.createViewer([], []);
-      this.viewer.Load(val.download_url);
+      this.viewer?.updateGroupsData(JSON.parse(this.groups));
+      this.viewer?.updateDevicesData(JSON.parse(this.devices));
+      this.viewer?.Load(val.download_url);
+      
       // this.viewer.setStructureMode(true);
       this.goBack();
     },
@@ -204,7 +207,7 @@ export default {
         console.log("return 2");
         return;
       }
-
+      console.log("groups, devices",groups, devices)
       this.viewer = new Viewer(
         this.$refs["structureViewer"],
         null,

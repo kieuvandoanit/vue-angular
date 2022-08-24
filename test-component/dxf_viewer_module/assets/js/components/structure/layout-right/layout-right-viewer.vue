@@ -2,8 +2,8 @@
   <div class>
     <StructureViewer
       :file="file || selectedFile"
-      :devices="deviceData"
-      :groups="groupData"
+      :devices="devices"
+      :groups="groups"
       :areas="areaData"
       :needRefresh="needRefresh"
       :deviceMode="addDevice"
@@ -183,12 +183,6 @@ export default {
     file(val) {
       this.selectedFile = val;
     },
-    groups(val) {
-      this.groupData = val;
-    },
-    devices(val) {
-      this.deviceData = val;
-    },
     areas(val) {
       this.areaData = val;
     },
@@ -234,8 +228,6 @@ export default {
       group: null,
       loading: false,
       sidebarData: null,
-      groupData: null,
-      deviceData: null,
       areaData: null,
       timerClick: 0,
       paramLightValue: null,
