@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-    <!-- <LayoutRightViewer
+    <LayoutRightViewer
       ref="LayoutRightViewer"
       :file="floor"
       :groups="groups"
@@ -102,7 +102,7 @@
       :addDevice="addDevice"
       :areaMode="areaMode"
       @duplicateObjects="duplicateObjects"
-    ></LayoutRightViewer> -->
+    ></LayoutRightViewer>
     <div v-show="isShowFloorStack" class="floor-stack-wrapper">
       <Floorstack
         :token="token"
@@ -118,11 +118,11 @@ import axios from "axios";
 import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import { store, storeFunctions, EventBus } from "../../../store.js";
 
-// import LayoutRightViewer from "./layout-right-viewer.vue";
+import LayoutRightViewer from "./layout-right-viewer.vue";
 import Floorstack from "../floorstack/floorstack.vue";
 
 export default {
-  components: { Floorstack },
+  components: { Floorstack, LayoutRightViewer },
   props: {
     token: "",
     title: "",

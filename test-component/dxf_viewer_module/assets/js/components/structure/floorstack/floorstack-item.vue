@@ -103,7 +103,9 @@ export default {
 
   created() {},
 
-  mounted() {},
+  mounted() {
+    console.log('this.floor :>> ', this.floor);
+  },
 
   computed: {
     floorStyle() {

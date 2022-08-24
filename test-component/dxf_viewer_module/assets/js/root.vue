@@ -1,5 +1,6 @@
 <template>
   <div id="content">
+    <!-- <img :src="vueImage.activeGroup" alt="aaaaa"> -->
     <LayoutStructure
       :buildings="myBuilding"
       :floors="myFloors"
@@ -21,7 +22,7 @@ import { floors } from "./dummy/dummy_floors";
 import { groups } from "./dummy/dummy_groups";
 
 export default {
-  props: ['msg'],
+  props: ['msg', "vueImage"],
   data() {
     return {
       myBuilding: buildings,
@@ -32,6 +33,9 @@ export default {
   },
   components: {
     LayoutStructure,
+  },
+  mounted() {
+    console.log('this.vueImage :>> ', this.vueImage);
   },
 };
 </script>

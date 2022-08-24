@@ -3,14 +3,14 @@
     <div class="d-flex flex-column">
       <div class="floor-stack">
         <div
-          v-for="(floor, index) in floors"
+          v-for="(floor, index) in floorplans"
           :key="floor.id"
           class="d-flex justify-content-center"
         >
           <FloorstackItem
             :index="index"
             :floor="floor"
-            :allFloors="floors"
+            :allFloors="floorplans"
             @handleFloorItemClick="handleFloorItemClick"
           ></FloorstackItem>
         </div>
@@ -43,13 +43,15 @@ export default {
 
   created() {},
 
-  mounted() {},
+  mounted() {
+    this.floorplans = JSON.parse(this.floors);
+  },
 
   computed: {},
 
   data() {
     return {
-      floorplans: [],
+      floorplans: null,
       groups: [],
       filterGroups: [],
       devices: [],

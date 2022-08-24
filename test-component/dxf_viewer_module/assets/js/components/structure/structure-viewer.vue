@@ -70,7 +70,6 @@ export default {
     addDeviceMode: false,
     enableMoveDevice: false,
 
-
     deletedDeviceId: 0,
     deletedAreaId: 0,
     deletedGroupId: 0,
@@ -143,7 +142,7 @@ export default {
       this.viewer?.setEnableMovingGroup(val);
     },
 
-    enableMoveAllInGroup(val){
+    enableMoveAllInGroup(val) {
       this.viewer?.setMoveAllInGroupMode(val);
       this.viewer?.setEnableMovingAllInGroup(val);
     },
@@ -208,7 +207,7 @@ export default {
         null,
         groups,
         devices,
-        areas,
+        [],
         this.file,
         [],
         "#212C40",
@@ -238,9 +237,7 @@ export default {
       this.viewer.Load(this.file.download_url);
     },
 
-    handleDuplicateDevice: function () {
-      
-    },
+    handleDuplicateDevice: function () {},
 
     goBack() {
       this.viewer.onBack();

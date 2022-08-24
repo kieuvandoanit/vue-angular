@@ -1,4 +1,5 @@
 .container-structure {
+  height: 100%;
 }
 .box-header {
   height: 145px;
@@ -18,10 +19,10 @@
 .layout-left {
   padding-left: 50px;
   background-color: #334155;
-  height: 115vh;
+  height: 100%;
 }
 .layout-right {
-  height: 115vh;
+  height: 100%;
   padding-right: 50px;
   background-color: #212c40;
 }

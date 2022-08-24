@@ -27,7 +27,7 @@
         :title="this.title"
         :groupData="this.selectedGroup"
         :floorData="this.floorData"
-        :currentFloors="currentFloors"
+        :currentFloors="floors"
         :viewMode="viewMode"
         @editBuilding="editBuilding"
       ></LayoutRight>
@@ -72,11 +72,7 @@ export default {
         return "[]";
       },
     },
-    floors: {
-      default() {
-        return "[]";
-      },
-    },
+    floors: null,
     devices: {
       default() {
         return "[]";

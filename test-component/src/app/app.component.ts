@@ -11,7 +11,9 @@ export class AppComponent {
     device: 1,
     group: "group id"
   };
-
+  public vueImage = {
+    activeGroup: "../assets/icons/activegroup.png"
+  }
   public msg = "Xin chao ban";
 
   public saveDevice(data: any){
