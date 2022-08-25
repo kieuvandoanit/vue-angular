@@ -94,17 +94,22 @@ export default {
 
       this.destroyViewer();
       this.createViewer(this.groups, this.devices);
-      // this.viewer?.Load(val.download_url);
 
+      // console.log("leng group: ", this.groups.length)
       // this.viewer.setStructureMode(true);
       this.goBack();
+      setTimeout(() => {
+        this.viewer?.setSelectedGroup(null);
+      }, 1000);
     },
 
     groups(val) {
+      console.log('changeGroup', val);
       this.viewer?.updateGroupsData(val);
     },
 
     devices(val) {
+      console.log('changeDev', val);
       this.viewer?.updateDevicesData(val);
     },
 
@@ -253,6 +258,7 @@ export default {
         return;
       }
       this.viewer = null;
+      console.log("destroy in structure -viewer")
     },
 
     handleSelectGroup(group) {

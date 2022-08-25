@@ -591,10 +591,7 @@ export default {
           }
         }
       } else if (Object.keys(this.selectedDevice).length) {
-        let parentDeviceId =
-          this.selectedDevice.groups && this.selectedDevice.groups.length > 0
-            ? this.selectedDevice.groups[0].id
-            : 0;
+        let parentDeviceId = this.selectedDevice.group_id || 0;
         if (this.groupId != parentDeviceId) {
           this.$emit(
             "handleAddToGroup",

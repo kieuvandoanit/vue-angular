@@ -1,12 +1,12 @@
 {
-  "name": "dxf_viewer_module_doan",
-  "version": "1.0.14",
+  "name": "summa-structure-viewer",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "sass assets/scss/style.scss dist/css/style.css",
-    "build": "webpack && sass assets/scss/style.scss dist/css/style.css",
+    "build": "webpack",
     "watch": "webpack --watch --progress",
     "serve": "webpack serve --port 8080"
   },

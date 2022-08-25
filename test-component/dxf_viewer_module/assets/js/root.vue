@@ -1,10 +1,9 @@
 <template>
   <div id="content">
-    <!-- <img :src="vueImage.activeGroup" alt="aaaaa"> -->
     <LayoutStructure
-      :floors="myFloors"
-      :groups="myGroups"
-      :devices="myDevices"
+      :floors="JSON.parse(floors)"
+      :groups="JSON.parse(groups)"
+      :devices="JSON.parse(devices)"
     />
   </div>
 </template>
@@ -15,22 +14,19 @@
 
 <script>
 import LayoutStructure from "./components/structure/layout-structure.vue";
-import { devices } from "./dummy/dummy_devices";
-import { floors } from "./dummy/dummy_floors";
-import { groups } from "./dummy/dummy_groups";
 
 export default {
-  props: ["msg", "vueImage"],
+  props: ["msg", "floors", "devices", "groups"],
   data() {
     return {
-      myDevices: JSON.parse(devices),
-      myFloors: JSON.parse(floors),
-      myGroups: JSON.parse(groups),
     };
   },
   components: {
     LayoutStructure,
   },
-  mounted() {},
+  mounted() {
+    // this.$emit("abc", {detail: "data ne"});
+
+  },
 };
 </script>

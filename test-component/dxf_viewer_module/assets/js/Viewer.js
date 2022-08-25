@@ -791,9 +791,9 @@ export class Viewer {
     const api = canvasObjects;
 
     api.selectedObjects = [];
-    api.selectedObjects.push(`box-Group-${group.id}`);
-
+    
     if (group !== null && group.positions.length > 0) {
+      api.selectedObjects.push(`box-Group-${group.id}`);
       this.zoomToGroup(group.positions[0]);
       this.activeGroup = group;
     }
@@ -889,6 +889,7 @@ export class Viewer {
 
   destroyViewer() {
     this.dxfViewer.Destroy();
+    console.log("this.dxfViewer.Destroy();")
   }
 
   onProgress(phase, size, totalSize) {
@@ -964,7 +965,7 @@ export class Viewer {
       this.drawHeatMapPositions(this.dxfViewer.origin, this.heatMapPositions);
       this.centerViewToDevices();
       this.updateObjectsScale(true);
-
+      console.log("Vao refresh data ")
       this.refreshData();
       this.refresh();
       this.zoomToGroup(this.dxfViewer.origin);
@@ -4647,5 +4648,6 @@ export class Viewer {
 
   destroy() {
     this.dxfViewer.Destroy();
+    console.log("Destroy viewer")
   }
 }
