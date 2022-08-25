@@ -194,8 +194,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import Popup from "./right-popup.vue";
 import Modal from "./modal.vue";
 import { EventBus } from "../../../store.js";

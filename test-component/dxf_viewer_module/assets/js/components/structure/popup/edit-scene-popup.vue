@@ -4,7 +4,7 @@
       <div class="d-flex p-0">
         <div class="title-name">
           <div v-if="editName">
-            <input type="text" v-model="selectedScene.name" @blur="onChangeName" />
+            <input type="text" v-model="selectedScene.name"/>
           </div>
           <div class="d-inline-flex" v-else>
             <p>{{ selectedScene.name }}</p>

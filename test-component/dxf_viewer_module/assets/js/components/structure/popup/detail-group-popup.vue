@@ -137,10 +137,10 @@
 
 <script>
 import axios from "axios";
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
+// import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import Segment from "../popup/segment.vue";
 import ScenesList from "./scenes-list.vue";
-import EditScene from "./edit-scene.vue"
+// import EditScene from "./edit-scene.vue"
 import DetailGroup from "./detail-group.vue"
 import Popup from "./right-popup.vue";
 import Modal from "./modal.vue"
@@ -149,7 +149,7 @@ export default {
   components: {
     Segment,
     ScenesList,
-    EditScene,
+    // EditScene,
     DetailGroup,
     Popup,
     Modal,
@@ -243,23 +243,23 @@ export default {
       storeFunctions.setIsMoveGroup(false);
       this.$emit("handleCloseSidebar");
     },
-    onChangeName() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, {
-          name: this.data.name,
-        })
-        .then((response) => {
-          this.handleCloseSidebar();
-          this.groupName = "";
-          // this.$parent.getGroups();
-          EventBus.$emit("getGroups");
-        })
-        .catch((error) => { })
-        .then((a) => { });
-    },
+    // onChangeName() {
+    //   axios.defaults.headers.common["Authorization"] = this.token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   axios
+    //     .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, {
+    //       name: this.data.name,
+    //     })
+    //     .then((response) => {
+    //       this.handleCloseSidebar();
+    //       this.groupName = "";
+    //       // this.$parent.getGroups();
+    //       EventBus.$emit("getGroups");
+    //     })
+    //     .catch((error) => { })
+    //     .then((a) => { });
+    // },
     async handleTurnOnOffLight() {
       axios.defaults.headers.post["Access-Control-Allow-Origin"] = true;
       axios.defaults.headers.common["Authorization"] = this.token;

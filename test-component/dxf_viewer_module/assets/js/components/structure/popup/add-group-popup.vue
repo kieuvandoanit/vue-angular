@@ -25,7 +25,6 @@
 
 <script>
 import axios from "axios";
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import { EventBus } from "../../../store.js";
 import Popup from "./right-popup.vue";
 
@@ -65,24 +64,14 @@ export default {
 
   methods: {
     handleAddGroup() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/`, {
+      let groupData = {
           name: this.groupName,
-          file_id: this.selectedFile.id,
-          building_id: this.selectedFile.building_id,
-          project_id: this.selectedFile.project_id,
-        })
-        .then((response) => {
-          // this.$root.$children[0].$children[1].getGroups();
-          EventBus.$emit("getGroups");
-          // this.$parent.getGroups();
-          this.handleCloseSidebar();
-        })
-        .catch((error) => { })
-        .then((a) => { });
+          // file_id: this.selectedFile.id,
+          // building_id: this.selectedFile.building_id,
+          // project_id: this.selectedFile.project_id,
+      };
+      EventBus.$emit("addGroup", groupData);
+      this.handleCloseSidebar();
     },
     handleCloseSidebar() {
       this.groupName = "";

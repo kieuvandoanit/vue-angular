@@ -348,7 +348,6 @@ export default {
     //   this.loading = false;
     // },
     onItemClick(obj) {
-      console.log("Click ne click", obj);
       if (obj.type == "Group") {
         let selectedFloor = this.floors.filter((f) => f.id == obj.file_id);
         if (selectedFloor.length > 0) {

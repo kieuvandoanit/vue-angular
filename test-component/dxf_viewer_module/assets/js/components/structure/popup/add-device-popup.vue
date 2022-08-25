@@ -330,7 +330,6 @@
 
 <script>
 import axios from "axios";
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import Popup from "./right-popup.vue";
 import { EventBus } from "../../../store.js";
 
@@ -391,6 +390,7 @@ export default {
         this.deviceAngleValue = val.angle;
         this.deviceCeilHeightValue = val.ceil_height;
         this.deviceRotationValue = val.rotation;
+        this.deviceMacAddressValue= val.mac_address;
       } else {
         this.createDeviceMode = false;
         this.deviceIdValue = 0;
@@ -403,6 +403,7 @@ export default {
         this.deviceAngleValue = 0;
         this.deviceCeilHeightValue = 0;
         this.deviceRotationValue = 0;
+        this.deviceMacAddressValue = "";
       }
     },
 
@@ -488,49 +489,6 @@ export default {
         let arraySerialNumber = this.deviceSerialNumberValue.split("");
         if(parseInt(arraySerialNumber[2]) < 3){
           this.deviceChannelValue = 'ch' + arraySerialNumber[2];
-        }
-        else if(parseInt(arraySerialNumber[2]) >= 3){
-          // this.deviceChannelValue = 'fusion';
-          await axios
-            .post(`https://assembly.summa.systems:3335/graphql`,
-            {
-              query: `query FindDevice($serialNumber: String, $address: String) {
-                        findDevice(serialNumber: $serialNumber, address: $address) {
-                          serialNumber
-                          address
-                          type
-                          settings
-                          entities{
-                            ledSpecifications {
-                              channel
-                            }
-                          }
-                        }
-                      }`,
-              variables: {"serialNumber": `${this.deviceSerialNumberValue}`}
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                "X-API-Key":"InstallW&5h$g8H43P",
-              },
-            })
-            .then((response) => {
-              this.deviceMacAddressValue = response.data.data.findDevice.address;
-              let entities = response.data.data.findDevice.entities[0];
-
-              if (entities.hasOwnProperty("ledSpecifications") || ledSpecifications.length > 0){
-                this.deviceChannelValue = 'fusion';
-              }
-              else{
-                this.errorUpdateDeviceMessage = "Select a channel."
-              }
-            })
-            .catch((error) => {
-              // handle error
-              console.log(error);
-            })
-            .then(function (a) { });
         }
       }
       if ((!this.deviceSerialNumberValue && !this.deviceChannelValue) || (this.deviceSerialNumberValue && this.deviceChannelValue)) {

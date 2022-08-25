@@ -30,7 +30,6 @@
 
 <script>
 import { store } from "../../store";
-import { StructureViewer } from "../../StructureViewer";
 import { Viewer } from "../../Viewer";
 
 export default {
@@ -89,16 +88,13 @@ export default {
 
   watch: {
     file(val, oldVal) {
-      console.log("TCL: file -> render on first time!", val);
       if (!val || !val.download_url || (oldVal && val.id === oldVal.id)) {
         return;
       }
 
       this.destroyViewer();
-      this.createViewer([], []);
-      this.viewer?.updateGroupsData(this.groups);
-      this.viewer?.updateDevicesData(this.devices);
-      this.viewer?.Load(val.download_url);
+      this.createViewer(this.groups, this.devices);
+      // this.viewer?.Load(val.download_url);
 
       // this.viewer.setStructureMode(true);
       this.goBack();
@@ -220,7 +216,6 @@ export default {
       );
 
       this.viewer.onClick = (e, selectedDevices, selectedGroups) => {
-        console.log("e, selectedDevices :>> ", e, selectedDevices, selectedGroups);
         this.$emit(
           "handleSingleClick",
           e,

@@ -394,7 +394,6 @@
 <script>
 import axios from "axios";
 import { EventBus, store, storeFunctions } from "../../../store.js";
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import Modal from "./modal.vue"
 import DetailGroup from "./detail-group.vue"
 import Popup from "./right-popup.vue";
@@ -460,7 +459,6 @@ export default {
         const object = val.selectedDevices[0];
         if (object.type === "Group") {
           this.selectedGroup = object;
-          // this.getScenarios();
           this.selectedDevice = {};
           this.groupIdValue = object.id;
           this.groupNameValue = object.name;
@@ -730,7 +728,8 @@ export default {
     onEnableLightControl() {
       this.lightControl = true;
       this.isShowBackButton = true;
-      this.getScenarios();
+      EventBus.$emit('getScenesForGroup', this.groupData.id);
+      this.scenes = [] // get state;
     },
 
     handleBackSidebar() {
@@ -747,24 +746,24 @@ export default {
       }
     },
 
-    getScenarios() {
-      this.scenes = [];
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .get(`${API_DOMAIN_MANIFERA}/api/v1/scenes?group_id=${this.groupData.id}`)
-        .then((response) => {
-          const data = response.data;
-          this.scenes = data;
-        })
-        .catch((error) => {
-          // handle error
-          console.log(error);
-        })
-        .then(function (a) { });
-    },
+    // getScenarios() {
+    //   this.scenes = [];
+    //   const token = this.token || "";
+    //   axios.defaults.headers.common["Authorization"] = token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   axios
+    //     .get(`${API_DOMAIN_MANIFERA}/api/v1/scenes?group_id=${this.groupData.id}`)
+    //     .then((response) => {
+    //       const data = response.data;
+    //       this.scenes = data;
+    //     })
+    //     .catch((error) => {
+    //       // handle error
+    //       console.log(error);
+    //     })
+    //     .then(function (a) { });
+    // },
   },
 };
 </script>

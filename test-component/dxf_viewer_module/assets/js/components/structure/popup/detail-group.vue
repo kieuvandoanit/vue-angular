@@ -88,8 +88,7 @@ import Segment from "./segment.vue";
 import { EventBus, store, storeFunctions } from "../../../store.js";
 import axios from "axios";
 import ScenesList from "./scenes-list.vue";
-import EditScene from "./edit-scene.vue"
-import { API_DOMAIN_MANIFERA } from "../../../constant.js";
+import EditScene from "./edit-scene.vue";
 export default {
   components: {
     Segment,
@@ -167,12 +166,12 @@ export default {
       if (this.data) {
         groupId = this.data.id;
         let intensity = 0;
-        const sceneResponse = await axios.get(
-          `${API_DOMAIN_MANIFERA}/api/v1/scenes/${this.data.scene_id}`
-        );
+        EventBus.$emit('getScenesForGroup', this.data.scene_id);
 
-        if (sceneResponse) {
-          sceneIntensity = sceneResponse?.data?.intensity;
+        let scene = scenes.filter((scene) => scene.id == this.data.scene_id);
+
+        if (scene && scene.length>0) { // get state
+          sceneIntensity = scene.intensity;
         }
 
         if (!this.data.scene_status) {
@@ -218,6 +217,8 @@ export default {
           is_on: status,
         };
       }
+
+      EventBus.$emit('lightTrigger', groupId, params);
       axios
         .post(
           `${API_DOMAIN_MANIFERA}/api/v1/groups/${groupId}/mqtt/turn_on`,

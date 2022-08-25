@@ -183,7 +183,6 @@ export default {
     },
 
     handleItemClick(obj, selectedFloor = null) {
-      console.log("Vao day ne");
       this.handlePopupLayOutRight();
       storeFunctions.setCurrentNav("Floorplans");
       if (obj.type == "Group") {

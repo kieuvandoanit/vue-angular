@@ -4,7 +4,7 @@
       <div class="d-flex p-0">
         <div class="title-name">
           <div v-if="editName">
-            <input type="text" v-model="selectedScene.name" @blur="onChangeName" />
+            <input type="text" v-model="selectedScene.name"/>
           </div>
           <div class="d-inline-flex" v-else>
             <p>{{ selectedScene.name }}</p>
@@ -143,11 +143,7 @@ export default {
     editScene() {
       this.selectedScene.color_type = this.colorMode;
       const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
-      const params = {
+      const sceneData = {
         light: this.selectedScene.light,
         intensity: this.selectedScene.intensity,
         color: this.selectedScene.color,
@@ -155,15 +151,9 @@ export default {
         y_color: this.selectedScene.y_color,
         color_type: this.selectedScene.color_type,
       };
-      axios
-        .put(
-          `${API_DOMAIN_MANIFERA}/api/v1/scenes/${this.selectedScene.id}`,
-          params
-        )
-        .then((response) => {
-          this.$emit("handleBackSidebar");
-          this.$emit("getScenarios");
-        });
+      EventBus.$emit('editScene', this.selectedScene.id, sceneData);
+      this.$emit("handleBackSidebar");
+      this.$emit("getScenarios");
     },
   },
 };

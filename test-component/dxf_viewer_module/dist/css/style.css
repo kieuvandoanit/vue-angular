@@ -323,7 +323,7 @@ body {
 }
 
 #content {
-  width: calc(100% - 250px);
+  width: 100%;
   float: left;
   margin-left: 0;
   height: 100%;

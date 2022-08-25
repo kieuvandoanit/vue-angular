@@ -16,10 +16,10 @@
             <template v-else-if="navigator == 'Floorplans'">
               <i class="fa-solid fa-layer-group"></i>
             </template>
-            <h2 v-show="!addBuilding" class="title-building">
+            <!-- <h2 v-show="!addBuilding" class="title-building">
               {{ titleSelect }}
-            </h2>
-            <NavSelect
+            </h2> -->
+            <!-- <NavSelect
               ref="navSelect"
               v-show="!addBuilding"
               :data="selectNav"
@@ -159,6 +159,7 @@ export default {
     // this.selectBuilding(this.buildings[0]);
     // this.titleSelect = this.buildings[0].name;
     // this.projectData = JSON.parse(this.project);
+    
   },
 
   created() {},
@@ -338,7 +339,7 @@ export default {
 
     handleGroup(obj) {
       this.selectNav = this.selectedBuilding.floorplans;
-      this.titleSelect = obj.full_name;
+      // this.titleSelect = obj.full_name;
       this.selectedFloor = obj;
       this.$emit("handleGroup", obj);
       this.navigator = "Floorplans";
