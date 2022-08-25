@@ -429,6 +429,7 @@ body {
 input.form-control,
 select.form-control,
 select.form-select {
+  width: 100%;
   border: 1px solid #ddd;
   height: 32px !important;
   border-radius: 4px !important;

@@ -25,6 +25,7 @@
   height: 100%;
   padding-right: 50px;
   background-color: #212c40;
+  color: white !important;
 }
 .layout-left .bottom-header h2 {
   font-size: 20px;
@@ -681,6 +682,7 @@ input:checked .sliders:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
 .button-control .box-middle .title-time > div {
