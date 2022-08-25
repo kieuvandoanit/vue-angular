@@ -2,101 +2,18 @@
   <div class="contain-list" ref="width">
     <div class="d-flex middle">
       <div class="d-flex box-title" v-bind:style="widthLeft">
-        <div class="expanded-view" v-show="expanded" @click="compactClick()">
+        <!-- <div class="expanded-view" v-show="expanded" @click="compactClick()">
           <i class="fa-solid fa-arrow-left"></i> &nbsp;Compact View
-        </div>
+        </div> -->
         <div class="title">Floorplans</div>
-        <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
+        <!-- <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
           Expanded View&nbsp;<i class="fa-solid fa-arrow-right"></i>
-        </div>
+        </div> -->
       </div>
-      <div>
-        <button
-          type="button"
-          v-show="expanded"
-          class="btn btn-primary"
-          @click="addFloor"
-        >
-          <i class="fa-solid fa-plus"></i> &nbsp;Create floorplan
-        </button>
-      </div>
+      <div></div>
     </div>
-    <div
-      v-bind:class="{
-        'table-floors': !expanded,
-        'table-floors-full': expanded,
-      }"
-    >
-      <table
-        v-show="
-          floorData && floorData.length > 0 && expanded
-        "
-        class="table"
-      >
-        <thead>
-          <tr>
-            <th @click="sort('full_name')">
-              Name &nbsp;<img
-                v-if="currentSort == 'full_name'"
-                :src="
-                  currentSortDir == 'asc'
-                    ? '/static/icons/sort_asc.svg'
-                    : '/static/icons/sort_desc.svg'
-                "
-                class="dark-mode-icon"
-              />
-            </th>
-            <th @click="sort('file_name')">File</th>
-            <th @click="sort('short_name')">Number</th>
-            <th @click="sort('position')">Position</th>
-            <th @click="sort('fixture_layer_name')">Fixture Layer</th>
-            <th @click="sort('floor_layer_name')">Floor Layer</th>
-            <th>Actions</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="floor in sortedFloors" :key="floor.id">
-            <td style="cursor: pointer" @click="onClickFloor(floor)">
-              <img src="/static/icons/layer.svg" alt="" class="dark-mode-icon"/> &nbsp;{{
-                floor.full_name
-              }}
-            </td>
-            <template v-if="expanded">
-              <td>{{ floor.file_name }}</td>
-              <td>{{ floor.short_name }}</td>
-              <td>{{ floor.position }}</td>
-              <td>{{ floor.fixture_layer_name }}</td>
-              <td>{{ floor.floor_layer_name }}</td>
-              <td>
-                <a class="btn" :href="floor.download_url"
-                  ><img src="/static/icons/download.svg" alt="" class="dark-mode-icon"
-                /></a>
-                <a class="btn"
-                  ><i class="fa-solid fa-pen-to-square"  v-show="expanded" @click="editFloor(floor)"></i
-                ></a>
-                <a class="btn"
-                  ><i class="fa-solid fa-trash-can" @click="showFloorplanModal = true; selectedFloor = floor"></i></a>
-                <!-- <a class="btn" @click="addGroup(floor)"
-                  ><i class="fa-solid fa-plus"></i
-                ></a> -->
-              </td>
-              <!-- <td @click="groupClick(floor)">
-                <a class="total-layer" href="#"
-                  >layers({{floor.layer_names.length}}) <i class="fa-solid fa-chevron-right"></i
-                ></a>
-              </td> -->
-            </template>
-            <td @click="groupClick(floor)">
-              <a class="total-layer" href="#"
-                >layers(8)
-                <!-- <i class="fa-solid fa-chevron-right"></i> -->
-                </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <SlVueTree ref="tree_nodes" v-show="!expanded" v-model="computedNodes">
+    <div class="table-floors">
+      <SlVueTree ref="tree_nodes" v-model="computedNodes">
         <template slot="toggle" slot-scope="{ node }">
           <span v-if="!node.isLeaf">
             <div v-if="node.isExpanded" id="chevron-arrow-down"></div>
@@ -104,14 +21,14 @@
           </span>
         </template>
         <!-- <div class="d-flex"> -->
-          <template slot="title" slot-scope="{ node }">
-            <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
-            <img
+        <template slot="title" slot-scope="{ node }">
+          <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
+          <!-- <img
               v-if="
                 node.data.type == 'Group' &&
                 (node.isLeaf == false || node.level == 2)
               "
-              src="/static/icons/menu.svg"
+              src="../assets/icons/menu.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -119,7 +36,7 @@
 
             <img
               v-if="node.data.type == 'Group' && node.isLeaf && node.level != 2"
-              src="/static/imgs/group.svg"
+              src="../assets/imgs/group.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -127,36 +44,34 @@
 
             <img
               v-else-if="node.data.type == 'Floorplan'"
-              src="/static/icons/layer.svg"
+              src="../assets/icons/layer.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
-            />
-            <button
-              flat
-              small
-              class="btn btn-light btn-tree"
-              @click="onItemClick(node.data)"
-            >
-              <div class="tree-title">
-                &nbsp;{{
-                  node.data.type == "Group"
-                    ? node.data.name
-                    : node.data.full_name
-                }}
-                <!-- <template v-if="node.data.type == 'building'">
+            /> -->
+          <button
+            flat
+            small
+            class="btn btn-light btn-tree"
+            @click="onItemClick(node.data)"
+          >
+            <div class="tree-title">
+              &nbsp;{{
+                node.data.type == "Group" ? node.data.name : node.data.full_name
+              }}
+              <!-- <template v-if="node.data.type == 'building'">
                 <b>(Address:</b> {{ node.data.address }})
               </template> -->
-              </div>
-            </button>
-            <!-- <button v-else flat small class="group-btn">
+            </div>
+          </button>
+          <!-- <button v-else flat small class="group-btn">
             <span>{{ node.title }}</span>
           </button> -->
-            <!-- <a style="text-decoration: none; color: black" :href="`/main/groups/${node.data.id}/edit`">{{ node.title }}</a> -->
-          </template>
+          <!-- <a style="text-decoration: none; color: black" :href="`/main/groups/${node.data.id}/edit`">{{ node.title }}</a> -->
+        </template>
         <!-- </div> -->
       </SlVueTree>
-      <button
+      <!-- <button
         style="float: right"
         type="button"
         v-show="!expanded"
@@ -164,9 +79,9 @@
         @click="addFloor"
       >
         <i class="fa-solid fa-plus"></i> &nbsp;Create floorplan
-      </button>
+      </button> -->
     </div>
-    <Modal
+    <!-- <Modal
       :show="showFloorplanModal"
       header="Remove Floorplan"
       :body="`Are you sure you want to remove floorplan <b>${
@@ -177,28 +92,26 @@
       @no="showFloorplanModal = false"
       @yes="deleteFloor"
     >
-    </Modal>
+    </Modal> -->
   </div>
-
 </template>
 
 <script>
 import SlVueTree from "sl-vue-tree";
 import Modal from "../popup/modal.vue";
-const axios = require("axios").default;
 import { API_DOMAIN_MANIFERA } from "../../../constant.js";
-import { store, storeFunctions, EventBus } from '../../../store.js';
+import { store, storeFunctions, EventBus } from "../../../store.js";
 export default {
   components: {
     SlVueTree,
     Modal,
   },
   props: {
-    building: {
-      default() {
-        return {};
-      },
-    },
+    // building: {
+    //   default() {
+    //     return {};
+    //   },
+    // },
     groups: {
       default() {
         return [];
@@ -225,19 +138,22 @@ export default {
     selectedFloorplan(val) {
       this.selectedFloor = val || {};
     },
-    building(val) {
-      console.log("building: ", val);
-      if (val && (!this.selectedBuilding || this.selectedBuilding.id != val.id)) {
-        this.selectedBuilding = val;
-        this.getFloors();
-      }
-    }
+    // building(val) {
+    //   console.log("building: ", val);
+    //   if (
+    //     val &&
+    //     (!this.selectedBuilding || this.selectedBuilding.id != val.id)
+    //   ) {
+    //     this.selectedBuilding = val;
+    //     // this.getFloors();
+    //   }
+    // },
   },
   data() {
     return {
       showFloorplanModal: false,
       loading: false,
-      errorMessage:"",
+      errorMessage: "",
       groupData: [],
       widthLeft: {},
       currentSortDir: "asc",
@@ -245,7 +161,6 @@ export default {
       nodes: [],
       selectedFloor: {},
       floorData: [],
-      selectedBuilding: null,
     };
   },
 
@@ -254,7 +169,7 @@ export default {
       return store.selectedFloorplan;
     },
     sortedFloors: function () {
-      let floorplans = this.floorData;
+      let floorplans = this.floors;
       if (floorplans) {
         return floorplans.sort((a, b) => {
           let modifier = 1;
@@ -268,7 +183,7 @@ export default {
       }
     },
     computedNodes() {
-      return this.getNodes(this.building, this.groupData, this.floors);
+      return this.getNodes();
     },
   },
 
@@ -284,17 +199,17 @@ export default {
       this.$emit("handleClickFloorName", v);
     },
     getGroup(id) {
-      let group = this.groupData.filter((g) => g.id === id);
+      let group = this.groups.filter((g) => g.id === id);
       return group.length > 0 ? group[0] : null;
     },
     getFloorplansByBuilding(id) {
-      return this.floorData.filter((f) => f.building_id === id);
+      return this.floors.filter((f) => f.building_id === id);
     },
     getGroupsByBuilding(id) {
-      return this.groupData.filter((g) => g.building_id === id);
+      return this.groups.filter((g) => g.building_id === id);
     },
     getGroupsByFile(id) {
-      return this.groupData.filter((f) => f.file_id === id);
+      return this.groups.filter((f) => f.file_id === id);
     },
     parseGroup(id) {
       const group = this.getGroup(id);
@@ -303,7 +218,7 @@ export default {
       }
       group["data"] = {
         navigator: "groups",
-        ...group
+        ...group,
       };
       group["data"] = { ...group["data"], ...group };
       // group['groups'] = [];
@@ -347,14 +262,16 @@ export default {
       }
       return groupNodes;
     },
-    getNodes(building, groups, floors) {
+    getNodes() {
       this.nodes = [];
-      let floorplans = this.getFloorplansByBuilding(building.id);
+      let floorplans = this.floors;
+
       floorplans.forEach((floorplan) => {
         let newFloorplan = floorplan;
         newFloorplan["type"] = "Floorplan";
         newFloorplan["navigator"] = "files";
         let groupNodes = this.groupDataByFile(floorplan.id);
+
         let data = {
           title: newFloorplan.full_name,
           isDraggable: false,
@@ -393,50 +310,47 @@ export default {
     editFloor(obj) {
       this.$emit("editFloor", obj);
     },
-    async deleteFloor(){
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-          "application/x-www-form-urlencoded";
-      this.loading = true;
-      await axios
-        .delete(
-            `${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFloor.id}`
-        )
-        .then((response) => {
-          this.showFloorplanModal = false;
-          this.getFloors();
-          this.loading = false;
-        })
-        .catch((error) => {
-            // handle error
-            this.errorMessage = 'Failed to delete floorplan';
-        })
-      this.loading = false;
-    },
-    async getFloors() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      this.loading = true;
-      await axios
-        .get(
-          `${API_DOMAIN_MANIFERA}/api/v1/files?building_id=${this.building.id}`
-        )
-        .then((response) => {
-          this.$parent.back();
-          this.floorData = response.data;
-          this.$emit("onFloorsChange", response.data);
-          this.loading = false;
-        })
-        .catch((error) => {});
-      this.loading = false;
-    },
+    // async deleteFloor() {
+    //   const token = this.token || "";
+    //   axios.defaults.headers.common["Authorization"] = token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   this.loading = true;
+    //   await axios
+    //     .delete(`${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFloor.id}`)
+    //     .then((response) => {
+    //       this.showFloorplanModal = false;
+    //       this.getFloors();
+    //       this.loading = false;
+    //     })
+    //     .catch((error) => {
+    //       // handle error
+    //       this.errorMessage = "Failed to delete floorplan";
+    //     });
+    //   this.loading = false;
+    // },
+    // async getFloors() {
+    //   axios.defaults.headers.common["Authorization"] = this.token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   this.loading = true;
+    //   await axios
+    //     .get(
+    //       `${API_DOMAIN_MANIFERA}/api/v1/files?building_id=${this.building.id}`
+    //     )
+    //     .then((response) => {
+    //       this.$parent.back();
+    //       this.floors = response.data;
+    //       this.$emit("onFloorsChange", response.data);
+    //       this.loading = false;
+    //     })
+    //     .catch((error) => {});
+    //   this.loading = false;
+    // },
     onItemClick(obj) {
+      console.log("Click ne click", obj);
       if (obj.type == "Group") {
-        let selectedFloor = this.floorData.filter(
-          (f) => f.id == obj.file_id
-        );
+        let selectedFloor = this.floors.filter((f) => f.id == obj.file_id);
         if (selectedFloor.length > 0) {
           this.selectedFloor = selectedFloor[0];
           storeFunctions.setSelectedFloorplan(this.selectedFloor);
@@ -445,9 +359,7 @@ export default {
           EventBus.$emit("handleItemClick", obj, null);
         }
       } else {
-        let selectedFloor = this.floorData.filter(
-          (f) => f.id == obj.id
-        );
+        let selectedFloor = this.floors.filter((f) => f.id == obj.id);
         if (selectedFloor.length > 0) {
           this.selectedFloor = selectedFloor[0];
         }
@@ -465,7 +377,7 @@ export default {
         fileId = newGroups[0].file_id;
       }
 
-      this.groupData.forEach((group) => {
+      this.groups.forEach((group) => {
         if (!addedGroups.includes(group.id)) {
           addedGroups.push(group.id);
         }
@@ -482,7 +394,7 @@ export default {
         }
       });
 
-      this.groupData.forEach((group) => {
+      this.groups.forEach((group) => {
         let newGroup = newGroups.find((g) => g.id == group.id);
         if (newGroup) {
           oldGroups.push({ ...group, ...newGroup });
@@ -490,13 +402,15 @@ export default {
           let deletedGroup = [];
           if (fileId && fileId == group.file_id) {
             let fileGroups = groupByFile[group.file_id];
-            if (fileGroups.length>0) {
-              fileGroups.forEach((g)=> {
-                let findGroup = newGroups.find((newGroup) => g.id == newGroup.id);
+            if (fileGroups.length > 0) {
+              fileGroups.forEach((g) => {
+                let findGroup = newGroups.find(
+                  (newGroup) => g.id == newGroup.id
+                );
                 if (!findGroup && !deletedGroup.includes(g.id)) {
                   deletedGroup.push(g.id);
                 }
-              })
+              });
             }
           }
 
@@ -512,13 +426,13 @@ export default {
         });
       }
 
-      this.groupData = oldGroups;
+      this.groups = oldGroups;
     },
 
-    updateFloorData() {
-      this.$parent.back();
-      this.getFloors();
-    },
+    // updateFloorData() {
+    //   this.$parent.back();
+    //   this.getFloors();
+    // },
 
     updateSelectedGroup(groups, floorplan) {
       let groupIds = [];
@@ -534,7 +448,11 @@ export default {
             this.$refs.tree_nodes.select(node.path, groups.length !== 1);
           }
         } else {
-          if (floorplan && node.data.type == "Floorplan" && node.data.id == floorplan.id) {
+          if (
+            floorplan &&
+            node.data.type == "Floorplan" &&
+            node.data.id == floorplan.id
+          ) {
             this.$refs.tree_nodes.select(node.path, false);
           }
         }
@@ -544,14 +462,14 @@ export default {
     updateTitleTreeNode(data) {
       this.$parent.back();
       this.$refs.tree_nodes.traverse((node, nodeModel, path) => {
-        console.log(data)
+        console.log(data);
         data.forEach((d) => {
-          if (node.data.id == d.id && node.data.type == 'Floorplan') {
-          this.$refs.tree_nodes.updateNode(node.path, {
+          if (node.data.id == d.id && node.data.type == "Floorplan") {
+            this.$refs.tree_nodes.updateNode(node.path, {
               data: {
-                  ...d,
-                  navigator: node.data.navigator,
-              }
+                ...d,
+                navigator: node.data.navigator,
+              },
             });
           }
         });
@@ -582,7 +500,7 @@ export default {
   destroyed() {
     EventBus.$off("updateTreeNode", this.updateTreeNode);
     EventBus.$off("updateGroups", this.updateGroups);
-    EventBus.$off("updateFloorData", this.updateFloorData);
+    // EventBus.$off("updateFloorData", this.updateFloorData);
     EventBus.$off("updateSelectedGroup", this.updateSelectedGroup);
     EventBus.$off("compactClick", this.compactClick);
   },

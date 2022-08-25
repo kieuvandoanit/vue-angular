@@ -106,7 +106,7 @@
     <div v-show="isShowFloorStack" class="floor-stack-wrapper">
       <Floorstack
         :token="token"
-        :floors="currentFloors"
+        :floors="floors"
         @handleSelectedFloor="handleSelectedFloorStack"
       ></Floorstack>
     </div>
@@ -126,9 +126,10 @@ export default {
   props: {
     token: "",
     title: "",
-    groupData: null,
-    floorData: null,
-    currentFloors: null,
+    groups: null,
+    selectedFloor: null,
+    devices: null,
+    floors: null,
     viewMode: "",
   },
 
@@ -145,7 +146,7 @@ export default {
   },
 
   watch: {
-    async floorData(val) {
+    async selectedFloor(val) {
       this.handleBackButton();
       if (val) {
         storeFunctions.setShowFloorStackSelector(false);
@@ -303,7 +304,6 @@ export default {
     },
 
     async handleSelectedFloorStack(v) {
-      console.log("aassssss");
       EventBus.$emit("checkLayersForFloorplan", v);
       storeFunctions.setShowFloorStackSelector(false);
       storeFunctions.setCurrentNav("Floorplans");

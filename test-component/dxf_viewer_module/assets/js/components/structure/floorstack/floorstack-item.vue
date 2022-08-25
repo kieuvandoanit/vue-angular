@@ -104,7 +104,7 @@ export default {
   created() {},
 
   mounted() {
-    console.log('this.floor :>> ', this.floor);
+    
   },
 
   computed: {

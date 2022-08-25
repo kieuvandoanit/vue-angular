@@ -4,7 +4,6 @@
       <LayoutLeft
         ref="layoutLeft"
         :token="this.token"
-        :buildings_json="this.buildings"
         :groups_json="this.groups"
         :devices_json="this.devices"
         :floors_json="this.floors"
@@ -25,15 +24,16 @@
         ref="layoutRight"
         :token="this.token"
         :title="this.title"
-        :groupData="this.selectedGroup"
-        :floorData="this.floorData"
-        :currentFloors="floors"
+        :groups="this.groups"
+        :selectedFloor="selectedFloorplan"
+        :devices="this.devices"
+        :floors="this.floors"
         :viewMode="viewMode"
         @editBuilding="editBuilding"
       ></LayoutRight>
     </div>
 
-    <Modal
+    <!-- <Modal
       v-if="floorData"
       :show="showModalEditFloorplan"
       header="Floor plan configuration is not finished."
@@ -43,7 +43,7 @@
       buttonText="Edit floorplan"
       @action="handleActionEditFloorplanModal"
     >
-    </Modal>
+    </Modal> -->
   </div>
 </template>
 
@@ -118,7 +118,6 @@ export default {
       currentFloors: null,
       currentNavigation: "",
       viewMode: "",
-      showModalEditFloorplan: false,
       loading: false,
       errorMessage: "",
       newGroups: [],
@@ -184,7 +183,7 @@ export default {
     },
 
     handleItemClick(obj, selectedFloor = null) {
-      console.log("handleItemClick", obj, selectedFloor);
+      console.log("Vao day ne");
       this.handlePopupLayOutRight();
       storeFunctions.setCurrentNav("Floorplans");
       if (obj.type == "Group") {
@@ -207,7 +206,7 @@ export default {
         }
         // this.data = obj;
       } else if (obj.type == "Floorplan") {
-        this.checkLayersForFloorplan(obj);
+        // this.checkLayersForFloorplan(obj);
         this.title = obj.full_name;
         // this.popup = false;
         storeFunctions.setPopup(false);
@@ -224,20 +223,20 @@ export default {
       storeFunctions.setSelectedFloorplan(v);
     },
 
-    checkLayersForFloorplan(floor) {
-      if (
-        floor.floor_layer_name == "" ||
-        floor.fixture_layer_name == "" ||
-        floor.sensor_layer_name == ""
-      ) {
-        this.showModalEditFloorplan = true;
-      }
-    },
+    // checkLayersForFloorplan(floor) {
+    //   if (
+    //     floor.floor_layer_name == "" ||
+    //     floor.fixture_layer_name == "" ||
+    //     floor.sensor_layer_name == ""
+    //   ) {
+    //     this.showModalEditFloorplan = true;
+    //   }
+    // },
 
-    handleActionEditFloorplanModal() {
-      this.showModalEditFloorplan = false;
-      EventBus.$emit("handleEditFloor", this.floorData);
-    },
+    // handleActionEditFloorplanModal() {
+    //   this.showModalEditFloorplan = false;
+    //   EventBus.$emit("handleEditFloor", this.floorData);
+    // },
 
     handleFloorsChange(floors) {
       console.log("handleFloorsChange", floors);
@@ -247,13 +246,11 @@ export default {
   created() {
     EventBus.$on("resetActions", this.resetActions);
     EventBus.$on("handleItemClick", this.handleItemClick);
-    EventBus.$on("checkLayersForFloorplan", this.checkLayersForFloorplan);
     EventBus.$on("updateGroups", this.getNewGroups);
   },
   destroyed() {
     EventBus.$off("resetActions", this.resetActions);
     EventBus.$off("handleItemClick", this.handleItemClick);
-    EventBus.$off("checkLayersForFloorplan", this.checkLayersForFloorplan);
   },
 };
 </script>

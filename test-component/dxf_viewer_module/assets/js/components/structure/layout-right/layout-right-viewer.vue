@@ -2,8 +2,8 @@
   <div class>
     <StructureViewer
       :file="file || selectedFile"
-      :devices="deviceData"
-      :groups="groupData"
+      :devices="devices"
+      :groups="groups"
       :areas="areaData"
       :needRefresh="needRefresh"
       :deviceMode="addDevice"
@@ -183,16 +183,11 @@ export default {
     file(val) {
       this.selectedFile = val;
     },
-    groups(val) {
-      this.groupData = val;
-    },
-    devices(val) {
-      this.deviceData = val;
-    },
     areas(val) {
       this.areaData = val;
     },
     selectedGroups(val) {
+      // console.log("Vao day ne: ", this.groups)
       let selectedIds = [];
 
       val.forEach((item) => {
@@ -234,8 +229,6 @@ export default {
       group: null,
       loading: false,
       sidebarData: null,
-      groupData: null,
-      deviceData: null,
       areaData: null,
       timerClick: 0,
       paramLightValue: null,
@@ -324,22 +317,24 @@ export default {
     handleDuplicateObject(val, needRefresh = true) {
       // Duplicate object
       axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+      axios.defaults.headers.post["Content-Type"] =
+        "application/x-www-form-urlencoded";
       axios
         .post(`${API_DOMAIN_MANIFERA}/api/v1/files/duplicate_object`, val)
         .then((response) => {
           const data = response.data;
-          
-          if(needRefresh) {
+
+          if (needRefresh) {
             EventBus.$emit("getGroups");
-            EventBus.$emit("getDevices")
+            EventBus.$emit("getDevices");
           }
         })
         .catch((error) => {
-          console.log(error)
-        }).then(() => {
-          this.isDuplicating = false;
+          console.log(error);
         })
+        .then(() => {
+          this.isDuplicating = false;
+        });
     },
 
     handleIconSingleClick(type, devices, groups, activeGroup) {
@@ -366,7 +361,10 @@ export default {
             this.isAddToGroupOpen = true;
             this.isAddAreaOpen = false;
             // EventBus.$emit("updateSelectedGroup", this.selectedGroups, this.selectedFile);
-          } else if (devices.type === "area" || devices.type === "polygon-area") {
+          } else if (
+            devices.type === "area" ||
+            devices.type === "polygon-area"
+          ) {
             this.selectedArea = devices;
             this.isAddAreaOpen = true;
             // EventBus.$emit("updateSelectedGroup", activeGroup ? [activeGroup] : [], this.selectedFile);
@@ -384,9 +382,9 @@ export default {
               this.isAddAreaOpen = false;
             }
             // EventBus.$emit("updateSelectedGroup", activeGroup ? [activeGroup] : [], this.selectedFile);
-          }else if(devices.length > 0){
+          } else if (devices.length > 0) {
             storeFunctions.setSelectedObjects(devices);
-            
+
             this.selectedObjects = devices;
             this.clickType = "single";
             this.isAddToGroupOpen = true;
@@ -479,15 +477,15 @@ export default {
         "application/x-www-form-urlencoded";
 
       let params = [];
-      if(v.length > 0){
+      if (v.length > 0) {
         v.map((item) => {
           params.push({
             id: item.id,
             x: `${item.x}`,
             y: `${item.y}`,
-            type: item.type
-          })
-        })
+            type: item.type,
+          });
+        });
       }
       this.isLoading = true;
       axios
@@ -924,29 +922,27 @@ export default {
     },
 
     handleEnableMoveGroup(v) {
-      if(v){
+      if (v) {
         this.enableMoveAllInGroup = !v;
         this.enableMoveGroup = v;
         this.enableMoveDevice = !v;
-        
-      }else{
+      } else {
         this.enableMoveGroup = v;
         this.enableMoveDevice = !v;
         this.enableMoveAllInGroup = !v;
       }
     },
 
-    handleEnableMoveAllInGroup(v){
-      if(v){
+    handleEnableMoveAllInGroup(v) {
+      if (v) {
         this.enableMoveAllInGroup = v;
         this.enableMoveDevice = !v;
         this.enableMoveGroup = !v;
-      }else{
+      } else {
         this.enableMoveAllInGroup = v;
         this.enableMoveDevice = false;
         this.enableMoveGroup = false;
       }
-      
     },
 
     handleIconDoubleClick(v) {

@@ -89,15 +89,17 @@ export default {
 
   watch: {
     file(val, oldVal) {
-      console.log("zo ne");
+      console.log("TCL: file -> render on first time!", val);
       if (!val || !val.download_url || (oldVal && val.id === oldVal.id)) {
-        console.log("return ne");
         return;
       }
-      console.log("ve len ne");
+
       this.destroyViewer();
       this.createViewer([], []);
-      this.viewer.Load(val.download_url);
+      this.viewer?.updateGroupsData(this.groups);
+      this.viewer?.updateDevicesData(this.devices);
+      this.viewer?.Load(val.download_url);
+
       // this.viewer.setStructureMode(true);
       this.goBack();
     },

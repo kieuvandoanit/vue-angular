@@ -44,7 +44,7 @@ export default {
   created() {},
 
   mounted() {
-    this.floorplans = JSON.parse(this.floors);
+    this.floorplans = this.floors;
   },
 
   computed: {},
@@ -65,7 +65,6 @@ export default {
     handleFloorItemClick(file) {
       this.selectedFile = file;
       this.selectedFileId = file.id;
-      console.log("aaaaxx", file);
       this.$emit("handleSelectedFloor", file);
     },
   },
