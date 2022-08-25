@@ -9,22 +9,16 @@ export default {
   },
 
   mounted() {
-    console.log(this.token);
+    // console.log(this.token);
   },
 
   data() {
-    return {
-      
-    };
+    return {};
   },
   watch: {},
-  
-  created() {
 
-  },
+  created() {},
 
-  methods: {
-    
-  },
+  methods: {},
 };
 </script>

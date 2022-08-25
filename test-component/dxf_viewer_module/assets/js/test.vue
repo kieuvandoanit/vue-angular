@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <h1>{{msg}}</h1>
+    <h1>{{ msg }}</h1>
     <!-- <img :src="vueImage.activeGroup" alt="aaaaa"> -->
   </div>
 </template>
@@ -10,19 +10,16 @@
 </style>
 
 <script>
-
 export default {
-  props: ["msg",],
+  props: ["msg"],
   data() {
-    return {
-    };
+    return {};
   },
-  components: {
-  },
+  components: {},
   mounted() {
-    console.log(this.$el)
+    // console.log(this.$el)
     // this.$el.dispatchEvent(new CustomEvent('abc2', { detail: "abcs2" }));
-    this.$emit("abc", {detail: "data ne"});
+    this.$emit("abc", { detail: "data ne" });
   },
 };
 </script>

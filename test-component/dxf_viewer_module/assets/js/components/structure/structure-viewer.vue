@@ -95,7 +95,7 @@ export default {
       this.destroyViewer();
       this.createViewer(this.groups, this.devices);
 
-      // console.log("leng group: ", this.groups.length)
+      // // console.log("leng group: ", this.groups.length)
       // this.viewer.setStructureMode(true);
       this.goBack();
       setTimeout(() => {
@@ -104,12 +104,12 @@ export default {
     },
 
     groups(val) {
-      console.log('changeGroup', val);
+      // console.log('changeGroup', val);
       this.viewer?.updateGroupsData(val);
     },
 
     devices(val) {
-      console.log('changeDev', val);
+      // console.log('changeDev', val);
       this.viewer?.updateDevicesData(val);
     },
 
@@ -204,7 +204,7 @@ export default {
   methods: {
     createViewer(groups, devices) {
       if (this.viewer) {
-        console.log("return 2");
+        // console.log("return 2");
         return;
       }
 
@@ -237,7 +237,7 @@ export default {
         }
       };
       // this.viewer.viewerObjects = (objects) => {
-      // console.log("viewerObjects", objects);
+      // // console.log("viewerObjects", objects);
       // };
       this.viewer.Load(this.file.download_url);
     },
@@ -258,7 +258,7 @@ export default {
         return;
       }
       this.viewer = null;
-      console.log("destroy in structure -viewer")
+      // console.log("destroy in structure -viewer")
     },
 
     handleSelectGroup(group) {

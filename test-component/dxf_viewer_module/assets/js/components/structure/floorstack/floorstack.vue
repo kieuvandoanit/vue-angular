@@ -36,7 +36,7 @@ export default {
 
   watch: {
     floors(val) {
-      console.log("watch_building", val);
+      // console.log("watch_building", val);
       this.floors = val;
     },
   },

@@ -126,7 +126,7 @@ export default {
 
   methods: {
     // handleSelectBuilding(v) {
-    //   console.log("handleSelectBuilding", v);
+    //   // console.log("handleSelectBuilding", v);
     //   this.currentFloors = v;
     // },
 
@@ -217,7 +217,7 @@ export default {
     },
 
     handleClickFloor(v) {
-      console.log("handleClickFloor", v);
+      // console.log("handleClickFloor", v);
       // this.data = v;
       storeFunctions.setSelectedFloorplan(v);
     },
@@ -238,7 +238,7 @@ export default {
     // },
 
     handleFloorsChange(floors) {
-      console.log("handleFloorsChange", floors);
+      // console.log("handleFloorsChange", floors);
       this.currentFloors = floors;
     },
   },

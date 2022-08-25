@@ -139,7 +139,7 @@ export default {
       this.selectedFloor = val || {};
     },
     // building(val) {
-    //   console.log("building: ", val);
+    //   // console.log("building: ", val);
     //   if (
     //     val &&
     //     (!this.selectedBuilding || this.selectedBuilding.id != val.id)
@@ -461,7 +461,7 @@ export default {
     updateTitleTreeNode(data) {
       this.$parent.back();
       this.$refs.tree_nodes.traverse((node, nodeModel, path) => {
-        console.log(data);
+        // console.log(data);
         data.forEach((d) => {
           if (node.data.id == d.id && node.data.type == "Floorplan") {
             this.$refs.tree_nodes.updateNode(node.path, {

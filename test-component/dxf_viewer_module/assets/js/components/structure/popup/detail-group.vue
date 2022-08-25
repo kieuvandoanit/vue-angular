@@ -7,10 +7,14 @@
             <p>{{ data.name }}</p>
           </div>
         </div>
-        <div class="box-turn" v-bind:class="{
-          off: !data.scene_status,
-          on: data.scene_status,
-        }" @click="onClickOnOff">
+        <div
+          class="box-turn"
+          v-bind:class="{
+            off: !data.scene_status,
+            on: data.scene_status,
+          }"
+          @click="onClickOnOff"
+        >
           <div class="box-active">
             <div class="icon-led"></div>
           </div>
@@ -21,34 +25,61 @@
           <div class="title">
             <span>Preset</span>
           </div>
-          <Segment :data="['cct', 'xy']" :currentTab="colorMode === 'yxy' ? 'xy' : 'cct'" style="max-width: 115px"
-            @onChangeTab="onChangeTab"></Segment>
+          <Segment
+            :data="['cct', 'xy']"
+            :currentTab="colorMode === 'yxy' ? 'xy' : 'cct'"
+            style="max-width: 115px"
+            @onChangeTab="onChangeTab"
+          ></Segment>
         </div>
         <div class="control-led">
           <div v-if="colorMode === 'cct'">
             <div class="content-item">
               <label style="color: #fff">Color</label>
               <div class="color-k">
-                <input type="text" style="width: 100px" v-model="data.light" @blur="onBlurChangeLight" />
+                <input
+                  type="text"
+                  style="width: 100px"
+                  v-model="data.light"
+                  @blur="onBlurChangeLight"
+                />
                 <label>K</label>
               </div>
             </div>
             <div class="slide-contaicolor">
-              <input type="range" min="2000" max="10000" step="100" v-model="data.light" class="slider-color"
-                id="myrange-color" @change="onChangeLight($event)" />
+              <input
+                type="range"
+                min="2000"
+                max="10000"
+                step="100"
+                v-model="data.light"
+                class="slider-color"
+                id="myrange-color"
+                @change="onChangeLight($event)"
+              />
             </div>
           </div>
           <div v-else>
             <div class="content-item">
               <label style="color: #fff">Color</label>
               <div class="color-k">
-                <input type="text" style="width: 100px" v-model="data.x_color" @blur="onBlurChangeXValue" />
+                <input
+                  type="text"
+                  style="width: 100px"
+                  v-model="data.x_color"
+                  @blur="onBlurChangeXValue"
+                />
                 <label>X</label>
               </div>
             </div>
             <div style="display: flex; justify-content: end">
               <div class="color-k">
-                <input type="text" style="width: 100px" v-model="data.y_color" @blur="onBlurChangeYValue" />
+                <input
+                  type="text"
+                  style="width: 100px"
+                  v-model="data.y_color"
+                  @blur="onBlurChangeYValue"
+                />
                 <label>Y</label>
               </div>
             </div>
@@ -56,29 +87,54 @@
           <div class="content-item">
             <label style="color: #fff">Intensity</label>
             <div class="color-k">
-              <input type="text" style="width: 100px" v-model="data.intensity" @blur="onBlurChangeIntensity" />
+              <input
+                type="text"
+                style="width: 100px"
+                v-model="data.intensity"
+                @blur="onBlurChangeIntensity"
+              />
               <label>%</label>
             </div>
           </div>
           <div class="slide-contaicolor">
-            <input type="range" min="0" max="100" v-model="data.intensity" class="slider-intensity" id="myrange-color"
-              @change="onChangeIntensity($event)" />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              v-model="data.intensity"
+              class="slider-intensity"
+              id="myrange-color"
+              @change="onChangeIntensity($event)"
+            />
           </div>
         </div>
         <template v-if="scenes && scenes.length > 0">
           <div class="title m-0 mt-3 pt-2" style="border-top: 1px solid gray">
             <span>Scenes</span>
           </div>
-          <ScenesList :scenes="scenes" :group="data" @handleToggle="handleToggle" @clickSceneName="clickSceneName" />
+          <ScenesList
+            :scenes="scenes"
+            :group="data"
+            @handleToggle="handleToggle"
+            @clickSceneName="clickSceneName"
+          />
         </template>
-        <div v-else class="title m-0 mt-3 pt-2" style="border-top: 1px solid gray">
+        <div
+          v-else
+          class="title m-0 mt-3 pt-2"
+          style="border-top: 1px solid gray"
+        >
           <span>No Scenes Found</span>
         </div>
       </div>
     </div>
     <div v-else-if="selectedScene">
-      <EditScene :selectedScene="selectedScene" :token="token" @handleBackSidebar="handleBackSidebar"
-        @getScenarios="getScenarios"></EditScene>
+      <EditScene
+        :selectedScene="selectedScene"
+        :token="token"
+        @handleBackSidebar="handleBackSidebar"
+        @getScenarios="getScenarios"
+      ></EditScene>
     </div>
   </div>
 </template>
@@ -114,31 +170,27 @@ export default {
     isShowBackButton: {
       default() {
         return false;
-      }
+      },
     },
     lightControl: {
       default() {
         return false;
-      }
+      },
     },
     token: {
       default() {
         return "";
-      }
-    }
+      },
+    },
   },
-  mounted() { },
+  mounted() {},
 
-  watch: {
+  watch: {},
 
-  },
-
-  created() { },
+  created() {},
 
   data() {
-    return {
-
-    };
+    return {};
   },
 
   computed: {
@@ -166,11 +218,12 @@ export default {
       if (this.data) {
         groupId = this.data.id;
         let intensity = 0;
-        EventBus.$emit('getScenesForGroup', this.data.scene_id);
+        EventBus.$emit("getScenesForGroup", this.data.scene_id);
 
         let scene = scenes.filter((scene) => scene.id == this.data.scene_id);
 
-        if (scene && scene.length>0) { // get state
+        if (scene && scene.length > 0) {
+          // get state
           sceneIntensity = scene.intensity;
         }
 
@@ -218,7 +271,7 @@ export default {
         };
       }
 
-      EventBus.$emit('lightTrigger', groupId, params);
+      EventBus.$emit("lightTrigger", groupId, params);
       axios
         .post(
           `${API_DOMAIN_MANIFERA}/api/v1/groups/${groupId}/mqtt/turn_on`,
@@ -234,8 +287,8 @@ export default {
           EventBus.$emit("getGroups");
           EventBus.$emit("getDevices", false);
         })
-        .catch((error) => { })
-        .then((a) => { });
+        .catch((error) => {})
+        .then((a) => {});
     },
 
     onClickOnOff() {
@@ -305,7 +358,7 @@ export default {
     },
 
     handleToggle(v) {
-      console.log("handleToggle: ", v);
+      // console.log("handleToggle: ", v);
       const token = this.token || "";
       axios.defaults.headers.common["Authorization"] = token;
       axios.defaults.headers.post["Content-Type"] =
@@ -316,10 +369,7 @@ export default {
       };
 
       axios
-        .put(
-          `${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`,
-          params
-        )
+        .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, params)
         .then((response) => {
           storeFunctions.setSelectedGroup(response.data);
           EventBus.$emit("getGroups");
@@ -346,9 +396,9 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
-        .then(function (a) { });
+        .then(function (a) {});
     },
 
     handleBackSidebar() {
@@ -363,5 +413,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

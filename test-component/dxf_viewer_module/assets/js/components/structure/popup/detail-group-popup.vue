@@ -118,7 +118,7 @@
         </div>
       </div>
 
-      
+
     </Popup>
     <Modal
       :show="showDeleteGroupModal"
@@ -187,8 +187,8 @@ export default {
 
   watch: {
     // parentGroups(val){
-    //   console.log("parentGroups: ", val);
-    //   console.log("parentId: ", this.parentId);
+    //   // console.log("parentGroups: ", val);
+    //   // console.log("parentId: ", this.parentId);
     // },
     data(val){
     },
@@ -226,9 +226,9 @@ export default {
       },
       set(value) {
         this.parentId = value;
-        // console.log("value: ", value);
+        // // console.log("value: ", value);
         // // this.groupId = value;
-        // console.log("this.groupId: ", this.groupId);
+        // // console.log("this.groupId: ", this.groupId);
 
       },
     },
@@ -468,9 +468,9 @@ export default {
     },
 
     onChangeGroupX(e) {
-      console.log("onChangeX");
+      // console.log("onChangeX");
       const { value } = e.target;
-      console.log("value x: ", value);
+      // console.log("value x: ", value);
       this.data.x = value;
     },
     onChangeGroupY(e) {
@@ -498,7 +498,7 @@ export default {
     handleAddToGroup(){
       this.needRefresh = true;
       if (this.data) {
-        // console.log("parentId -- parent_id:", this.parentId, this.data.parent_id);
+        // // console.log("parentId -- parent_id:", this.parentId, this.data.parent_id);
         // if (this.groupId != this.data.parent_id) {
         if (this.parentId) {
           this.$emit(

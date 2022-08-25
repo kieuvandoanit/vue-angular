@@ -187,7 +187,7 @@ export default {
       this.areaData = val;
     },
     selectedGroups(val) {
-      // console.log("Vao day ne: ", this.groups)
+      // // console.log("Vao day ne: ", this.groups)
       let selectedIds = [];
 
       val.forEach((item) => {
@@ -330,7 +330,7 @@ export default {
           }
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         })
         .then(() => {
           this.isDuplicating = false;
@@ -338,7 +338,7 @@ export default {
     },
 
     handleIconSingleClick(type, devices, groups, activeGroup) {
-      // console.log(
+      // // console.log(
       //   "handleIconSingleClick ~ type, devices, groups",
       //   type,
       //   devices,
@@ -465,7 +465,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -504,7 +504,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -575,7 +575,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -607,7 +607,7 @@ export default {
           this.handleCloseAddAreaPopup();
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -643,7 +643,7 @@ export default {
           this.handleCloseAddAreaPopup();
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -668,7 +668,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -747,7 +747,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         });
     },
 
@@ -890,7 +890,7 @@ export default {
           EventBus.$emit("getDevices", false);
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         })
         .then();
     },
@@ -982,7 +982,7 @@ export default {
         })
         .catch((error) => {
           // handle error
-          console.log(error);
+          // console.log(error);
         })
         .then(function (a) {});
     },

@@ -791,7 +791,7 @@ export class Viewer {
     const api = canvasObjects;
 
     api.selectedObjects = [];
-    
+
     if (group !== null && group.positions.length > 0) {
       api.selectedObjects.push(`box-Group-${group.id}`);
       this.zoomToGroup(group.positions[0]);
@@ -889,7 +889,7 @@ export class Viewer {
 
   destroyViewer() {
     this.dxfViewer.Destroy();
-    console.log("this.dxfViewer.Destroy();")
+    // // console.log("this.dxfViewer.Destroy();")
   }
 
   onProgress(phase, size, totalSize) {
@@ -965,7 +965,7 @@ export class Viewer {
       this.drawHeatMapPositions(this.dxfViewer.origin, this.heatMapPositions);
       this.centerViewToDevices();
       this.updateObjectsScale(true);
-      console.log("Vao refresh data ")
+      // // console.log("Vao refresh data ")
       this.refreshData();
       this.refresh();
       this.zoomToGroup(this.dxfViewer.origin);
@@ -2284,10 +2284,6 @@ export class Viewer {
           );
         }
       });
-    console.log(
-      "🚀 ~ file: Viewer.js ~ line 4743 ~ Viewer ~ findObjectClicked ~ intersects",
-      intersects
-    );
     return intersects;
   }
 
@@ -2448,7 +2444,7 @@ export class Viewer {
     const api = canvasObjects;
     const name = iname || this.getMeshName(data);
     const index = api.selectedObjects.indexOf(name);
-    console.log("getIcon", index);
+    // // console.log("getIcon", index);
     if (index < 0) {
       if (data.type === "fixture") {
         if (
@@ -2844,7 +2840,7 @@ export class Viewer {
   }
 
   drawFromArray(origin, items, type = "") {
-    console.log("origin", origin, items);
+    // // console.log("origin", origin, items);
     if (!origin) return;
 
     const api = canvasObjects;
@@ -3180,7 +3176,7 @@ export class Viewer {
   handleClickAt() {
     const api = canvasObjects;
     const intersects = this.findObjectClicked();
-    console.log(api.selectedObjects);
+    // console.log(api.selectedObjects);
     if (intersects.length > 0) {
       const intersect = intersects[0];
       const mesh = intersect.object;
@@ -3188,7 +3184,7 @@ export class Viewer {
         if (mesh.name.includes("box") || mesh.name == "new-device") {
           const { exData } = mesh;
           if (this.onClick) {
-            console.log("object :>> ", canvasObjects.selectedObjects.length);
+            // console.log("object :>> ", canvasObjects.selectedObjects.length);
             if (canvasObjects.selectedObjects.length > 1) {
               const selectedDevices = this.devices.filter((e) =>
                 canvasObjects.selectedObjects.includes(this.getMeshName(e))
@@ -3265,10 +3261,10 @@ export class Viewer {
               }
               if (api.selectedObjects.length == 0) {
                 this.onClick("single", null);
-                console.log("1");
+                // console.log("1");
               } else {
                 this.onClick("single", result);
-                console.log("2");
+                // console.log("2");
               }
             }
           } else {
@@ -3290,7 +3286,7 @@ export class Viewer {
       if (!this.sensorMode) {
         if (this.onClick) {
           this.onClick("single", null);
-          console.log("3");
+          // console.log("3");
         } else {
           if (this.onShapeClick) {
             this.onShapeClick(null, null);
@@ -3300,7 +3296,7 @@ export class Viewer {
         if (!api.selectedSensor) {
           if (this.onClick) {
             this.onClick("single", null);
-            console.log("4");
+            // console.log("4");
           } else {
             if (this.onShapeClick) {
               this.onShapeClick(null, null);
@@ -3831,7 +3827,7 @@ export class Viewer {
           }
         }
       }
-      console.log("pointerDown", api.selectedObjects);
+      // console.log("pointerDown", api.selectedObjects);
       return;
     }
   }
@@ -4020,10 +4016,10 @@ export class Viewer {
 
     let isDraw = false;
     // Handle adding rect
-    console.log("aaaaa", api.startPos);
+    // console.log("aaaaa", api.startPos);
     if (api.startPos) {
       // Handle adding device
-      console.log("addDevice", this.addDevice);
+      // console.log("addDevice", this.addDevice);
       if (this.addDevice) {
         const findData = this.findObjectByName("drawing-device");
         if (findData.length > 0) {
@@ -4039,7 +4035,7 @@ export class Viewer {
         }
       } else {
         // Rect will be added.
-        console.log("areaaaaa", this.areaMode);
+        // console.log("areaaaaa", this.areaMode);
         if (this.areaMode) {
           // click to draw polygon area button and create polygon area
           if (this.drawPolygonArea) {
@@ -4063,7 +4059,7 @@ export class Viewer {
               api.objects.push(mesh);
               this.creatingPolygonArea = mesh;
               this.onClick("single", mesh.exData);
-              console.log("5");
+              // console.log("5");
             }
           }
           const findData = this.findObjectByName("drawing-rect");
@@ -4389,7 +4385,7 @@ export class Viewer {
         return;
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
     const x = (e.offsetX / e.target.clientWidth) * 2 - 1;
     const y = -(e.offsetY / e.target.clientHeight) * 2 + 1;
@@ -4475,7 +4471,7 @@ export class Viewer {
     ) {
       return;
     }
-    // console.log("double click");
+    // // console.log("double click");
     if (this.activeGroup) {
       this.activeGroup = this.groups.find((g) => g.id === this.activeGroup.id);
     }
@@ -4648,6 +4644,6 @@ export class Viewer {
 
   destroy() {
     this.dxfViewer.Destroy();
-    console.log("Destroy viewer")
+    // console.log("Destroy viewer")
   }
 }

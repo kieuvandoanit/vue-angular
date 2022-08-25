@@ -387,7 +387,7 @@ export default {
         this.drawAreas(this.dxfViewer.origin);
         this.drawPosition(this.dxfViewer.origin, this.testPositions);
         this.refresh();
-        console.log("render");
+        // console.log("render");
         this.dxfViewer.Render();
       }
     },
@@ -519,7 +519,7 @@ export default {
       // } else {
       //   this.dxfViewer.GetCanvas().style.cursor = "";
       // }
-      console.log("double click");
+      // console.log("double click");
       const baseIntersects = this.findObjectClicked();
       const objects = baseIntersects.filter((e) => {
         const mesh = e.object;
@@ -670,7 +670,7 @@ export default {
       const name = this.getMeshName(data);
       const index = api.selectedObjects.indexOf(name);
       if (index >= 0) {
-        // console.log("deselect");
+        // // console.log("deselect");
         api.selectedObjects.splice(index, 1);
 
         if (data.serial_number == null || data.serial_number.length < 3) {
@@ -689,7 +689,7 @@ export default {
           return icoGroup;
         }
       } else {
-        // console.log("select");
+        // // console.log("select");
         api.selectedObjects.push(name);
         if (data.serial_number == null || data.serial_number.length < 3) {
           if (data.type == "sensor") {
@@ -864,7 +864,7 @@ export default {
                 const { object } = selectGridCells[0];
                 const cell_number = parseInt(object.cell_number, 10);
                 const index = api.sensorSelectedCells.indexOf(cell_number);
-                // console.log(cell_number, index, api.sensorSelectedCells);
+                // // console.log(cell_number, index, api.sensorSelectedCells);
                 if (index >= 0) {
                   api.sensorSelectedCells.splice(index, 1);
                 } else {
@@ -1066,7 +1066,7 @@ export default {
           return;
         }
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
 
       const x = (e.offsetX / e.target.clientWidth) * 2 - 1;
@@ -1356,7 +1356,7 @@ export default {
       voxel.exData = data;
 
       const api = canvasObjects;
-      // console.log("voxel: ", voxel);
+      // // console.log("voxel: ", voxel);
       scene.add(voxel);
       api.objects.push(voxel);
     },
@@ -1534,12 +1534,12 @@ export default {
     },
 
     drawGroups(origin) {
-      // console.log("origin", origin);
+      // // console.log("origin", origin);
       this.drawFromArray(origin, this.groups, "group");
     },
 
     drawAreas(origin) {
-      // console.log("origin", origin);
+      // // console.log("origin", origin);
       this.drawFromArray(origin, this.areas, "area");
     },
 

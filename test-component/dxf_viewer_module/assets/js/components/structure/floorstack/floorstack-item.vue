@@ -104,7 +104,7 @@ export default {
   created() {},
 
   mounted() {
-    
+
   },
 
   computed: {
@@ -130,7 +130,7 @@ export default {
 
   methods: {
     onSvgClick(e) {
-      console.log("jasdjaslkdajld");
+      // console.log("jasdjaslkdajld");
       this.selectedFloorPosition = 1;
     },
 

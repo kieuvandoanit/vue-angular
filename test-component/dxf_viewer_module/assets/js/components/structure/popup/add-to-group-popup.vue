@@ -26,7 +26,7 @@
 
         <div v-if="!lightControl" class="content-item d-flex justify-content-between pt-0">
           <div class="title-name">
-            <button 
+            <button
               :class="{btn: 1, disabled: isDuplicating}"
               style="background-color: hwb(208deg 0% 9%)"
               @click="onEnableDuplicate"
@@ -39,15 +39,15 @@
                     : "Device"
                   : "Group"
               }}
-              
+
                 <div class="spinner-border" role="status" style="font-size: 10px; width: 15px; height: 15px;" v-if="this.isDuplicating">
                   <span class="sr-only">Loading...</span>
                 </div>
-              
+
             </button>
           </div>
         </div>
-        
+
         <div v-if="!lightControl">
           <!-- Start checkbox move object section -->
           <div
@@ -73,9 +73,9 @@
                 class="align-items-center pb-2 ml-4"
                 v-if="this.moveGroup"
               >
-                <input 
-                  type="radio" 
-                  name="moveGroup" 
+                <input
+                  type="radio"
+                  name="moveGroup"
                   id="moveOnlyGroup"
                   style="cursor: pointer"
                   v-model="isMoveGroup"
@@ -83,9 +83,9 @@
                 />
                 <label for="moveOnlyGroup" class="m-1 ps-1">Move Only Group</label>
                 <br>
-                <input 
-                  type="radio" 
-                  name="moveGroup" 
+                <input
+                  type="radio"
+                  name="moveGroup"
                   id="moveAllInGroup"
                   style="cursor: pointer"
                   v-model="isMoveAllInGroup"
@@ -513,7 +513,7 @@ export default {
     },
 
     groupData(){
-      // console.log("store group: ", store.selectedGroup);
+      // // console.log("store group: ", store.selectedGroup);
       return store.selectedGroup;
     },
     isMoveGroup(){
@@ -603,7 +603,7 @@ export default {
         }
       } else {
         this.$emit("handleAddToGroup", this.groupId, this.groups, this.devices);
-        this.needRefresh = false;        
+        this.needRefresh = false;
       }
     },
     onChangeGroupName(e) {
@@ -757,7 +757,7 @@ export default {
     //     })
     //     .catch((error) => {
     //       // handle error
-    //       console.log(error);
+    //       // console.log(error);
     //     })
     //     .then(function (a) { });
     // },

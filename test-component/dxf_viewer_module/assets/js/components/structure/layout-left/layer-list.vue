@@ -115,13 +115,13 @@ export default {
 
   methods: {
     expandedClick(status) {
-      // console.log("!231", status);
+      // // console.log("!231", status);
       this.$emit("expandedClick");
       this.expanded = true;
       this.widthLeft = { width: "285px" };
     },
     compactClick(status) {
-      // console.log("!====", status);
+      // // console.log("!====", status);
       this.$emit("compactClick");
       this.expanded = false;
       this.widthLeft = { width: "100%" };
