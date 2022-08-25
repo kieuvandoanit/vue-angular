@@ -23,12 +23,12 @@
         <!-- <div class="d-flex"> -->
         <template slot="title" slot-scope="{ node }">
           <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
-          <!-- <img
+          <img
               v-if="
                 node.data.type == 'Group' &&
                 (node.isLeaf == false || node.level == 2)
               "
-              src="../assets/icons/menu.svg"
+              src="/assets/icons/menu.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -36,7 +36,7 @@
 
             <img
               v-if="node.data.type == 'Group' && node.isLeaf && node.level != 2"
-              src="../assets/imgs/group.svg"
+              src="/assets/imgs/group.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
@@ -44,11 +44,11 @@
 
             <img
               v-else-if="node.data.type == 'Floorplan'"
-              src="../assets/icons/layer.svg"
+              src="/assets/icons/layer.svg"
               width="18"
               height="18"
               class="v-icon dark-mode-icon"
-            /> -->
+            />
           <button
             flat
             small
