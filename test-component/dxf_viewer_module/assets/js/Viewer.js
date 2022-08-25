@@ -357,7 +357,7 @@ export class Viewer {
 
     this.groups = groups;
     this.devices = devices;
-    
+
     this.areas = areas;
     this.peoples = this.file.people_tracking;
 
@@ -946,6 +946,15 @@ export class Viewer {
       this.dxfViewer.Subscribe("cameraZoom", (e) => {
         this.updateObjectsScale();
       });
+
+      this.groups = this.groups.filter((group) => {
+        return group.file_id == this.file.id;
+      });
+
+      this.devices = this.devices.filter((device)=> {
+        return device.file_id == this.file.id;
+      })
+
 
       this.drawFromArray(this.dxfViewer.origin, this.devices);
       this.drawFromArray(this.dxfViewer.origin, this.groups, "group");
@@ -2170,7 +2179,6 @@ export class Viewer {
       }
       this.visibleGroups = visibleGroups;
     } else {
-      
       this.groups.forEach((group) => {
         childGroups.push(...group.group_ids);
         childDevices.push(...group.device_ids);
@@ -2275,7 +2283,10 @@ export class Viewer {
           );
         }
       });
-    console.log("🚀 ~ file: Viewer.js ~ line 4743 ~ Viewer ~ findObjectClicked ~ intersects", intersects)
+    console.log(
+      "🚀 ~ file: Viewer.js ~ line 4743 ~ Viewer ~ findObjectClicked ~ intersects",
+      intersects
+    );
     return intersects;
   }
 
@@ -2832,7 +2843,7 @@ export class Viewer {
   }
 
   drawFromArray(origin, items, type = "") {
-    console.log('origin', origin, items);
+    console.log("origin", origin, items);
     if (!origin) return;
 
     const api = canvasObjects;
@@ -3168,7 +3179,7 @@ export class Viewer {
   handleClickAt() {
     const api = canvasObjects;
     const intersects = this.findObjectClicked();
-    console.log(api.selectedObjects)
+    console.log(api.selectedObjects);
     if (intersects.length > 0) {
       const intersect = intersects[0];
       const mesh = intersect.object;
