@@ -89,9 +89,8 @@ export default {
 
   watch: {
     file(val, oldVal) {
-
+      console.log("TCL: file -> render on first time!", val);
       if (!val || !val.download_url || (oldVal && val.id === oldVal.id)) {
-
         return;
       }
 
@@ -100,7 +99,7 @@ export default {
       this.viewer?.updateGroupsData(this.groups);
       this.viewer?.updateDevicesData(this.devices);
       this.viewer?.Load(val.download_url);
-      
+
       // this.viewer.setStructureMode(true);
       this.goBack();
     },
@@ -207,7 +206,7 @@ export default {
         console.log("return 2");
         return;
       }
-      
+
       this.viewer = new Viewer(
         this.$refs["structureViewer"],
         null,

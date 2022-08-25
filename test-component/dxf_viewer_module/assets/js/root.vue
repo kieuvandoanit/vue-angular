@@ -2,7 +2,6 @@
   <div id="content">
     <!-- <img :src="vueImage.activeGroup" alt="aaaaa"> -->
     <LayoutStructure
-      :buildings="myBuilding"
       :floors="myFloors"
       :groups="myGroups"
       :devices="myDevices"
@@ -16,16 +15,14 @@
 
 <script>
 import LayoutStructure from "./components/structure/layout-structure.vue";
-import { buildings } from "./dummy/dummy_building";
 import { devices } from "./dummy/dummy_devices";
 import { floors } from "./dummy/dummy_floors";
 import { groups } from "./dummy/dummy_groups";
 
 export default {
-  props: ['msg', "vueImage"],
+  props: ["msg", "vueImage"],
   data() {
     return {
-      myBuilding: JSON.parse(buildings),
       myDevices: JSON.parse(devices),
       myFloors: JSON.parse(floors),
       myGroups: JSON.parse(groups),
@@ -34,8 +31,6 @@ export default {
   components: {
     LayoutStructure,
   },
-  mounted() {
-    
-  },
+  mounted() {},
 };
 </script>

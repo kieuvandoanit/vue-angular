@@ -2,25 +2,18 @@
   <div class="contain-list" ref="width">
     <div class="d-flex middle">
       <div class="d-flex box-title" v-bind:style="widthLeft">
-        <div class="expanded-view" v-show="expanded" @click="compactClick()">
+        <!-- <div class="expanded-view" v-show="expanded" @click="compactClick()">
           <i class="fa-solid fa-arrow-left"></i> &nbsp;Compact View
-        </div>
-        <div class="title">Floorplans Ne</div>
+        </div> -->
+        <div class="title">Floorplans</div>
         <!-- <div class="expanded-view" v-show="!expanded" @click="expandedClick()">
           Expanded View&nbsp;<i class="fa-solid fa-arrow-right"></i>
         </div> -->
       </div>
-      <div>
-
-      </div>
+      <div></div>
     </div>
-    <div
-      v-bind:class="{
-        'table-floors': !expanded,
-        'table-floors-full': expanded,
-      }"
-    >
-      <SlVueTree ref="tree_nodes" v-show="!expanded" v-model="computedNodes">
+    <div class="table-floors">
+      <SlVueTree ref="tree_nodes" v-model="computedNodes">
         <template slot="toggle" slot-scope="{ node }">
           <span v-if="!node.isLeaf">
             <div v-if="node.isExpanded" id="chevron-arrow-down"></div>
@@ -28,9 +21,9 @@
           </span>
         </template>
         <!-- <div class="d-flex"> -->
-          <template slot="title" slot-scope="{ node }">
-            <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
-            <!-- <img
+        <template slot="title" slot-scope="{ node }">
+          <!-- <v-icon v-else-if="node.data.type == 'floorplan'">insert_drive_file</v-icon> -->
+          <!-- <img
               v-if="
                 node.data.type == 'Group' &&
                 (node.isLeaf == false || node.level == 2)
@@ -56,31 +49,29 @@
               height="18"
               class="v-icon dark-mode-icon"
             /> -->
-            <button
-              flat
-              small
-              class="btn btn-light btn-tree"
-              @click="onItemClick(node.data)"
-            >
-              <div class="tree-title">
-                &nbsp;{{
-                  node.data.type == "Group"
-                    ? node.data.name
-                    : node.data.full_name
-                }}
-                <!-- <template v-if="node.data.type == 'building'">
+          <button
+            flat
+            small
+            class="btn btn-light btn-tree"
+            @click="onItemClick(node.data)"
+          >
+            <div class="tree-title">
+              &nbsp;{{
+                node.data.type == "Group" ? node.data.name : node.data.full_name
+              }}
+              <!-- <template v-if="node.data.type == 'building'">
                 <b>(Address:</b> {{ node.data.address }})
               </template> -->
-              </div>
-            </button>
-            <!-- <button v-else flat small class="group-btn">
+            </div>
+          </button>
+          <!-- <button v-else flat small class="group-btn">
             <span>{{ node.title }}</span>
           </button> -->
-            <!-- <a style="text-decoration: none; color: black" :href="`/main/groups/${node.data.id}/edit`">{{ node.title }}</a> -->
-          </template>
+          <!-- <a style="text-decoration: none; color: black" :href="`/main/groups/${node.data.id}/edit`">{{ node.title }}</a> -->
+        </template>
         <!-- </div> -->
       </SlVueTree>
-      <button
+      <!-- <button
         style="float: right"
         type="button"
         v-show="!expanded"
@@ -88,9 +79,9 @@
         @click="addFloor"
       >
         <i class="fa-solid fa-plus"></i> &nbsp;Create floorplan
-      </button>
+      </button> -->
     </div>
-    <Modal
+    <!-- <Modal
       :show="showFloorplanModal"
       header="Remove Floorplan"
       :body="`Are you sure you want to remove floorplan <b>${
@@ -101,28 +92,26 @@
       @no="showFloorplanModal = false"
       @yes="deleteFloor"
     >
-    </Modal>
+    </Modal> -->
   </div>
-
 </template>
 
 <script>
 import SlVueTree from "sl-vue-tree";
 import Modal from "../popup/modal.vue";
-const axios = require("axios").default;
 import { API_DOMAIN_MANIFERA } from "../../../constant.js";
-import { store, storeFunctions, EventBus } from '../../../store.js';
+import { store, storeFunctions, EventBus } from "../../../store.js";
 export default {
   components: {
     SlVueTree,
     Modal,
   },
   props: {
-    building: {
-      default() {
-        return {};
-      },
-    },
+    // building: {
+    //   default() {
+    //     return {};
+    //   },
+    // },
     groups: {
       default() {
         return [];
@@ -149,19 +138,22 @@ export default {
     selectedFloorplan(val) {
       this.selectedFloor = val || {};
     },
-    building(val) {
-      console.log("building: ", val);
-      if (val && (!this.selectedBuilding || this.selectedBuilding.id != val.id)) {
-        this.selectedBuilding = val;
-        this.getFloors();
-      }
-    }
+    // building(val) {
+    //   console.log("building: ", val);
+    //   if (
+    //     val &&
+    //     (!this.selectedBuilding || this.selectedBuilding.id != val.id)
+    //   ) {
+    //     this.selectedBuilding = val;
+    //     // this.getFloors();
+    //   }
+    // },
   },
   data() {
     return {
       showFloorplanModal: false,
       loading: false,
-      errorMessage:"",
+      errorMessage: "",
       groupData: [],
       widthLeft: {},
       currentSortDir: "asc",
@@ -169,7 +161,6 @@ export default {
       nodes: [],
       selectedFloor: {},
       floorData: [],
-      selectedBuilding: null,
     };
   },
 
@@ -227,7 +218,7 @@ export default {
       }
       group["data"] = {
         navigator: "groups",
-        ...group
+        ...group,
       };
       group["data"] = { ...group["data"], ...group };
       // group['groups'] = [];
@@ -274,13 +265,13 @@ export default {
     getNodes() {
       this.nodes = [];
       let floorplans = this.floors;
-      
+
       floorplans.forEach((floorplan) => {
         let newFloorplan = floorplan;
         newFloorplan["type"] = "Floorplan";
         newFloorplan["navigator"] = "files";
         let groupNodes = this.groupDataByFile(floorplan.id);
-        
+
         let data = {
           title: newFloorplan.full_name,
           isDraggable: false,
@@ -319,51 +310,47 @@ export default {
     editFloor(obj) {
       this.$emit("editFloor", obj);
     },
-    async deleteFloor(){
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-          "application/x-www-form-urlencoded";
-      this.loading = true;
-      await axios
-        .delete(
-            `${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFloor.id}`
-        )
-        .then((response) => {
-          this.showFloorplanModal = false;
-          this.getFloors();
-          this.loading = false;
-        })
-        .catch((error) => {
-            // handle error
-            this.errorMessage = 'Failed to delete floorplan';
-        })
-      this.loading = false;
-    },
-    async getFloors() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      this.loading = true;
-      await axios
-        .get(
-          `${API_DOMAIN_MANIFERA}/api/v1/files?building_id=${this.building.id}`
-        )
-        .then((response) => {
-          this.$parent.back();
-          this.floors = response.data;
-          this.$emit("onFloorsChange", response.data);
-          this.loading = false;
-        })
-        .catch((error) => {});
-      this.loading = false;
-    },
+    // async deleteFloor() {
+    //   const token = this.token || "";
+    //   axios.defaults.headers.common["Authorization"] = token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   this.loading = true;
+    //   await axios
+    //     .delete(`${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFloor.id}`)
+    //     .then((response) => {
+    //       this.showFloorplanModal = false;
+    //       this.getFloors();
+    //       this.loading = false;
+    //     })
+    //     .catch((error) => {
+    //       // handle error
+    //       this.errorMessage = "Failed to delete floorplan";
+    //     });
+    //   this.loading = false;
+    // },
+    // async getFloors() {
+    //   axios.defaults.headers.common["Authorization"] = this.token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   this.loading = true;
+    //   await axios
+    //     .get(
+    //       `${API_DOMAIN_MANIFERA}/api/v1/files?building_id=${this.building.id}`
+    //     )
+    //     .then((response) => {
+    //       this.$parent.back();
+    //       this.floors = response.data;
+    //       this.$emit("onFloorsChange", response.data);
+    //       this.loading = false;
+    //     })
+    //     .catch((error) => {});
+    //   this.loading = false;
+    // },
     onItemClick(obj) {
       console.log("Click ne click", obj);
       if (obj.type == "Group") {
-        let selectedFloor = this.floors.filter(
-          (f) => f.id == obj.file_id
-        );
+        let selectedFloor = this.floors.filter((f) => f.id == obj.file_id);
         if (selectedFloor.length > 0) {
           this.selectedFloor = selectedFloor[0];
           storeFunctions.setSelectedFloorplan(this.selectedFloor);
@@ -372,9 +359,7 @@ export default {
           EventBus.$emit("handleItemClick", obj, null);
         }
       } else {
-        let selectedFloor = this.floors.filter(
-          (f) => f.id == obj.id
-        );
+        let selectedFloor = this.floors.filter((f) => f.id == obj.id);
         if (selectedFloor.length > 0) {
           this.selectedFloor = selectedFloor[0];
         }
@@ -417,13 +402,15 @@ export default {
           let deletedGroup = [];
           if (fileId && fileId == group.file_id) {
             let fileGroups = groupByFile[group.file_id];
-            if (fileGroups.length>0) {
-              fileGroups.forEach((g)=> {
-                let findGroup = newGroups.find((newGroup) => g.id == newGroup.id);
+            if (fileGroups.length > 0) {
+              fileGroups.forEach((g) => {
+                let findGroup = newGroups.find(
+                  (newGroup) => g.id == newGroup.id
+                );
                 if (!findGroup && !deletedGroup.includes(g.id)) {
                   deletedGroup.push(g.id);
                 }
-              })
+              });
             }
           }
 
@@ -442,10 +429,10 @@ export default {
       this.groups = oldGroups;
     },
 
-    updateFloorData() {
-      this.$parent.back();
-      this.getFloors();
-    },
+    // updateFloorData() {
+    //   this.$parent.back();
+    //   this.getFloors();
+    // },
 
     updateSelectedGroup(groups, floorplan) {
       let groupIds = [];
@@ -461,7 +448,11 @@ export default {
             this.$refs.tree_nodes.select(node.path, groups.length !== 1);
           }
         } else {
-          if (floorplan && node.data.type == "Floorplan" && node.data.id == floorplan.id) {
+          if (
+            floorplan &&
+            node.data.type == "Floorplan" &&
+            node.data.id == floorplan.id
+          ) {
             this.$refs.tree_nodes.select(node.path, false);
           }
         }
@@ -471,14 +462,14 @@ export default {
     updateTitleTreeNode(data) {
       this.$parent.back();
       this.$refs.tree_nodes.traverse((node, nodeModel, path) => {
-        console.log(data)
+        console.log(data);
         data.forEach((d) => {
-          if (node.data.id == d.id && node.data.type == 'Floorplan') {
-          this.$refs.tree_nodes.updateNode(node.path, {
+          if (node.data.id == d.id && node.data.type == "Floorplan") {
+            this.$refs.tree_nodes.updateNode(node.path, {
               data: {
-                  ...d,
-                  navigator: node.data.navigator,
-              }
+                ...d,
+                navigator: node.data.navigator,
+              },
             });
           }
         });
@@ -509,7 +500,7 @@ export default {
   destroyed() {
     EventBus.$off("updateTreeNode", this.updateTreeNode);
     EventBus.$off("updateGroups", this.updateGroups);
-    EventBus.$off("updateFloorData", this.updateFloorData);
+    // EventBus.$off("updateFloorData", this.updateFloorData);
     EventBus.$off("updateSelectedGroup", this.updateSelectedGroup);
     EventBus.$off("compactClick", this.compactClick);
   },

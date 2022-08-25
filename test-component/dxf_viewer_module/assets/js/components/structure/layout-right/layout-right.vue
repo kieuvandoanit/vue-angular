@@ -106,7 +106,7 @@
     <div v-show="isShowFloorStack" class="floor-stack-wrapper">
       <Floorstack
         :token="token"
-        :floors="currentFloors"
+        :floors="floors"
         @handleSelectedFloor="handleSelectedFloorStack"
       ></Floorstack>
     </div>
@@ -127,9 +127,9 @@ export default {
     token: "",
     title: "",
     groups: null,
-    floors: null,
+    selectedFloor: null,
     devices: null,
-    currentFloors: null,
+    floors: null,
     viewMode: "",
   },
 
@@ -146,7 +146,7 @@ export default {
   },
 
   watch: {
-    async floors(val) {
+    async selectedFloor(val) {
       this.handleBackButton();
       if (val) {
         storeFunctions.setShowFloorStackSelector(false);

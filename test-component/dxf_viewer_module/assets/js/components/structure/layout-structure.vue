@@ -4,7 +4,6 @@
       <LayoutLeft
         ref="layoutLeft"
         :token="this.token"
-        :buildings_json="this.buildings"
         :groups_json="this.groups"
         :devices_json="this.devices"
         :floors_json="this.floors"
@@ -26,9 +25,9 @@
         :token="this.token"
         :title="this.title"
         :groups="this.groups"
-        :floors="this.floors"
+        :selectedFloor="selectedFloorplan"
         :devices="this.devices"
-        :currentFloors="floors"
+        :floors="this.floors"
         :viewMode="viewMode"
         @editBuilding="editBuilding"
       ></LayoutRight>
