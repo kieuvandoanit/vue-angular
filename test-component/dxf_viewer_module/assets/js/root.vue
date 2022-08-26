@@ -16,16 +16,26 @@
 import LayoutStructure from "./components/structure/layout-structure.vue";
 
 export default {
-  props: ["msg", "floors", "devices", "groups"],
+  props: [],
   data() {
     return {
+      floors: "[]",
+      devices: "[]",
+      groups: "[]"
     };
   },
   components: {
     LayoutStructure,
   },
+
+  created(){
+    this.floors = document.getElementById("floors").textContent;
+    this.devices = document.getElementById("devices").textContent;
+    this.groups = document.getElementById("groups").textContent;
+  },
+
   mounted() {
-    // this.$emit("abc", {detail: "data ne"});
+    
 
   },
 };
