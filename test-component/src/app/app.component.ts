@@ -7,6 +7,23 @@ import '../../dxf_viewer_module/dist/js/index.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  public changeValue(){
+    console.log("vao angular")
+    this.floors = JSON.stringify([
+      {
+        id: 1,
+        floor_layer_name: 'XREF',
+        fixture_layer_name: 'EL63101-_LICHT-ARM',
+        sensor_layer_name: 'EL63101-_LICHT-ARM',
+        full_name: 'Basement 1',
+        position: 4,
+        project_id: 2,
+        building_id: 4,
+        download_url: 'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
+      }
+    ]);
+  }
+
   public addGroup(data: any) {
     console.log('new group contains: ', data.detail[0]);
   }

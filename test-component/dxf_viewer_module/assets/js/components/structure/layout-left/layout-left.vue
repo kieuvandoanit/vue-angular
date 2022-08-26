@@ -201,6 +201,15 @@ export default {
     currentNav(val) {
       this.navigator = val;
     },
+    floors_json(val) {
+      this.floors = val;
+    },
+    groups_json(val) {
+      this.groups = val;
+    },
+    devices_json(val) {
+      this.devices = val;
+    }
   },
 
   methods: {

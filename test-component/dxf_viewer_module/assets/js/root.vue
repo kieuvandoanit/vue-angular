@@ -1,9 +1,9 @@
 <template>
   <div id="content">
     <LayoutStructure
-      :floors="JSON.parse(floors)"
-      :groups="JSON.parse(groups)"
-      :devices="JSON.parse(devices)"
+      :floors="JSON.parse(floors_data)"
+      :groups="JSON.parse(groups_data)"
+      :devices="JSON.parse(devices_data)"
     />
   </div>
 </template>
@@ -14,23 +14,27 @@
 
 <script>
 import LayoutStructure from "./components/structure/layout-structure.vue";
-// import { floors } from "./dummy/dummy_floors.js";
-// import { devices } from "./dummy/dummy_devices.js";
-// import { groups } from "./dummy/dummy_groups.js";
 import { EventBus } from "./store.js";
 export default {
-  props: [],
+  props: ["groups", "floors", "devices"],
   data() {
     return {
-      floors: "[]",
-      devices: "[]",
-      groups: "[]"
+      floors_data: "[]",
+      devices_data: "[]",
+      groups_data: "[]"
     };
   },
   components: {
     LayoutStructure,
   },
   mounted() {},
+  watch: {
+    floors(val){
+      this.floors = val;
+      this.floors_data = val;
+      console.log(val);
+    }
+  },
   methods: {
     addGroup(data) {
       this.$emit("addGroup", data);
@@ -40,9 +44,9 @@ export default {
     },
   },
   created() {
-    this.floors = document.getElementById("floors").textContent;
-    this.devices = document.getElementById("devices").textContent;
-    this.groups = document.getElementById("groups").textContent;
+    this.floors_data = document.getElementById("floors").textContent;
+    this.devices_data = document.getElementById("devices").textContent;
+    this.groups_data = document.getElementById("groups").textContent;
 
     EventBus.$on("addGroup", this.addGroup);
     EventBus.$on("addDevice", this.addDevice);
