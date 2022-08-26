@@ -16,17 +16,17 @@
             <template v-else-if="navigator == 'Floorplans'">
               <i class="fa-solid fa-layer-group"></i>
             </template>
-            <!-- <h2 v-show="!addBuilding" class="title-building">
+             <h2 v-show="!addBuilding" class="title-building">
               {{ titleSelect }}
-            </h2> -->
-            <!-- <NavSelect
+            </h2> 
+            <NavSelect
               ref="navSelect"
               v-show="!addBuilding"
               :data="selectNav"
               @selectBuilding="selectBuilding"
             ></NavSelect>
-          </div> -->
-          <!-- <template
+          </div>
+          <template
             v-if="
               this.selectedBuilding &&
               Object.keys(this.selectedBuilding).length > 0
@@ -93,16 +93,15 @@
       @compactClick="handleCompactClick"
       @expandedClick="handleExpandedClick"
       @layoutGroup="handleGroup"
-      @addGroup="handleAddGroup"
       @handleClickFloorName="handleClickFloorName"
       @onFloorsChange="handleFloorsChange"
     ></FloorplanList>
-    <AddGroup
+    <!-- <AddGroup
       v-show="addGroup"
       :token="token"
       :floorplan="selectedFloor"
       @back="back"
-    ></AddGroup>
+    ></AddGroup> -->
   </div>
 </template>
 
@@ -112,13 +111,11 @@ import { EventBus, store, storeFunctions } from "../../../store.js";
 import Modal from "../popup/modal.vue";
 import FloorplanList from "./layout-left-list.vue";
 import NavSelect from "../nav-select.vue";
-import AddGroup from "../add-group.vue";
 
 export default {
   components: {
     FloorplanList,
     NavSelect,
-    AddGroup,
     Modal,
   },
   props: {
@@ -186,9 +183,9 @@ export default {
       devices: [],
       floors: [],
       // editBuilding: false,
-      addGroup: false,
-      addFloor: false,
-      editFloor: false,
+      // addGroup: false,
+      // addFloor: false,
+      // editFloor: false,
       // addBuilding: false,
       projectData: {},
     };
@@ -211,7 +208,7 @@ export default {
       this.visibleGroup = false;
       this.visibleFloor = true;
       // this.editBuilding = false;
-      this.addGroup = false;
+      // this.addGroup = false;
       this.expanded = false;
       // this.addFloor = false;
       // this.editFloor = false;
@@ -376,14 +373,14 @@ export default {
     //   this.addBuilding = true;
     //   this.navigator = "Add Building";
     // },
-    handleAddGroup(floor) {
-      this.resetActions();
-      this.visibleFloor = false;
-      this.expanded = true;
-      this.addGroup = true;
-      this.selectedFloor = floor;
-      this.navigator = "Add Group";
-    },
+    // handleAddGroup(floor) {
+    //   this.resetActions();
+    //   this.visibleFloor = false;
+    //   this.expanded = true;
+    //   this.addGroup = true;
+    //   this.selectedFloor = floor;
+    //   this.navigator = "Add Group";
+    // },
     // handleAddFloor() {
     //   this.resetActions();
     //   this.$refs.listLayer.expandedClick();
@@ -419,11 +416,11 @@ export default {
     //     });
     //   this.loading = false;
     // },
-    submit() {
-      if (this.addGroup) {
-        this.$emit("add_group", this.selectedFloor);
-      }
-    },
+    // submit() {
+    //   if (this.addGroup) {
+    //     this.$emit("add_group", this.selectedFloor);
+    //   }
+    // },
 
     handleFloorsChange(floors) {
       this.$emit("handleFloorsChange", floors);

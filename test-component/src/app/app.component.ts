@@ -9,9 +9,7 @@ import '../../dxf_viewer_module/dist/js/index.js';
 export class AppComponent {
   public msg = "Xin chao ban";
 
-  public functiona(data: any){
-    console.log("Bat emit success!")
-    console.log(data);
+  public addGroup(data: any){
+    console.log("new group contains: ", data.detail[0])
   }
-
 }

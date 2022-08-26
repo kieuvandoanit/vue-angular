@@ -66,9 +66,9 @@ export default {
     handleAddGroup() {
       let groupData = {
           name: this.groupName,
-          // file_id: this.selectedFile.id,
-          // building_id: this.selectedFile.building_id,
-          // project_id: this.selectedFile.project_id,
+          file_id: this.selectedFile.id,
+          building_id: this.selectedFile.building_id,
+          project_id: this.selectedFile.project_id,
       };
       EventBus.$emit("addGroup", groupData);
       this.handleCloseSidebar();

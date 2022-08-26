@@ -673,24 +673,24 @@ export default {
         .then();
     },
 
-    handleAddGroup() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/`, {
-          name: this.groupName,
-          file_id: this.selectedFile.id,
-          building_id: this.selectedFile.building_id,
-          project_id: this.selectedFile.project_id,
-        })
-        .then((response) => {
-          // this.$parent.getGroups();
-          EventBus.$emit("getGroups");
-        })
-        .catch((error) => {})
-        .then((a) => {});
-    },
+    // handleAddGroup() {
+    //   axios.defaults.headers.common["Authorization"] = this.token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   axios
+    //     .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/`, {
+    //       name: this.groupName,
+    //       file_id: this.selectedFile.id,
+    //       building_id: this.selectedFile.building_id,
+    //       project_id: this.selectedFile.project_id,
+    //     })
+    //     .then((response) => {
+    //       // this.$parent.getGroups();
+    //       EventBus.$emit("getGroups");
+    //     })
+    //     .catch((error) => {})
+    //     .then((a) => {});
+    // },
 
     handleCloseAddToGroupPopup() {
       this.errorUpdateDevice = "";
