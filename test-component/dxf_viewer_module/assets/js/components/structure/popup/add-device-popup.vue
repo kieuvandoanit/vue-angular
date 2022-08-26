@@ -206,7 +206,7 @@
             <p class="m-0">Ceil Height</p>
             <input class="mb-2 w-100" />
           </div>
-          <p class="text-danger">{{errorUpdateDeviceMessage}}</p>
+          <p class="text-danger">{{ errorUpdateDeviceMessage }}</p>
           <button
             class="btn btn-primary"
             style="float: right"
@@ -390,7 +390,7 @@ export default {
         this.deviceAngleValue = val.angle;
         this.deviceCeilHeightValue = val.ceil_height;
         this.deviceRotationValue = val.rotation;
-        this.deviceMacAddressValue= val.mac_address;
+        this.deviceMacAddressValue = val.mac_address;
       } else {
         this.createDeviceMode = false;
         this.deviceIdValue = 0;
@@ -480,18 +480,21 @@ export default {
     },
 
     async onUpdateDevice() {
-      if(this.deviceSerialNumberValue){
+      if (this.deviceSerialNumberValue) {
         let re = new RegExp(/^[A-Z]\d{4}\w+$/);
-        if(!re.test(this.deviceSerialNumberValue)){
-          this.errorUpdateDeviceMessage = "Serial number is invalid."
-          return
+        if (!re.test(this.deviceSerialNumberValue)) {
+          this.errorUpdateDeviceMessage = "Serial number is invalid.";
+          return;
         }
         let arraySerialNumber = this.deviceSerialNumberValue.split("");
-        if(parseInt(arraySerialNumber[2]) < 3){
-          this.deviceChannelValue = 'ch' + arraySerialNumber[2];
+        if (parseInt(arraySerialNumber[2]) < 3) {
+          this.deviceChannelValue = "ch" + arraySerialNumber[2];
         }
       }
-      if ((!this.deviceSerialNumberValue && !this.deviceChannelValue) || (this.deviceSerialNumberValue && this.deviceChannelValue)) {
+      if (
+        (!this.deviceSerialNumberValue && !this.deviceChannelValue) ||
+        (this.deviceSerialNumberValue && this.deviceChannelValue)
+      ) {
         this.$emit("handleUpdateDevice", {
           id: this.deviceIdValue,
           name: this.deviceNameValue,
