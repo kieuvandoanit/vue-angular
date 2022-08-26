@@ -1,10 +1,10 @@
 <template>
   <div id="content">
-    <!-- <LayoutStructure
+    <LayoutStructure
       :floors="JSON.parse(floors)"
       :groups="JSON.parse(groups)"
       :devices="JSON.parse(devices)"
-    /> -->
+    />
   </div>
 </template>
 
@@ -13,23 +13,28 @@
 </style>
 
 <script>
-// import LayoutStructure from "./components/structure/layout-structure.vue";
-console.log("Vao ne");
+import LayoutStructure from "./components/structure/layout-structure.vue";
+import {floors} from "./dummy/dummy_floors.js";
+import {devices} from "./dummy/dummy_devices.js";
+import {groups} from "./dummy/dummy_groups.js";
 export default {
-  props: ["msg", "floors", "devices", "groups"],
+  props: ["msg"],
   data() {
-    return {};
+    return {
+      floors: floors,
+      devices: devices,
+      groups: groups
+    };
   },
   components: {
-    // LayoutStructure,
+    LayoutStructure,
   },
   created() {},
   mounted() {
-    this.$emit("abc", { detail: "data ne" });
   },
   methods: {
     // addGroup(data) {
-    //   this.$emit("abc", { detail: "data ne" });
+    //   this.$emit("addGroup", data);
     // },
   },
 };
