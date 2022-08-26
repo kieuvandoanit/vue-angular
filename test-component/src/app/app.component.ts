@@ -7,6 +7,15 @@ import '../../dxf_viewer_module/dist/js/index.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  public addGroup(data: any) {
+    console.log('new group contains: ', data.detail[0]);
+  }
+
+  public addDevice(data: any) {
+    console.log('new devices contains: ', data.detail[0]);
+  }
+
+
   public floors = JSON.stringify([
     {
       id: 1,
@@ -56,7 +65,7 @@ export class AppComponent {
         'https://portal-api.summa.systems/api/v1/files/160/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
     },
   ]);
-  public msg = this.floors;
+
   public devices = JSON.stringify([
     {
       id: 5098,

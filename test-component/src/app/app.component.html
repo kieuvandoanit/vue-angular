@@ -1,5 +1,8 @@
 <div style="height: 100%">
-  <summa-floorplan style="height: 100%"></summa-floorplan>
+  <summa-floorplan style="height: 100%" 
+    (addGroup)="addGroup($event)"
+    (addDevice)="addDevice($event)"
+  ></summa-floorplan>
   
   <div id="floors" style="display: none;">{{floors}}</div>
   <div id="devices" style="display: none;">{{devices}}</div>
