@@ -8,7 +8,10 @@
       @handleBackSidebar="handleBackSidebar"
     >
       <div v-if="clickType === 'single'">
-        <div v-if="!lightControl" class="content-item d-flex justify-content-between">
+        <div
+          v-if="!lightControl"
+          class="content-item d-flex justify-content-between"
+        >
           <div class="title-name">
             <p>
               Edit
@@ -21,13 +24,23 @@
               }}
             </p>
           </div>
-          <button v-if="devices[0].type === 'Group' && devices[0].controllable" class="btn" @click="onEnableLightControl" style="background-color: #F97316">Light Control</button>
+          <button
+            v-if="devices[0].type === 'Group' && devices[0].controllable"
+            class="btn"
+            @click="onEnableLightControl"
+            style="background-color: #f97316"
+          >
+            Light Control
+          </button>
         </div>
 
-        <div v-if="!lightControl" class="content-item d-flex justify-content-between pt-0">
+        <div
+          v-if="!lightControl"
+          class="content-item d-flex justify-content-between pt-0"
+        >
           <div class="title-name">
             <button
-              :class="{btn: 1, disabled: isDuplicating}"
+              :class="{ btn: 1, disabled: isDuplicating }"
               style="background-color: hwb(208deg 0% 9%)"
               @click="onEnableDuplicate"
             >
@@ -40,10 +53,14 @@
                   : "Group"
               }}
 
-                <div class="spinner-border" role="status" style="font-size: 10px; width: 15px; height: 15px;" v-if="this.isDuplicating">
-                  <span class="sr-only">Loading...</span>
-                </div>
-
+              <div
+                class="spinner-border"
+                role="status"
+                style="font-size: 10px; width: 15px; height: 15px"
+                v-if="this.isDuplicating"
+              >
+                <span class="sr-only">Loading...</span>
+              </div>
             </button>
           </div>
         </div>
@@ -69,10 +86,7 @@
                 >Move Group</label
               >
 
-              <div
-                class="align-items-center pb-2 ml-4"
-                v-if="this.moveGroup"
-              >
+              <div class="align-items-center pb-2 ml-4" v-if="this.moveGroup">
                 <input
                   type="radio"
                   name="moveGroup"
@@ -81,8 +95,10 @@
                   v-model="isMoveGroup"
                   @click="onEnableMoveGroup"
                 />
-                <label for="moveOnlyGroup" class="m-1 ps-1">Move Only Group</label>
-                <br>
+                <label for="moveOnlyGroup" class="m-1 ps-1"
+                  >Move Only Group</label
+                >
+                <br />
                 <input
                   type="radio"
                   name="moveGroup"
@@ -91,7 +107,9 @@
                   v-model="isMoveAllInGroup"
                   @click="onEnableMoveAllInGroup"
                 />
-                <label for="moveAllInGroup" class="m-1 ps-1">Move All In Group</label>
+                <label for="moveAllInGroup" class="m-1 ps-1"
+                  >Move All In Group</label
+                >
               </div>
             </div>
           </div>
@@ -174,7 +192,13 @@
             </select>
 
             <div class="d-flex justify-content-between" v-if="!this.isLoading">
-              <button class="btn btn-danger my-3" @click="showDeleteGroupModal = true; group = devices[0]">
+              <button
+                class="btn btn-danger my-3"
+                @click="
+                  showDeleteGroupModal = true;
+                  group = devices[0];
+                "
+              >
                 <span>Delete</span>
               </button>
               <button class="btn btn-primary my-3" @click="onUpdateGroup">
@@ -256,7 +280,11 @@
                 @change="onChangeDeviceType"
               >
                 <option value="" disabled>-- Select device type --</option>
-                <option v-for="dType in deviceTypes" :key="dType" :value="dType">
+                <option
+                  v-for="dType in deviceTypes"
+                  :key="dType"
+                  :value="dType"
+                >
                   {{ dType }}
                 </option>
               </select>
@@ -300,9 +328,14 @@
               </select>
             </div>
 
-
             <div class="d-flex justify-content-between">
-              <button class="btn btn-danger my-3" @click="showDeleteDeviceModal = true; device = devices[0]">
+              <button
+                class="btn btn-danger my-3"
+                @click="
+                  showDeleteDeviceModal = true;
+                  device = devices[0];
+                "
+              >
                 <span>Delete</span>
               </button>
 
@@ -316,13 +349,14 @@
 
         <div v-if="lightControl">
           <DetailGroup
-          :data="groupData"
-          :scenes="scenes"
-          :selectedScene="selectedScene"
-          :lightControl="lightControl"
-          :token="token"
-          :isShowBackButton="isShowBackButton"
-          @handleBackSidebar="handleBackSidebar">
+            :data="groupData"
+            :scenes="scenes"
+            :selectedScene="selectedScene"
+            :lightControl="lightControl"
+            :token="token"
+            :isShowBackButton="isShowBackButton"
+            @handleBackSidebar="handleBackSidebar"
+          >
           </DetailGroup>
         </div>
       </div>
@@ -387,15 +421,14 @@
       @yes="onDeleteGroup"
     >
     </Modal>
-
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { EventBus, store, storeFunctions } from "../../../store.js";
-import Modal from "./modal.vue"
-import DetailGroup from "./detail-group.vue"
+import Modal from "./modal.vue";
+import DetailGroup from "./detail-group.vue";
 import Popup from "./right-popup.vue";
 
 export default {
@@ -432,8 +465,8 @@ export default {
     },
     isLoading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   mounted() {},
@@ -465,7 +498,7 @@ export default {
           this.groupId = object.parent_id ?? 0;
           this.groupXValue = object.x;
           this.groupYValue = object.y;
-          this.duplicateObject = [{id: this.groupIdValue, type: "group"}]
+          this.duplicateObject = [{ id: this.groupIdValue, type: "group" }];
         } else {
           this.selectedDevice = object;
           this.selectedGroup = {};
@@ -481,7 +514,7 @@ export default {
           this.deviceRotationValue = object.rotation;
           this.groupId =
             object.groups && object.groups.length > 0 ? object.groups[0].id : 0;
-          this.duplicateObject = [{id: this.deviceIdValue, type: "device"}];
+          this.duplicateObject = [{ id: this.deviceIdValue, type: "device" }];
         }
       } else if (val.type === "multi") {
         this.selectedDevice = {};
@@ -512,16 +545,16 @@ export default {
       return store.selectedScene;
     },
 
-    groupData(){
+    groupData() {
       // // console.log("store group: ", store.selectedGroup);
       return store.selectedGroup;
     },
-    isMoveGroup(){
+    isMoveGroup() {
       return store.isMoveGroup;
     },
-    isMoveAllInGroup(){
+    isMoveAllInGroup() {
       return store.isMoveAllInGroup;
-    }
+    },
   },
 
   data() {
@@ -547,7 +580,7 @@ export default {
 
       selectedDevice: {},
       selectedGroup: {},
-      showDeleteDeviceModal:false,
+      showDeleteDeviceModal: false,
       showDeleteGroupModal: false,
 
       isMoveDevice: false,
@@ -559,7 +592,7 @@ export default {
       scenes: [],
       needRefresh: false,
 
-      moveGroup:false
+      moveGroup: false,
     };
   },
 
@@ -570,7 +603,7 @@ export default {
       storeFunctions.setIsMoveGroup(false);
       this.$emit("handleClosePopup", this.isOpen);
     },
-    onEnableDuplicate(e){
+    onEnableDuplicate(e) {
       this.isDuplicating = true;
       // this.needRefresh = true;
       this.$emit("handleDuplicateObject", this.duplicateObject);
@@ -657,37 +690,42 @@ export default {
     },
 
     onUpdateGroup() {
-      if(this.isMoveAllInGroup){
+      if (this.isMoveAllInGroup) {
         storeFunctions.setIsMoveAllInGroup(false);
-        this.$emit("handleUpdateObjects",
-          store.setSelectedObjects
-        );
-      }
-      else if(this.isMoveGroup){
+        this.$emit("handleUpdateObjects", store.setSelectedObjects);
+      } else if (this.isMoveGroup) {
         this.handleAddToGroup();
         storeFunctions.setIsMoveGroup(false);
-        this.$emit("handleUpdateGroup", {
-          id: this.groupIdValue,
-          name: this.groupNameValue,
-          x: this.groupXValue,
-          y: this.groupYValue,
-        }, this.needRefresh);
+        this.$emit(
+          "handleUpdateGroup",
+          {
+            id: this.groupIdValue,
+            name: this.groupNameValue,
+            x: this.groupXValue,
+            y: this.groupYValue,
+          },
+          this.needRefresh
+        );
       }
     },
     onUpdateDevice() {
       this.handleAddToGroup();
-      this.$emit("handleUpdateDevice", {
-        id: this.deviceIdValue,
-        name: this.deviceNameValue,
-        x: this.deviceXValue,
-        y: this.deviceYValue,
-        serialNumber: this.deviceSerialNumberValue,
-        channel: this.deviceChannelValue,
-        type: this.deviceTypeValue,
-        ceilHeight: this.deviceCeilHeightValue,
-        angle: this.deviceAngleValue,
-        rotation: this.deviceRotationValue,
-      }, this.needRefresh);
+      this.$emit(
+        "handleUpdateDevice",
+        {
+          id: this.deviceIdValue,
+          name: this.deviceNameValue,
+          x: this.deviceXValue,
+          y: this.deviceYValue,
+          serialNumber: this.deviceSerialNumberValue,
+          channel: this.deviceChannelValue,
+          type: this.deviceTypeValue,
+          ceilHeight: this.deviceCeilHeightValue,
+          angle: this.deviceAngleValue,
+          rotation: this.deviceRotationValue,
+        },
+        this.needRefresh
+      );
     },
 
     onDeleteDevice() {
@@ -695,7 +733,7 @@ export default {
       this.showDeleteDeviceModal = false;
     },
 
-    onDeleteGroup(){
+    onDeleteGroup() {
       this.$emit("handleDeleteGroup", this.selectedGroup);
       this.showDeleteGroupModal = false;
     },
@@ -707,7 +745,7 @@ export default {
       this.$emit("handleEnableMoveGroup", checked);
     },
 
-    onEnableMoveAllInGroup(e){
+    onEnableMoveAllInGroup(e) {
       const { checked } = e.target;
       storeFunctions.setIsMoveAllInGroup(checked);
       this.$emit("handleEnableMoveAllInGroup", checked);
@@ -725,19 +763,19 @@ export default {
     onEnableLightControl() {
       this.lightControl = true;
       this.isShowBackButton = true;
-      EventBus.$emit('getScenesForGroup', this.groupData.id);
-      this.scenes = [] // get state;
+      EventBus.$emit("getScenesForGroup", this.groupData.id);
+      this.scenes = []; // get state;
     },
 
     handleBackSidebar() {
-      if(this.selectedScene){
+      if (this.selectedScene) {
         // this.isShowBackButton = false;
         // if (this.selectedScene.id == this.data.scene_id) {
         //   this.handleToggle({ value: this.data.scene_id, checked: true });
         // }
-        storeFunctions.setSelectedScene(null)
+        storeFunctions.setSelectedScene(null);
         // this.colorMode = this.data.color_type;
-      }else if(this.lightControl){
+      } else if (this.lightControl) {
         this.lightControl = false;
         this.isShowBackButton = false;
       }

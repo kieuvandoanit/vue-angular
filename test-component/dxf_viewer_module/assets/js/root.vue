@@ -24,7 +24,7 @@ export default {
     return {
       floors: "[]",
       devices: "[]",
-      groups: "[]"
+      groups: "[]",
     };
   },
   components: {
@@ -38,6 +38,12 @@ export default {
     addDevice(data) {
       this.$emit("addDevice", data);
     },
+    updateDevice(data) {
+      this.$emit("updateDevice", data);
+    },
+    deleteDevice(data) {
+      this.$emit("deleteDevice", data);
+    },
   },
   created() {
     this.floors = document.getElementById("floors").textContent;
@@ -46,10 +52,14 @@ export default {
 
     EventBus.$on("addGroup", this.addGroup);
     EventBus.$on("addDevice", this.addDevice);
+    EventBus.$on("updateDevice", this.updateDevice);
+    EventBus.$on("deleteDevice", this.deleteDevice);
   },
   destroyed() {
     EventBus.$off("addGroup", this.addGroup);
     EventBus.$off("addDevice", this.addDevice);
+    EventBus.$off("updateDevice", this.updateDevice);
+    EventBus.$off("deleteDevice", this.deleteDevice);
   },
 };
 </script>

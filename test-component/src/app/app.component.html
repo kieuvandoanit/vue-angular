@@ -1,9 +1,11 @@
 <div style="height: 100%">
-  <summa-floorplan style="height: 100%" 
+  <summa-floorplan style="height: 100%"
     (addGroup)="addGroup($event)"
     (addDevice)="addDevice($event)"
+    (updateDevice)="updateDevice($event)"
+    (deleteDevice)="deleteDevice($event)"
   ></summa-floorplan>
-  
+
   <div id="floors" style="display: none;">{{floors}}</div>
   <div id="devices" style="display: none;">{{devices}}</div>
   <div id="groups" style="display: none;">{{groups}}</div>

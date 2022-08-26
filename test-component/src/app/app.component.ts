@@ -15,6 +15,14 @@ export class AppComponent {
     console.log('new devices contains: ', data.detail[0]);
   }
 
+  public updateDevice(data: any) {
+    console.log('update devices contains: ', data.detail[0]);
+  }
+
+  public deleteDevice(data: any) {
+    console.log('delete devices contains: ', data.detail[0]);
+  }
+
 
   public floors = JSON.stringify([
     {

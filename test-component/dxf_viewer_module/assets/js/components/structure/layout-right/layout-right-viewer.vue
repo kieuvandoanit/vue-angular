@@ -510,11 +510,6 @@ export default {
     },
 
     handleUpdateDevice(v, needRefresh = true) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
       const params = {
         block_name: v.name,
         x: v.x,
@@ -529,55 +524,13 @@ export default {
         ceil_height: v.ceilHeight,
         rotation: v.rotation,
       };
-
       this.errorUpdateDevice = "";
-      axios
-        .put(`${API_DOMAIN_MANIFERA}/api/v1/devices/${v.id}`, params)
-        .then((response) => {
-          const data = response.data;
-          this.clickType = "single";
-          this.selectedDevices = [data];
-          this.enableMoveDevice = false;
-          this.isAddToGroupOpen = false;
-          // this.$parent.getGroups();
-          // this.$parent.getDevices(false);
-          if (needRefresh) {
-            EventBus.$emit("getDevices", false);
-            EventBus.$emit("getGroups");
-          }
-        })
-        .catch((error) => {
-          // handle error
-          if (error.response.status == 422) {
-            this.errorUpdateDevice = error.response.data.detail;
-          }
-        })
-        .then();
+
+      EventBus.$emit("updateDevice", params)
     },
 
     handleDeleteDevice(v) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
-      axios
-        .delete(`${API_DOMAIN_MANIFERA}/api/v1/devices/${v}`)
-        .then(() => {
-          this.clickType = "empty";
-          this.selectedDevices = [];
-          this.isAddToGroupOpen = false;
-          this.deletedDeviceId = v;
-          // this.$parent.getGroups();
-          // this.$parent.getDevices(false);
-          EventBus.$emit("getDevices", false);
-          EventBus.$emit("getGroups");
-        })
-        .catch((error) => {
-          // handle error
-          // console.log(error);
-        })
-        .then();
+        EventBus.$emit("deleteDevice", v)
     },
 
     handleCreateArea(v) {
@@ -796,16 +749,16 @@ export default {
       let needRefresh = false;
       if (parseInt(parentGroup)) {
         // group entities
-        await axios
-          .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/${parentGroup}`, {
-            group_ids: group_ids,
-            device_ids: device_ids,
-          })
-          .then((response) => {
-            this.handleCloseAddToGroupPopup();
-          })
-          .catch((error) => {});
-        needRefresh = true;
+        // await axios
+        //   .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/${parentGroup}`, {
+        //     group_ids: group_ids,
+        //     device_ids: device_ids,
+        //   })
+        //   .then((response) => {
+        //     this.handleCloseAddToGroupPopup();
+        //   })
+        //   .catch((error) => {});
+        // needRefresh = true;
       }
 
       // if move/update entities
@@ -822,23 +775,23 @@ export default {
         };
 
         for (let i = 0; i < oldParentDevices.length; i++) {
-          await axios
-            .delete(
-              `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentDevices[i]}/entities`,
-              deviceParams
-            )
-            .then((response) => {})
-            .catch((error) => {});
+          // await axios
+          //   .delete(
+          //     `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentDevices[i]}/entities`,
+          //     deviceParams
+          //   )
+          //   .then((response) => {})
+          //   .catch((error) => {});
         }
 
         for (let i = 0; i < oldParentGroups.length; i++) {
-          await axios
-            .delete(
-              `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentGroups[i]}/entities`,
-              groupParams
-            )
-            .then((response) => {})
-            .catch((error) => {});
+          // await axios
+          //   .delete(
+          //     `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentGroups[i]}/entities`,
+          //     groupParams
+          //   )
+          //   .then((response) => {})
+          //   .catch((error) => {});
         }
         needRefresh = true;
       }
