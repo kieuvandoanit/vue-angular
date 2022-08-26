@@ -378,14 +378,7 @@ export default {
           params.x_color = this.data.x_color;
           params.y_color = this.data.y_color;
         }
-        axios
-          .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, params)
-          .then((response) => {
-            // this.$parent.getGroups();
-            // this.$root.$children[0].$children[1].getGroups();
-            EventBus.$emit("getGroups");
-            // this.sidebarData = response.data;
-          });
+        EventBus.$emit("updateGroup",params)
       }
     },
     onBlurChangeLight(e) {

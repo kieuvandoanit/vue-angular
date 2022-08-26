@@ -187,7 +187,6 @@ export default {
       this.areaData = val;
     },
     selectedGroups(val) {
-      // // console.log("Vao day ne: ", this.groups)
       let selectedIds = [];
 
       val.forEach((item) => {
@@ -216,6 +215,16 @@ export default {
         this.isToggle = false;
       }
     },
+    groups(val) {
+      if (this.handleAfterUpdateGroup !== 0) {
+        this.clickType = "single";
+        this.enableMoveGroup = false;
+        this.isAddToGroupOpen = false;
+        this.isToggle = false;
+        this.selectedDevices = val?.filter((group) => group.id === this.handleAfterUpdateGroup)
+        this.handleAfterUpdateGroup = 0
+      }
+    }
   },
 
   data() {
@@ -261,6 +270,7 @@ export default {
       enableMoveGroup: false,
       enableMoveAllInGroup: false,
       errorUpdateDevice: "",
+      handleAfterUpdateGroup: 0, // Save id of newly updated group
     };
   },
 
@@ -435,39 +445,9 @@ export default {
       // }
     },
 
-    handleUpdateGroup(v, needRefresh = true) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
-      const params = {
-        name: v.name,
-        x: v.x,
-        y: v.y,
-      };
-
-      axios
-        .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${v.id}`, params)
-        .then((response) => {
-          const data = response.data;
-          this.clickType = "single";
-          this.selectedDevices = [data];
-          this.enableMoveGroup = false;
-          // this.$parent.getGroups();
-          // this.$parent.getDevices(false);
-          if (needRefresh) {
-            EventBus.$emit("getGroups");
-            EventBus.$emit("getDevices", false);
-          }
-          this.isAddToGroupOpen = false;
-          this.isToggle = false;
-        })
-        .catch((error) => {
-          // handle error
-          // console.log(error);
-        })
-        .then();
+    handleUpdateGroup(v) {
+      EventBus.$emit("updateGroup", v);
+      this.handleAfterUpdateGroup = v.id;
     },
 
     handleUpdateObjects(v, needRefresh = true) {
@@ -674,34 +654,17 @@ export default {
     },
 
     handleDeleteGroup(group) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
-      axios
-        .delete(`${API_DOMAIN_MANIFERA}/api/v1/groups/${group.id}`)
-        .then(() => {
-          this.selectedDevices = [];
-          this.selectedGroups = [];
-          this.selectedArea = null;
-          this.selectedNewDevice = null;
-          this.isAddToGroupOpen = false;
-          this.clickType = "empty";
-          this.deletedGroupId = group.id;
-          // this.$root.$children[0].data = {};
-          storeFunctions.setSelectedGroup(null);
-          // this.$root.$children[0].popup = false;
-          storeFunctions.setPopup(false);
-          this.sidebarData = {};
-          // this.$parent.getGroups();
-          EventBus.$emit("getDevices", false);
-          EventBus.$emit("getGroups");
-        })
-        .catch((error) => {
-          // handle error
-          // console.log(error);
-        });
+      EventBus.$emit("deleteGroup", {id: group.id});
+      this.selectedDevices = [];
+      this.selectedGroups = [];
+      this.selectedArea = null;
+      this.selectedNewDevice = null;
+      this.isAddToGroupOpen = false;
+      this.clickType = "empty";
+      this.deletedGroupId = group.id;
+      storeFunctions.setSelectedGroup(null);
+      storeFunctions.setPopup(false);
+      this.sidebarData = {};
     },
 
     async handleAddToGroup(parentGroup, groups, devices) {

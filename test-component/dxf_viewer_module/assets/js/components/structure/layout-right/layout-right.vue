@@ -263,7 +263,7 @@ export default {
       //     // this.$root.$children[0].$children[0].$children[1].updateTreeNode(
       //     //   responseGroups
       //     // );
-      EventBus.$emit("updateGroups", responseGroups);
+      // EventBus.$emit("updateGroups", responseGroups);
       //     // EventBus.$emit("updateTreeNode", responseGroups);s
       //   })
       //   .catch((error) => {})
