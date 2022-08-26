@@ -673,24 +673,24 @@ export default {
         .then();
     },
 
-    handleAddGroup() {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/`, {
-          name: this.groupName,
-          file_id: this.selectedFile.id,
-          building_id: this.selectedFile.building_id,
-          project_id: this.selectedFile.project_id,
-        })
-        .then((response) => {
-          // this.$parent.getGroups();
-          EventBus.$emit("getGroups");
-        })
-        .catch((error) => {})
-        .then((a) => {});
-    },
+    // handleAddGroup() {
+    //   axios.defaults.headers.common["Authorization"] = this.token;
+    //   axios.defaults.headers.post["Content-Type"] =
+    //     "application/x-www-form-urlencoded";
+    //   axios
+    //     .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/`, {
+    //       name: this.groupName,
+    //       file_id: this.selectedFile.id,
+    //       building_id: this.selectedFile.building_id,
+    //       project_id: this.selectedFile.project_id,
+    //     })
+    //     .then((response) => {
+    //       // this.$parent.getGroups();
+    //       EventBus.$emit("getGroups");
+    //     })
+    //     .catch((error) => {})
+    //     .then((a) => {});
+    // },
 
     handleCloseAddToGroupPopup() {
       this.errorUpdateDevice = "";
@@ -852,47 +852,19 @@ export default {
     },
 
     handleCreateDevice(v) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
       const params = {
         block_name: v.name,
         x: v.x,
         y: v.y,
-        width: 0,
-        height: 0,
         serial_number: v.serial_number,
         channels: v.channel && v.channel.length ? [v.channel] : [],
         type: v.type,
-        status: false,
-        mac_address: null,
-        selected_cells: [],
         ceil_height: 0,
         angle: 0,
         rotation: 0,
         file_id: this.selectedFile.id,
-        layer:
-          v.type === "fixture"
-            ? this.selectedFile.fixture_layer_name
-            : this.selectedFile.sensor_layer_name,
       };
-
-      axios
-        .post(`${API_DOMAIN_MANIFERA}/api/v1/devices/`, params)
-        .then((response) => {
-          const data = response.data;
-          // this.$parent.getGroups();
-          // this.$parent.getDevices(false);
-          this.$parent.addDevice = false;
-          EventBus.$emit("getGroups");
-          EventBus.$emit("getDevices", false);
-        })
-        .catch((error) => {
-          // console.log(error);
-        })
-        .then();
+      EventBus.$emit("addDevice", params);
     },
 
     handleSwitchToDrawArea() {

@@ -301,15 +301,15 @@ export default {
     groupClick(obj) {
       this.$emit("layoutGroup", obj);
     },
-    addGroup(obj) {
-      this.$emit("addGroup", obj);
-    },
-    addFloor() {
-      this.$emit("addFloor");
-    },
-    editFloor(obj) {
-      this.$emit("editFloor", obj);
-    },
+    // addGroup(obj) {
+    //   this.$emit("addGroup", obj);
+    // },
+    // addFloor() {
+    //   this.$emit("addFloor");
+    // },
+    // editFloor(obj) {
+    //   this.$emit("editFloor", obj);
+    // },
     // async deleteFloor() {
     //   const token = this.token || "";
     //   axios.defaults.headers.common["Authorization"] = token;

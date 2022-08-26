@@ -14,7 +14,10 @@
 
 <script>
 import LayoutStructure from "./components/structure/layout-structure.vue";
-
+import { floors } from "./dummy/dummy_floors.js";
+import { devices } from "./dummy/dummy_devices.js";
+import { groups } from "./dummy/dummy_groups.js";
+import { EventBus } from "./store.js";
 export default {
   props: [],
   data() {
@@ -27,16 +30,22 @@ export default {
   components: {
     LayoutStructure,
   },
-
-  created(){
-    this.floors = document.getElementById("floors").textContent;
-    this.devices = document.getElementById("devices").textContent;
-    this.groups = document.getElementById("groups").textContent;
+  mounted() {},
+  methods: {
+    addGroup(data) {
+      this.$emit("addGroup", data);
+    },
+    addDevice(data) {
+      this.$emit("addDevice", data);
+    },
   },
-
-  mounted() {
-    
-
+  created() {
+    EventBus.$on("addGroup", this.addGroup);
+    EventBus.$on("addDevice", this.addDevice);
+  },
+  destroyed() {
+    EventBus.$off("addGroup", this.addGroup);
+    EventBus.$off("addDevice", this.addDevice);
   },
 };
 </script>
