@@ -463,8 +463,8 @@ export default {
           this.groupIdValue = object.id;
           this.groupNameValue = object.name;
           this.groupId = object.parent_id ?? 0;
-          this.groupXValue = object.x;
-          this.groupYValue = object.y;
+          this.groupXValue = object?.x || object?.positions[0]?.x;
+          this.groupYValue = object?.y || object?.positions[0]?.y;
           this.duplicateObject = [{id: this.groupIdValue, type: "group"}]
         } else {
           this.selectedDevice = object;
@@ -663,7 +663,7 @@ export default {
           store.setSelectedObjects
         );
       }
-      else if(this.isMoveGroup){
+      else {
         this.handleAddToGroup();
         storeFunctions.setIsMoveGroup(false);
         this.$emit("handleUpdateGroup", {

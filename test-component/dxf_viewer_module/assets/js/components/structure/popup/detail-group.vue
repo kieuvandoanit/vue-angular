@@ -302,10 +302,6 @@ export default {
       } else {
         this.colorMode = v.tab;
       }
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
       if (this.data) {
         const params = {
           scene_id: this.data.scene_id,
@@ -318,11 +314,8 @@ export default {
           params.x_color = this.data.x_color;
           params.y_color = this.data.y_color;
         }
-        axios
-          .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, params)
-          .then((response) => {
-            EventBus.$emit("getGroups");
-          });
+        params.id = this.data.id;
+        EventBus.$emit("updateGroup", params)
       }
     },
 
@@ -367,13 +360,7 @@ export default {
       const params = {
         scene_id: v.checked ? v.value : null,
       };
-
-      axios
-        .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/${this.data.id}`, params)
-        .then((response) => {
-          storeFunctions.setSelectedGroup(response.data);
-          EventBus.$emit("getGroups");
-        });
+      EventBus.$emit("updateGroup", params);
     },
 
     clickSceneName(scene) {

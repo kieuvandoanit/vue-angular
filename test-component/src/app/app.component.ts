@@ -11,6 +11,13 @@ export class AppComponent {
     console.log('new group contains: ', data.detail[0]);
   }
 
+  public updateGroup(data: any) {
+    console.log('update group contains: ', data.detail[0]);
+  }
+  public deleteGroup(data: any) {
+    console.log('delete group contains: ', data.detail[0]);
+  }
+
   public addDevice(data: any) {
     console.log('new devices contains: ', data.detail[0]);
   }
