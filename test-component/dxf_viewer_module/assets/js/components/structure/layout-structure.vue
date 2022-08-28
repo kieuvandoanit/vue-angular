@@ -17,6 +17,7 @@
         @handleItemClick="handleItemClick"
         @handleClickFloor="handleClickFloor"
         @handleFloorsChange="handleFloorsChange"
+        @closeButtonCreate="closeButtonCreate"
       ></LayoutLeft>
     </div>
     <div v-bind:class="colRight" class="padding-0">
@@ -69,13 +70,13 @@ export default {
     },
     groups: {
       default() {
-        return "[]";
+        return [];
       },
     },
     floors: null,
     devices: {
       default() {
-        return "[]";
+        return [];
       },
     },
     token: "",
@@ -129,7 +130,9 @@ export default {
     //   // console.log("handleSelectBuilding", v);
     //   this.currentFloors = v;
     // },
-
+    closeButtonCreate(){
+      storeFunctions.setSelectedFloorplan = null;
+    },
     handleExpandedView() {
       this.colLeft = "col-12";
       this.colRight = "col-0 d-none";

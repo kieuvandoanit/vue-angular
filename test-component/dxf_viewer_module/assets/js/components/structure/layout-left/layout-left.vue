@@ -295,6 +295,7 @@ export default {
         storeFunctions.setSelectedFloorplan(null);
         storeFunctions.setPopup(false);
         EventBus.$emit("compactClick");
+        this.$emit("closeButtonCreate");
       }
     },
     handleExpandedClick() {

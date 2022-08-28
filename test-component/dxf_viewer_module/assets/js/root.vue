@@ -32,7 +32,14 @@ export default {
     floors(val){
       this.floors = val;
       this.floors_data = val;
-      console.log(val);
+    },
+    groups(val){
+      this.groups = val;
+      this.groups_data = val;
+    },
+    devices(val){
+      this.devices = val;
+      this.devices_data = val;
     }
   },
   methods: {
@@ -44,6 +51,14 @@ export default {
     },
     deleteGroup(data) {
       this.$emit("deleteGroup", data);
+    },
+    moveAllInGroup(data){
+      console.log("Vao move ne ", data)
+      this.$emit("moveAllInGroup", data);
+    },
+    duplicateObject(data){
+      console.log("Duplicate: ", data);
+      this.$emit("duplicateObject", data)
     },
     addDevice(data) {
       this.$emit("addDevice", data);
@@ -63,6 +78,8 @@ export default {
     EventBus.$on("addGroup", this.addGroup);
     EventBus.$on('updateGroup', this.updateGroup);
     EventBus.$on('deleteGroup', this.deleteGroup);
+    EventBus.$on('moveAllInGroup', this.moveAllInGroup);
+    EventBus.$on('duplicateObject', this.duplicateObject);
     EventBus.$on("addDevice", this.addDevice);
     EventBus.$on("updateDevice", this.updateDevice);
     EventBus.$on("deleteDevice", this.deleteDevice);
@@ -71,6 +88,8 @@ export default {
     EventBus.$off("addGroup", this.addGroup);
     EventBus.$off('updateGroup', this.updateGroup);
     EventBus.$off('deleteGroup', this.deleteGroup);
+    EventBus.$on('moveAllInGroup', this.moveAllInGroup);
+    EventBus.$on('duplicateObject', this.duplicateObject);
     EventBus.$off("addDevice", this.addDevice);
     EventBus.$off("updateDevice", this.updateDevice);
     EventBus.$off("deleteDevice", this.deleteDevice);

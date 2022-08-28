@@ -43,7 +43,7 @@ export const storeFunctions = {
     store.selectedGroup = val;
   },
   setSelectedObjects(val) {
-    store.setSelectedObjects = val;
+    store.selectedObjects = val;
   },
   setSelectedScene(val) {
     store.selectedScene = val;

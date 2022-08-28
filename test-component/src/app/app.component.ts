@@ -8,7 +8,6 @@ import '../../dxf_viewer_module/dist/js/index.js';
 })
 export class AppComponent {
   public changeValue(){
-    console.log("vao angular")
     this.floors = JSON.stringify([
       {
         id: 1,
@@ -22,6 +21,53 @@ export class AppComponent {
         download_url: 'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
       }
     ]);
+    this.groups = JSON.stringify([
+      {
+        id: 46,
+        name: 'Tz group 1',
+        x_color: 0,
+        y_color: 0,
+        color_type: 'cct',
+        type: 'Group',
+        is_active: false,
+        scene_status: false,
+        scene_id: 829,
+        file_id: 10,
+        light: 0,
+        color: '7F2C0A',
+        intensity: 0,
+        device_ids: [],
+        group_ids: [],
+        positions: [
+          {
+            x: '5000',
+            y: '16974',
+          },
+        ],
+      }
+    ]);
+    this.devices = JSON.stringify([
+      {
+        id: 5098,
+        x: '56286',
+        y: '23089',
+        width: '0',
+        height: '0',
+        type: 'fixture',
+        block_name: 'daytonopaal',
+        mac_address: null,
+        status: true,
+        serial_number: null,
+        channels: null,
+        mA: null,
+        ceil_height: 0,
+        selected_cells: null,
+        angle: 0,
+        layer: 'EL63101-_LICHT-ARM',
+        file_id: 2,
+        rotation: 0,
+      }
+    ])
   }
 
   public addGroup(data: any) {

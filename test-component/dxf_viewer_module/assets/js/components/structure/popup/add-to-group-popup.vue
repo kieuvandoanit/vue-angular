@@ -693,7 +693,7 @@ export default {
       if (this.isMoveAllInGroup) {
         storeFunctions.setIsMoveAllInGroup(false);
         this.$emit("handleUpdateObjects",
-          store.setSelectedObjects
+          store.selectedObjects
         );
       }
       else {

@@ -326,25 +326,13 @@ export default {
 
     handleDuplicateObject(val, needRefresh = true) {
       // Duplicate object
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-      axios
-        .post(`${API_DOMAIN_MANIFERA}/api/v1/files/duplicate_object`, val)
-        .then((response) => {
-          const data = response.data;
-
-          if (needRefresh) {
-            EventBus.$emit("getGroups");
-            EventBus.$emit("getDevices");
-          }
-        })
-        .catch((error) => {
-          // console.log(error);
-        })
-        .then(() => {
-          this.isDuplicating = false;
-        });
+      this.isDuplicating = true;
+      EventBus.$emit("duplicateObject", val)
+      if (needRefresh) {
+        EventBus.$emit("getGroups");
+        EventBus.$emit("getDevices");
+      }
+      this.isDuplicating = false; 
     },
 
     handleIconSingleClick(type, devices, groups, activeGroup) {
@@ -451,11 +439,6 @@ export default {
     },
 
     handleUpdateObjects(v, needRefresh = true) {
-      const token = this.token || "";
-      axios.defaults.headers.common["Authorization"] = token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
-
       let params = [];
       if (v.length > 0) {
         v.map((item) => {
@@ -466,27 +449,19 @@ export default {
             type: item.type,
           });
         });
-      }
+      };
+
       this.isLoading = true;
-      axios
-        .put(`${API_DOMAIN_MANIFERA}/api/v1/groups/move_group_content`, params)
-        .then((response) => {
-          const data = response.data;
-          this.clickType = "single";
-          this.enableMoveAllInGroup = false;
-          if (needRefresh) {
-            EventBus.$emit("getGroups");
-            EventBus.$emit("getDevices", false);
-          }
-          this.isAddToGroupOpen = false;
-          this.isLoading = false;
-          this.isToggle = false;
-        })
-        .catch((error) => {
-          // handle error
-          // console.log(error);
-        })
-        .then();
+      EventBus.$emit("moveAllInGroup", params);
+      this.clickType = "single";
+      this.enableMoveAllInGroup = false;
+      if (needRefresh) {
+        EventBus.$emit("getGroups");
+        EventBus.$emit("getDevices", false);
+      }
+      this.isAddToGroupOpen = false;
+      this.isLoading = false;
+      this.isToggle = false;
     },
 
     handleUpdateDevice(v, needRefresh = true) {

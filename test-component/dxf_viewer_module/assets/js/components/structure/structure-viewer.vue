@@ -98,18 +98,16 @@ export default {
       // // console.log("leng group: ", this.groups.length)
       // this.viewer.setStructureMode(true);
       this.goBack();
-      setTimeout(() => {
-        this.viewer?.setSelectedGroup(null);
-      }, 1000);
+      // setTimeout(() => {
+      //   this.viewer?.setSelectedGroup(null);
+      // }, 1000);
     },
 
     groups(val) {
-      // console.log('changeGroup', val);
       this.viewer?.updateGroupsData(val);
     },
 
     devices(val) {
-      // console.log('changeDev', val);
       this.viewer?.updateDevicesData(val);
     },
 

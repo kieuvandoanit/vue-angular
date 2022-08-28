@@ -133,8 +133,6 @@ export default {
     viewMode: "",
   },
 
-  created() {},
-
   mounted() {},
 
   updated() {},
@@ -167,6 +165,9 @@ export default {
           this.getGroups();
           this.getAreas();
         }
+      }else{
+        this.showCreateDeviceButton = false;
+        this.showCreateGroupButton = false;
       }
     },
 
@@ -305,6 +306,7 @@ export default {
       EventBus.$emit("checkLayersForFloorplan", v);
       storeFunctions.setShowFloorStackSelector(false);
       storeFunctions.setCurrentNav("Floorplans");
+      console.log("data ne" , v)
       storeFunctions.setSelectedFloorplan(v);
       this.showAddGroup = true;
       this.showDeviceMode = true;

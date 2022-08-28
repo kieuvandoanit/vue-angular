@@ -1,6 +1,12 @@
 <div style="height: 100%">
+  <button (click)="changeValue()">
+    Click me!
+  </button>
   <summa-floorplan style="height: 100%"
     floors = "{{floors}}"
+    devices = "{{devices}}"
+    groups = "{{groups}}"
+
     (addGroup)="addGroup($event)"
     (updateGroup)="updateGroup($event)"
     (deleteGroup)="deleteGroup($event)"
