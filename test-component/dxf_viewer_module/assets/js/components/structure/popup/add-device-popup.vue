@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <div class="d-flex align-items-center pb-2">
+          <div class="align-items-center pb-2">
             <input
               id="move-object2"
               type="checkbox"
@@ -126,7 +126,7 @@
             </div>
           </div>
 
-          <div class="d-flex align-items-center pb-2">
+          <div class="align-items-center pb-2">
             <input
               id="move-object2"
               type="checkbox"
@@ -223,7 +223,7 @@
             </div>
           </div>
 
-          <div class="d-flex align-items-center pb-2">
+          <div class="align-items-center pb-2">
             <input
               id="move-object2"
               type="checkbox"

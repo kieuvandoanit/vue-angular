@@ -114,7 +114,7 @@
             </div>
           </div>
 
-          <div v-else class="d-flex align-items-center pb-2">
+          <div v-else class="align-items-center pb-2">
             <input
               id="move-device"
               type="checkbox"
@@ -129,7 +129,7 @@
           <!-- End checkbox move object section -->
 
           <!-- Start checkbox advance view section -->
-          <div class="d-flex align-items-center pb-2">
+          <div class="align-items-center pb-2">
             <input
               id="advanced-view"
               type="checkbox"

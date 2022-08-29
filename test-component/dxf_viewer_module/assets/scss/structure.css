@@ -547,6 +547,7 @@
 .title {
   font-size: 14px;
   color: #a1a1aa;
+  margin-right: 5px;
 }
 .slider-color {
   -webkit-appearance: none;
