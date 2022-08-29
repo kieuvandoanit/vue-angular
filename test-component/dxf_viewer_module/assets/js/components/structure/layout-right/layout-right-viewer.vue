@@ -221,10 +221,12 @@ export default {
         this.enableMoveGroup = false;
         this.isAddToGroupOpen = false;
         this.isToggle = false;
-        this.selectedDevices = val?.filter((group) => group.id === this.handleAfterUpdateGroup)
-        this.handleAfterUpdateGroup = 0
+        this.selectedDevices = val?.filter(
+          (group) => group.id === this.handleAfterUpdateGroup
+        );
+        this.handleAfterUpdateGroup = 0;
       }
-    }
+    },
   },
 
   data() {
@@ -327,12 +329,12 @@ export default {
     handleDuplicateObject(val, needRefresh = true) {
       // Duplicate object
       this.isDuplicating = true;
-      EventBus.$emit("duplicateObject", val)
+      EventBus.$emit("duplicateObject", val);
       if (needRefresh) {
         EventBus.$emit("getGroups");
         EventBus.$emit("getDevices");
       }
-      this.isDuplicating = false; 
+      this.isDuplicating = false;
     },
 
     handleIconSingleClick(type, devices, groups, activeGroup) {
@@ -449,7 +451,7 @@ export default {
             type: item.type,
           });
         });
-      };
+      }
 
       this.isLoading = true;
       EventBus.$emit("moveAllInGroup", params);
@@ -481,11 +483,11 @@ export default {
       };
       this.errorUpdateDevice = "";
 
-      EventBus.$emit("updateDevice", params)
+      EventBus.$emit("updateDevice", params);
     },
 
     handleDeleteDevice(v) {
-        EventBus.$emit("deleteDevice", v)
+      EventBus.$emit("deleteDevice", v);
     },
 
     handleCreateArea(v) {
@@ -629,7 +631,7 @@ export default {
     },
 
     handleDeleteGroup(group) {
-      EventBus.$emit("deleteGroup", {id: group.id});
+      EventBus.$emit("deleteGroup", { id: group.id });
       this.selectedDevices = [];
       this.selectedGroups = [];
       this.selectedArea = null;
@@ -642,10 +644,8 @@ export default {
       this.sidebarData = {};
     },
 
-    async handleAddToGroup(parentGroup, groups, devices) {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
+    handleAddToGroup(parentGroup, groups, devices) {
+      let oldParentGroupId = null;
       let oldParentGroups = [];
       let oldParentDevices = [];
 
@@ -684,62 +684,18 @@ export default {
         }
       });
 
-      let needRefresh = false;
-      if (parseInt(parentGroup)) {
-        // group entities
-        // await axios
-        //   .post(`${API_DOMAIN_MANIFERA}/api/v1/groups/${parentGroup}`, {
-        //     group_ids: group_ids,
-        //     device_ids: device_ids,
-        //   })
-        //   .then((response) => {
-        //     this.handleCloseAddToGroupPopup();
-        //   })
-        //   .catch((error) => {});
-        // needRefresh = true;
-      }
-
-      // if move/update entities
       if (oldParentDevices.length > 0 || oldParentGroups.length > 0) {
-        let deviceParams = {
-          data: {
-            device_ids: device_ids,
-          },
-        };
-        let groupParams = {
-          data: {
-            group_ids: group_ids,
-          },
-        };
-
-        for (let i = 0; i < oldParentDevices.length; i++) {
-          // await axios
-          //   .delete(
-          //     `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentDevices[i]}/entities`,
-          //     deviceParams
-          //   )
-          //   .then((response) => {})
-          //   .catch((error) => {});
-        }
-
-        for (let i = 0; i < oldParentGroups.length; i++) {
-          // await axios
-          //   .delete(
-          //     `${API_DOMAIN_MANIFERA}/api/v1/groups/${oldParentGroups[i]}/entities`,
-          //     groupParams
-          //   )
-          //   .then((response) => {})
-          //   .catch((error) => {});
-        }
-        needRefresh = true;
+        oldParentGroupId = oldParentDevices[0] || oldParentGroups[0] || 0;
       }
-      if (needRefresh) {
-        this.handleCloseAddToGroupPopup();
-        // this.$parent.getGroups();
-        // this.$parent.getDevices(false);
-        EventBus.$emit("getGroups");
-        EventBus.$emit("getDevices", false);
-      }
+
+      this.handleCloseAddToGroupPopup();
+      let params = {
+        group_ids: group_ids,
+        device_ids: device_ids,
+        new_parent_group_id: parentGroup,
+        old_parent_group_id: oldParentGroupId,
+      };
+      EventBus.$emit("addToGroup", params);
     },
 
     handleCreateDevice(v) {

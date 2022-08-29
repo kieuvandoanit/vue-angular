@@ -7,70 +7,6 @@ import '../../dxf_viewer_module/dist/js/index.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public changeValue(){
-    this.floors = JSON.stringify([
-      {
-        id: 1,
-        floor_layer_name: 'XREF',
-        fixture_layer_name: 'EL63101-_LICHT-ARM',
-        sensor_layer_name: 'EL63101-_LICHT-ARM',
-        full_name: 'Basement 1',
-        position: 1,
-        project_id: 2,
-        building_id: 4,
-        download_url: 'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
-      }
-    ]);
-    this.groups = JSON.stringify([
-      {
-        id: 1,
-        name: 'Root Group 5',
-        x_color: 0,
-        y_color: 0,
-        color_type: 'cct',
-        type: 'Group',
-        is_active: false,
-        scene_status: false,
-        scene_id: 829,
-        file_id: 1,
-        light: 0,
-        color: '7F2C0A',
-        intensity: 0,
-        device_ids: [3],
-        group_ids: [2],
-        positions: [
-          {
-            x: '38031.25835999189',
-            y: '8065.219948542874',
-          },
-        ],
-      }
-    ]);
-    this.devices = JSON.stringify([
-      {
-        id: 449,
-        x: '39028.04763702629',
-        y: '9036.47570715079',
-        width: '0',
-        height: '0',
-        type: 'fixture',
-        block_name: 'New device',
-        mac_address: null,
-        status: false,
-        serial_number: null,
-        channels: [],
-        mA: null,
-        ceil_height: 0,
-        selected_cells: [],
-        angle: 0,
-        layer: 'EL63101-_LICHT-ARM',
-        file_id: 1,
-        rotation: 0,
-        group_id: null,
-      }
-    ])
-  }
-
   public addGroup(data: any) {
     console.log('new group contains: ', data.detail[0]);
   }
@@ -78,6 +14,7 @@ export class AppComponent {
   public updateGroup(data: any) {
     console.log('update group contains: ', data.detail[0]);
   }
+
   public deleteGroup(data: any) {
     console.log('delete group contains: ', data.detail[0]);
   }
@@ -94,6 +31,17 @@ export class AppComponent {
     console.log('delete devices contains: ', data.detail[0]);
   }
 
+  public moveAllInGroup(data: any) {
+    console.log('move all group and devices with data: ', data.detail[0]);
+  }
+
+  public duplicateObject(data: any) {
+    console.log('Duplicate object with data: ', data.detail[0]);
+  }
+
+  public addToGroup(data: any) {
+    console.log('AddToGroup with data: ', data.detail[0]);
+  }
 
   public floors = JSON.stringify([
     {
@@ -105,7 +53,8 @@ export class AppComponent {
       position: 4,
       project_id: 2,
       building_id: 4,
-      download_url: 'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
+      download_url:
+        'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
     },
     {
       id: 2,
@@ -2471,5 +2420,4 @@ export class AppComponent {
       ],
     },
   ]);
-
 }

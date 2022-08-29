@@ -92,6 +92,7 @@
       </div>
     </div>
     <LayoutRightViewer
+      v-show="!isShowFloorStack"
       ref="LayoutRightViewer"
       :file="floor"
       :groups="groups"
@@ -114,6 +115,9 @@
 </template>
 
 <script>
+// :file="isShowFloorStack ? null : floor"
+// :groups="isShowFloorStack ? null : groups"
+// :devices="isShowFloorStack ? null : devices"
 import axios from "axios";
 import { API_DOMAIN_MANIFERA } from "../../../constant.js";
 import { store, storeFunctions, EventBus } from "../../../store.js";
@@ -165,7 +169,7 @@ export default {
           this.getGroups();
           this.getAreas();
         }
-      }else{
+      } else {
         this.showCreateDeviceButton = false;
         this.showCreateGroupButton = false;
       }
@@ -335,7 +339,6 @@ export default {
       //     //     }
       //     //   });
       //     // });
-
       //     this.devices = responseData;
       //     this.needRefresh = refresh;
       //   })

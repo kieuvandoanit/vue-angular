@@ -692,11 +692,8 @@ export default {
     onUpdateGroup() {
       if (this.isMoveAllInGroup) {
         storeFunctions.setIsMoveAllInGroup(false);
-        this.$emit("handleUpdateObjects",
-          store.selectedObjects
-        );
-      }
-      else {
+        this.$emit("handleUpdateObjects", store.selectedObjects);
+      } else {
         this.handleAddToGroup();
         storeFunctions.setIsMoveGroup(false);
         this.$emit(
