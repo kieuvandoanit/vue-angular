@@ -108,6 +108,13 @@ export default {
     },
 
     devices(val) {
+      // val.forEach((data1) => {
+      //   this.groups.forEach((data2) => {
+      //     if (data2.device_ids.includes(data1.id)) {
+      //       data1.parent_id = data2.id;
+      //     }
+      //   });
+      // });
       this.viewer?.updateDevicesData(val);
     },
 

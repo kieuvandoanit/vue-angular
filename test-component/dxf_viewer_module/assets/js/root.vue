@@ -24,24 +24,30 @@ export default {
       groups_data: "[]"
     };
   },
+
   components: {
     LayoutStructure,
   },
-  mounted() {},
+
+  mounted() {
+    const floorplan = document.getElementById("summa-floorplan");
+    this.floors_data = floorplan.getAttribute("floors");
+    this.devices_data = floorplan.getAttribute("devices");
+    this.groups_data = floorplan.getAttribute("groups");
+  },
+
   watch: {
     floors(val){
-      this.floors = val;
       this.floors_data = val;
     },
     groups(val){
-      this.groups = val;
       this.groups_data = val;
     },
     devices(val){
-      this.devices = val;
       this.devices_data = val;
     }
   },
+
   methods: {
     addGroup(data) {
       this.$emit("addGroup", data);
@@ -71,9 +77,8 @@ export default {
     },
   },
   created() {
-    this.floors_data = document.getElementById("floors").textContent;
-    this.devices_data = document.getElementById("devices").textContent;
-    this.groups_data = document.getElementById("groups").textContent;
+   
+    
 
     EventBus.$on("addGroup", this.addGroup);
     EventBus.$on('updateGroup', this.updateGroup);
@@ -88,8 +93,8 @@ export default {
     EventBus.$off("addGroup", this.addGroup);
     EventBus.$off('updateGroup', this.updateGroup);
     EventBus.$off('deleteGroup', this.deleteGroup);
-    EventBus.$on('moveAllInGroup', this.moveAllInGroup);
-    EventBus.$on('duplicateObject', this.duplicateObject);
+    EventBus.$off('moveAllInGroup', this.moveAllInGroup);
+    EventBus.$off('duplicateObject', this.duplicateObject);
     EventBus.$off("addDevice", this.addDevice);
     EventBus.$off("updateDevice", this.updateDevice);
     EventBus.$off("deleteDevice", this.deleteDevice);

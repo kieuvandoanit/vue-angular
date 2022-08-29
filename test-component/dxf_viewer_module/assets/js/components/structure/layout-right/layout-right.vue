@@ -306,7 +306,6 @@ export default {
       EventBus.$emit("checkLayersForFloorplan", v);
       storeFunctions.setShowFloorStackSelector(false);
       storeFunctions.setCurrentNav("Floorplans");
-      console.log("data ne" , v)
       storeFunctions.setSelectedFloorplan(v);
       this.showAddGroup = true;
       this.showDeviceMode = true;
@@ -320,9 +319,9 @@ export default {
     },
 
     getDevices(refresh = true) {
-      axios.defaults.headers.common["Authorization"] = this.token;
-      axios.defaults.headers.post["Content-Type"] =
-        "application/x-www-form-urlencoded";
+      // axios.defaults.headers.common["Authorization"] = this.token;
+      // axios.defaults.headers.post["Content-Type"] =
+      //   "application/x-www-form-urlencoded";
       // axios
       //   .get(
       //     `${API_DOMAIN_MANIFERA}/api/v1/files/${this.selectedFileId}/devices`

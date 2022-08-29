@@ -2,7 +2,9 @@
   <button (click)="changeValue()">
     Click me!
   </button>
-  <summa-floorplan style="height: 100%"
+  <summa-floorplan 
+    id="summa-floorplan"  
+    style="height: 100%"
     floors = "{{floors}}"
     devices = "{{devices}}"
     groups = "{{groups}}"
@@ -14,9 +16,5 @@
     (updateDevice)="updateDevice($event)"
     (deleteDevice)="deleteDevice($event)"
   ></summa-floorplan>
-
-  <div id="floors" style="display: none;">{{floors}}</div>
-  <div id="devices" style="display: none;">{{devices}}</div>
-  <div id="groups" style="display: none;">{{groups}}</div>
 </div>
 

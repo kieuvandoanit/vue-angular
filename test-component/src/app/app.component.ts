@@ -15,7 +15,7 @@ export class AppComponent {
         fixture_layer_name: 'EL63101-_LICHT-ARM',
         sensor_layer_name: 'EL63101-_LICHT-ARM',
         full_name: 'Basement 1',
-        position: 4,
+        position: 1,
         project_id: 2,
         building_id: 4,
         download_url: 'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
@@ -23,8 +23,8 @@ export class AppComponent {
     ]);
     this.groups = JSON.stringify([
       {
-        id: 46,
-        name: 'Tz group 1',
+        id: 1,
+        name: 'Root Group 5',
         x_color: 0,
         y_color: 0,
         color_type: 'cct',
@@ -32,40 +32,41 @@ export class AppComponent {
         is_active: false,
         scene_status: false,
         scene_id: 829,
-        file_id: 10,
+        file_id: 1,
         light: 0,
         color: '7F2C0A',
         intensity: 0,
-        device_ids: [],
-        group_ids: [],
+        device_ids: [3],
+        group_ids: [2],
         positions: [
           {
-            x: '5000',
-            y: '16974',
+            x: '38031.25835999189',
+            y: '8065.219948542874',
           },
         ],
       }
     ]);
     this.devices = JSON.stringify([
       {
-        id: 5098,
-        x: '56286',
-        y: '23089',
+        id: 449,
+        x: '39028.04763702629',
+        y: '9036.47570715079',
         width: '0',
         height: '0',
         type: 'fixture',
-        block_name: 'daytonopaal',
+        block_name: 'New device',
         mac_address: null,
-        status: true,
+        status: false,
         serial_number: null,
-        channels: null,
+        channels: [],
         mA: null,
         ceil_height: 0,
-        selected_cells: null,
+        selected_cells: [],
         angle: 0,
         layer: 'EL63101-_LICHT-ARM',
-        file_id: 2,
+        file_id: 1,
         rotation: 0,
+        group_id: null,
       }
     ])
   }
