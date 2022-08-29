@@ -44,6 +44,24 @@ export class AppComponent {
         file_id: 1,
         rotation: 0,
         group_id: null,
+      },
+      {
+        id: 3,
+        x: '39626.469833534924',
+        y: '5434.762944914757',
+        width: '0',
+        height: '0',
+        type: 'fixture',
+        block_name: 'Dea Carmenta S',
+        mac_address: null,
+        serial_number: '235456',
+        channels: [],
+        ceil_height: 0,
+        angle: 0,
+        layer: 'EL63101-_LICHT-ARM',
+        file_id: 1,
+        rotation: 0,
+        group_id: 1,
       }
     ]);
 
@@ -70,7 +88,25 @@ export class AppComponent {
             y: '8065.219948542874',
           },
         ],
-      }
+      },
+      {
+        "id": 2,
+        "name": "Group 1",
+        "type": "Group",
+        "is_active": false,
+        "file_id": 1,
+        "device_ids": [
+            9,
+            11
+        ],
+        "group_ids": [],
+        "positions": [
+            {
+                "x": "40054.80372469752",
+                "y": "6760.3168628915755"
+            }
+        ]
+    }
     ]);
   }
 

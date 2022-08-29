@@ -2071,6 +2071,11 @@ export class Viewer {
                 e.material.visible = false;
               } else {
                 e.material.visible = true;
+                
+                const device_ids = this.devices.map(device => device.id);
+                if(e.name.includes("box-device") && !device_ids.includes(e.exData.id)){
+                  e.material.visible = false;
+                }
               }
             } else {
               if (deviceTypes.includes(exData.type)) {
