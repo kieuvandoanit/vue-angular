@@ -30,7 +30,7 @@ export default {
   },
 
   mounted() {
-    const floorplan = document.getElementById("summa-floorplan");
+    const floorplan = document.getElementById("floorplan");
     this.floors_data = floorplan.getAttribute("floors");
     this.devices_data = floorplan.getAttribute("devices");
     this.groups_data = floorplan.getAttribute("groups");
