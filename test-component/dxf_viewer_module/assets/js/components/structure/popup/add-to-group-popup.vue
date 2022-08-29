@@ -729,7 +729,7 @@ export default {
     },
 
     onDeleteDevice() {
-      this.$emit("handleDeleteDevice", this.deviceIdValue);
+      this.$emit("handleDeleteDevice", { id: this.deviceIdValue });
       this.showDeleteDeviceModal = false;
     },
 
