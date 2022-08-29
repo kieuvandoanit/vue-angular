@@ -156,7 +156,6 @@ export default {
     // this.selectBuilding(this.buildings[0]);
     // this.titleSelect = this.buildings[0].name;
     // this.projectData = JSON.parse(this.project);
-    
   },
 
   created() {},
@@ -209,7 +208,7 @@ export default {
     },
     devices_json(val) {
       this.devices = val;
-    }
+    },
   },
 
   methods: {

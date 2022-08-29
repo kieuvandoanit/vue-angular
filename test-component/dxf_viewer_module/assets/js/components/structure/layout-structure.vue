@@ -130,8 +130,8 @@ export default {
     //   // console.log("handleSelectBuilding", v);
     //   this.currentFloors = v;
     // },
-    closeButtonCreate(){
-      storeFunctions.setSelectedFloorplan = null;
+    closeButtonCreate() {
+      storeFunctions.setSelectedFloorplan(null);
     },
     handleExpandedView() {
       this.colLeft = "col-12";
