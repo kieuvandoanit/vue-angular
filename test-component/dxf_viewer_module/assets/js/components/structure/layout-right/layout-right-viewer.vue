@@ -689,8 +689,8 @@ export default {
       let params = {
         group_ids: group_ids,
         device_ids: device_ids,
-        new_parent_group_id: parentGroup,
-        old_parent_group_id: oldParentGroupId,
+        new_parent_group_id: parentGroup || 0,
+        old_parent_group_id: oldParentGroupId || 0,
       };
       EventBus.$emit("addToGroup", params);
     },

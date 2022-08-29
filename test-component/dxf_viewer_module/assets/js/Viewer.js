@@ -948,14 +948,17 @@ export class Viewer {
         this.updateObjectsScale();
       });
 
-      this.groups = this.groups.filter((group) => {
-        return group.file_id == this.file.id;
-      });
-
-      this.devices = this.devices.filter((device)=> {
-        return device.file_id == this.file.id;
-      })
-
+      if(this.groups && this.groups.length > 0){
+        this.groups = this.groups?.filter((group) => {
+          return group.file_id == this.file.id;
+        });
+      }
+      
+      if(this.devices && this.devices.length > 0){
+        this.devices = this.devices?.filter((device)=> {
+          return device.file_id == this.file.id;
+        })
+      }
 
       this.drawFromArray(this.dxfViewer.origin, this.devices);
       this.drawFromArray(this.dxfViewer.origin, this.groups, "group");
@@ -2211,7 +2214,7 @@ export class Viewer {
 
       this.visibleDevices = null;
       this.groupedDevices = [...childDevices];
-      this.visibleGroups = [...visibleGroups];
+      this.visibleGroups = [...visibleGroups];  
     }
   }
 

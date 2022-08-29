@@ -77,9 +77,9 @@ export default {
   mounted() {},
 
   computed: {
-    propDevices() {
-      return [this.devices, this.needRefresh];
-    },
+    // propDevices() {
+    //   return [this.devices, this.needRefresh];
+    // },
 
     showFloorStack() {
       return store.isShowFloorStackSelector;
@@ -98,9 +98,6 @@ export default {
       // // console.log("leng group: ", this.groups.length)
       // this.viewer.setStructureMode(true);
       this.goBack();
-      // setTimeout(() => {
-      //   this.viewer?.setSelectedGroup(null);
-      // }, 1000);
     },
 
     groups(val) {
@@ -108,23 +105,16 @@ export default {
     },
 
     devices(val) {
-      // val.forEach((data1) => {
-      //   this.groups.forEach((data2) => {
-      //     if (data2.device_ids.includes(data1.id)) {
-      //       data1.parent_id = data2.id;
-      //     }
-      //   });
-      // });
-      this.viewer?.updateDevicesData(val);
+      this.viewer?.updateDevicesData(val, this.needRefresh);
     },
 
     areas(val) {
       this.viewer?.updateAreasData(val);
     },
 
-    propDevices(val) {
-      this.viewer?.updateDevicesData(val[0], val[1]);
-    },
+    // propDevices(val) {
+    //   this.viewer?.updateDevicesData(val[0], val[1]);
+    // },
 
     areaMode(val) {
       this.viewer?.setAreaMode(val);
@@ -262,7 +252,12 @@ export default {
       if (!this.viewer) {
         return;
       }
+      this.viewer.destroyViewer();
       this.viewer = null;
+      let canvas = this.$refs.structureViewer.getElementsByTagName('canvas');
+      while (canvas[0]) {
+        canvas[0].parentNode.removeChild(canvas[0]);
+      }
       // console.log("destroy in structure -viewer")
     },
 

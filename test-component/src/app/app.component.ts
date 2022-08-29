@@ -7,6 +7,73 @@ import '../../dxf_viewer_module/dist/js/index.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  changeValue(){
+    this.floors = JSON.stringify([
+      {
+        id: 1,
+        floor_layer_name: 'XREF',
+        fixture_layer_name: 'EL63101-_LICHT-ARM',
+        sensor_layer_name: 'EL63101-_LICHT-ARM',
+        full_name: 'Basement 1',
+        position: 1,
+        project_id: 2,
+        building_id: 4,
+        download_url:
+          'https://portal-api.summa.systems/api/v1/files/46/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
+      }
+    ]);
+
+    this.devices = JSON.stringify([
+      {
+        id: 449,
+        x: '39028.04763702629',
+        y: '9036.47570715079',
+        width: '0',
+        height: '0',
+        type: 'fixture',
+        block_name: 'New device',
+        mac_address: null,
+        status: false,
+        serial_number: null,
+        channels: [],
+        mA: null,
+        ceil_height: 0,
+        selected_cells: [],
+        angle: 0,
+        layer: 'EL63101-_LICHT-ARM',
+        file_id: 1,
+        rotation: 0,
+        group_id: null,
+      }
+    ]);
+
+    this.groups = JSON.stringify([
+      {
+        id: 1,
+        name: 'Root Group 5',
+        x_color: 0,
+        y_color: 0,
+        color_type: 'cct',
+        type: 'Group',
+        is_active: false,
+        scene_status: false,
+        scene_id: 829,
+        file_id: 1,
+        light: 0,
+        color: '7F2C0A',
+        intensity: 0,
+        device_ids: [3],
+        group_ids: [2],
+        positions: [
+          {
+            x: '38031.25835999189',
+            y: '8065.219948542874',
+          },
+        ],
+      }
+    ]);
+  }
+
   public addGroup(data: any) {
     console.log('new group contains: ', data.detail[0]);
   }
@@ -66,7 +133,7 @@ export class AppComponent {
       project_id: 2,
       building_id: 1,
       download_url:
-        'https://portal-api.summa.systems/api/v1/files/149/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTAxNzI1OTQsInN1YiI6IjEyNyJ9.V7MCMP-TbuWKk6nAx8coAoUMzXYVIt65k4UnxQ2kw2s',
+        'https://portal-api.54-246-45-69.nip.io/api/v1/files/113/download?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTUzNjE5NDQsInN1YiI6Ijg1In0.tr4I58iwFTWM5i7Y9dDKhL_lugtA0LmWYzyqNhlDzwA',
     },
     {
       id: 10,
