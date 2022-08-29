@@ -278,8 +278,8 @@ export default {
       ) {
         this.resetActions();
         // this.selectNav = this.buildings;
-        // this.titleSelect = this.buildings[0].name;
-        this.navigator = "Dashboard";
+        this.titleSelect = "";
+        // this.navigator = "Dashboard";
         // this.selectedBuilding = this.buildings[0];
         // this.filteredFloors = this.floors.filter(
         //   (floor) => floor.building_id == this.selectedBuilding.id
@@ -287,14 +287,13 @@ export default {
         // this.filteredGroups = this.groups.filter(
         //   (group) => group.building_id == this.selectedBuilding.id
         // );
-        this.$emit("changeExpanded", false);
+        // this.$emit("changeExpanded", false);
         this.paddingRight = { padding: "0 0 0 50px" };
         storeFunctions.setShowFloorStackSelector(true);
         storeFunctions.setCurrentNav("Dashboard");
         storeFunctions.setSelectedFloorplan(null);
         storeFunctions.setPopup(false);
-        EventBus.$emit("compactClick");
-        this.$emit("closeButtonCreate");
+        // EventBus.$emit("compactClick");
       }
     },
     handleExpandedClick() {
