@@ -468,20 +468,17 @@ export default {
 
     handleUpdateDevice(v, needRefresh = true) {
       const params = {
-        block_name: v.name,
+        id: v.id,
         x: v.x,
         y: v.y,
-        channels: v.channel ? [v.channel] : [],
-        old_parent_id: "",
-        selected_cells: [],
-        serial_number: v.serialNumber,
         type: v.type,
-        mac_address: v.mac_address,
-        angle: v.angle,
+        block_name: v.name,
+        serial_number: v.serialNumber,
+        channels: v.channel ? [v.channel] : [],
         ceil_height: v.ceilHeight,
+        angle: v.angle,
         rotation: v.rotation,
       };
-      this.errorUpdateDevice = "";
 
       EventBus.$emit("updateDevice", params);
     },

@@ -24,14 +24,14 @@
               }}
             </p>
           </div>
-          <button
+          <!-- <button
             v-if="devices[0].type === 'Group' && devices[0].controllable"
             class="btn"
             @click="onEnableLightControl"
             style="background-color: #f97316"
           >
             Light Control
-          </button>
+          </button> -->
         </div>
 
         <div
@@ -347,7 +347,7 @@
           <!-- End device section -->
         </div>
 
-        <div v-if="lightControl">
+        <!-- <div v-if="lightControl">
           <DetailGroup
             :data="groupData"
             :scenes="scenes"
@@ -358,7 +358,7 @@
             @handleBackSidebar="handleBackSidebar"
           >
           </DetailGroup>
-        </div>
+        </div> -->
       </div>
       <div v-else-if="clickType === 'multi'">
         <div class="content-item">
@@ -760,12 +760,12 @@ export default {
 
     onEnableAdvancedView() {},
 
-    onEnableLightControl() {
-      this.lightControl = true;
-      this.isShowBackButton = true;
-      EventBus.$emit("getScenesForGroup", this.groupData.id);
-      this.scenes = []; // get state;
-    },
+    // onEnableLightControl() {
+    //   this.lightControl = true;
+    //   this.isShowBackButton = true;
+    //   EventBus.$emit("getScenesForGroup", this.groupData.id);
+    //   this.scenes = []; // get state;
+    // },
 
     handleBackSidebar() {
       if (this.selectedScene) {
