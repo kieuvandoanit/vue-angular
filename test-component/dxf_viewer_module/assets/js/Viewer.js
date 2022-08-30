@@ -976,12 +976,12 @@ export class Viewer {
       this.drawTrackingPaths(this.dxfViewer.origin, this.peoples);
       this.drawPeoplePositions(this.dxfViewer.origin, this.peoplePositions);
       this.drawHeatMapPositions(this.dxfViewer.origin, this.heatMapPositions);
-      this.centerViewToDevices();
       this.updateObjectsScale(true);
       // // console.log("Vao refresh data ")
       this.refreshData();
       this.refresh();
       this.zoomToGroup(this.dxfViewer.origin);
+      this.centerViewToDevices();
       this.dxfViewer.Render();
     }
   }
