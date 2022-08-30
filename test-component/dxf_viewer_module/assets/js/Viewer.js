@@ -724,24 +724,34 @@ export class Viewer {
   }
 
   updateGroupsData(groupData, needRefresh = true) {
-    this.groups = groupData;
-    if (needRefresh) {
-      this.drawFromArray(this.dxfViewer.origin, this.groups, "group");
-      this.updateObjectsScale(true);
-      this.refreshData();
-      this.refresh();
+    if (groupData && groupData.length >= 0) {
+      this.groups = groupData.filter((group) => {
+        return group.file_id == this.file.id;
+      });
+      
+      if (needRefresh) {
+        this.drawFromArray(this.dxfViewer.origin, this.groups, "group");
+        this.updateObjectsScale(true);
+        this.refreshData();
+        this.refresh();
+      }
     }
   }
 
   updateDevicesData(devicesData, needRefresh) {
-    this.devices = devicesData;
-    if (needRefresh) {
-      this.centerViewToDevices();
+    if (devicesData && devicesData.length >= 0) {
+      this.devices = devicesData.filter((device)=> {
+        return device.file_id == this.file.id;
+      })
+      
+      if (needRefresh) {
+        this.centerViewToDevices();
+      }
+      this.drawFromArray(this.dxfViewer.origin, this.devices);
+      this.updateObjectsScale(true);
+      this.refreshData();
+      this.refresh();
     }
-    this.drawFromArray(this.dxfViewer.origin, this.devices);
-    this.updateObjectsScale(true);
-    this.refreshData();
-    this.refresh();
   }
 
   updateAreasData(areasData, needRefresh = true) {
@@ -2139,7 +2149,6 @@ export class Viewer {
         }
       });
     }
-    console.log("Dat ne: ", scene.children)
     api.selectedObjects = [];
     this.updateResizeBoxes(false, null, 0, 0);
     this.updatePolygonResizeBoxes(false, null);
