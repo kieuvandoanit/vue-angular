@@ -7,6 +7,75 @@ import '../../dxf_viewer_module/dist/js/index.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  changeValue2(){
+    this.devices = JSON.stringify([
+      {
+        id: 459,
+        x: '42028.04763702629',
+        y: '10036.47570715079',
+        width: '0',
+        height: '0',
+        type: 'fixture',
+        block_name: 'New device',
+        mac_address: null,
+        status: false,
+        serial_number: null,
+        channels: [],
+        mA: null,
+        ceil_height: 0,
+        selected_cells: [],
+        angle: 0,
+        layer: 'EL63101-_LICHT-ARM',
+        file_id: 1,
+        rotation: 0,
+        group_id: null,
+      },
+      {
+        id: 3,
+        x: '39626.469833534924',
+        y: '5434.762944914757',
+        width: '0',
+        height: '0',
+        type: 'fixture',
+        block_name: 'Dea Carmenta S',
+        mac_address: null,
+        serial_number: '235456',
+        channels: [],
+        ceil_height: 0,
+        angle: 0,
+        layer: 'EL63101-_LICHT-ARM',
+        file_id: 1,
+        rotation: 0,
+        group_id: 100,
+      }
+    ]);
+
+    this.groups = JSON.stringify([
+      {
+        id: 100,
+        name: 'Root Group 50',
+        x_color: 0,
+        y_color: 0,
+        color_type: 'cct',
+        type: 'Group',
+        is_active: false,
+        scene_status: false,
+        scene_id: 829,
+        file_id: 1,
+        light: 0,
+        color: '7F2C0A',
+        intensity: 0,
+        device_ids: [3],
+        group_ids: [2],
+        positions: [
+          {
+            x: '40031.25835999189',
+            y: '10065.219948542874',
+          },
+        ],
+      }
+    ]);
+  };
   changeValue(){
     this.floors = JSON.stringify([
       {
@@ -106,7 +175,7 @@ export class AppComponent {
                 "y": "6760.3168628915755"
             }
         ]
-    }
+      }
     ]);
   }
 

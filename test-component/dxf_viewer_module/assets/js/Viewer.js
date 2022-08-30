@@ -2004,11 +2004,12 @@ export class Viewer {
           }
         });
       }
-
+      
       canvasObjects.sensorGridCells.forEach((e) => {
         e.material.visible = false;
       });
-
+      const device_ids = this.devices.map(device => device.id);
+      
       otherObjects.forEach(async (e) => {
         // e is a Mesh
         if (e.name.indexOf("grid-cell") == 0) {
@@ -2072,9 +2073,9 @@ export class Viewer {
               } else {
                 e.material.visible = true;
                 
-                const device_ids = this.devices.map(device => device.id);
                 if(e.name.includes("box-device") && !device_ids.includes(e.exData.id)){
                   e.material.visible = false;
+                  this.onClick("single", null);
                 }
               }
             } else {
@@ -2138,7 +2139,7 @@ export class Viewer {
         }
       });
     }
-
+    console.log("Dat ne: ", scene.children)
     api.selectedObjects = [];
     this.updateResizeBoxes(false, null, 0, 0);
     this.updatePolygonResizeBoxes(false, null);
